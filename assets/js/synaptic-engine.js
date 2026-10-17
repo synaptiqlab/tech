@@ -47,11 +47,20 @@ class SynapticEngine {
     this.resize();
     window.addEventListener('resize', () => this.resize());
 
-    // Mouse & Pointer events strictly bound to this canvas
-    this.canvas.addEventListener('pointermove', (e) => {
+    // Helper to get relative canvas coordinates from PointerEvent or Touch
+    const getCanvasCoords = (clientX, clientY) => {
       const rect = this.canvas.getBoundingClientRect();
-      this.mouse.targetX = e.clientX - rect.left;
-      this.mouse.targetY = e.clientY - rect.top;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    };
+
+    // Pointer events (Desktop mouse + touch devices)
+    this.canvas.addEventListener('pointermove', (e) => {
+      const coords = getCanvasCoords(e.clientX, e.clientY);
+      this.mouse.targetX = coords.x;
+      this.mouse.targetY = coords.y;
       this.mouse.isActive = true;
 
       // Update HUD coordinates if hero
@@ -67,13 +76,81 @@ class SynapticEngine {
       this.mouse.targetY = -1000;
     });
 
-    // Click shockwave directly where clicked on this canvas
+    // Tap / Click Shockwave
     this.canvas.addEventListener('click', (e) => {
-      const rect = this.canvas.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const clickY = e.clientY - rect.top;
-      this.createShockwave(clickX, clickY);
+      const coords = getCanvasCoords(e.clientX, e.clientY);
+      this.createShockwave(coords.x, coords.y);
     });
+
+    // Direct Touch Support for Mobile & Tablets:
+    // 1. In sandbox chamber: direct touchmove controls particles / vortex
+    if (this.canvas.id === 'sandbox-canvas') {
+      this.canvas.style.touchAction = 'none'; // allows fluid finger drag inside sandbox without page scrolling
+
+      const handleTouchMove = (e) => {
+        if (!e.touches || e.touches.length === 0) return;
+        const touch = e.touches[0];
+        const coords = getCanvasCoords(touch.clientX, touch.clientY);
+        this.mouse.targetX = coords.x;
+        this.mouse.targetY = coords.y;
+        this.mouse.isActive = true;
+      };
+
+      this.canvas.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) {
+          const coords = getCanvasCoords(e.touches[0].clientX, e.touches[0].clientY);
+          this.mouse.targetX = coords.x;
+          this.mouse.targetY = coords.y;
+          this.mouse.isActive = true;
+          this.createShockwave(coords.x, coords.y);
+        }
+      }, { passive: true });
+
+      this.canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
+
+      this.canvas.addEventListener('touchend', () => {
+        setTimeout(() => {
+          this.mouse.isActive = false;
+          this.mouse.targetX = -1000;
+          this.mouse.targetY = -1000;
+        }, 300);
+      }, { passive: true });
+    } else {
+      // 2. In Hero canvas: tapping or touching generates kinetic shockwaves and activates neural attractor
+      // without locking or disrupting page vertical scrolling
+      const heroContainer = this.canvas.closest('section');
+      if (heroContainer) {
+        heroContainer.addEventListener('touchstart', (e) => {
+          if (!e.touches || e.touches.length === 0) return;
+          // Don't intercept clicks on buttons or links
+          if (e.target.closest('a, button, input, textarea')) return;
+
+          const touch = e.touches[0];
+          const coords = getCanvasCoords(touch.clientX, touch.clientY);
+          this.mouse.targetX = coords.x;
+          this.mouse.targetY = coords.y;
+          this.mouse.isActive = true;
+          this.createShockwave(coords.x, coords.y);
+        }, { passive: true });
+
+        heroContainer.addEventListener('touchmove', (e) => {
+          if (!e.touches || e.touches.length === 0) return;
+          const touch = e.touches[0];
+          const coords = getCanvasCoords(touch.clientX, touch.clientY);
+          this.mouse.targetX = coords.x;
+          this.mouse.targetY = coords.y;
+          this.mouse.isActive = true;
+        }, { passive: true });
+
+        heroContainer.addEventListener('touchend', () => {
+          setTimeout(() => {
+            this.mouse.isActive = false;
+            this.mouse.targetX = -1000;
+            this.mouse.targetY = -1000;
+          }, 600);
+        }, { passive: true });
+      }
+    }
 
     this.spawnNodes();
     this.animate();
