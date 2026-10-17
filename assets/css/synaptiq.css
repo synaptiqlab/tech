@@ -1,0 +1,279 @@
+/* ==========================================================================
+   SYNAPTIQ lab — Sci-Fi & Neural Aesthetics
+   ========================================================================== */
+
+:root {
+  --bg-primary: #06080d;
+  --bg-secondary: #0c1017;
+  --bg-tertiary: #131924;
+  --cyan-neon: #00f0ff;
+  --cyan-glow: rgba(0, 240, 255, 0.45);
+  --blue-neural: #38bdf8;
+  --emerald-neon: #10b981;
+  --violet-neural: #818cf8;
+  --text-main: #f0f4f8;
+  --text-dim: #8b9bb4;
+  --text-muted: #4e5d78;
+  --border-glass: rgba(255, 255, 255, 0.09);
+  --border-neon: rgba(0, 240, 255, 0.28);
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 10% 40%, rgba(56, 189, 248, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 90% 70%, rgba(129, 140, 248, 0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Micro-noise overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Typography without serifs */
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+.font-body { font-family: var(--font-body); }
+
+/* Sci-fi Glass Plates (Optimized for 60-120 FPS) */
+.glass-panel {
+  background: rgba(12, 16, 23, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  position: relative;
+  will-change: transform;
+}
+
+.glass-panel-neon {
+  background: rgba(12, 16, 23, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-neon);
+  box-shadow: 0 0 35px -10px var(--cyan-glow), inset 0 0 20px -10px rgba(0, 240, 255, 0.15);
+  will-change: transform;
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Header & Logo */
+.synaptiq-logo-q {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+}
+
+.synaptiq-logo-q::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  bottom: 3px;
+  width: 9px;
+  height: 3px;
+  background: var(--cyan-neon);
+  box-shadow: 0 0 10px var(--cyan-neon);
+  border-radius: 2px;
+}
+
+.synaptiq-lab-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--cyan-neon);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  padding: 2px 7px;
+  border-radius: 6px;
+  text-transform: lowercase;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+/* Pulsing radar dot */
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--emerald-neon);
+  box-shadow: 0 0 10px var(--emerald-neon);
+  display: inline-block;
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* HUD telemetry */
+.hud-box {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Interactive Canvas Layers (Hardware Accelerated) */
+#synaptic-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  z-index: 1;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Kinetic Gradient Text */
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #ffffff 0%, var(--cyan-neon) 60%, var(--blue-neural) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-dim {
+  background: linear-gradient(135deg, #ffffff 0%, #a0aec0 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 3D Perspective Card Container */
+.perspective-container {
+  perspective: 1200px;
+}
+
+.card-3d-fly {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card-3d-fly:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 15px 40px -10px var(--cyan-glow);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan-neon);
+}
+
+/* Glowing action button */
+.btn-sci-fi {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #fff;
+  background: rgba(12, 16, 23, 0.8);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  border-radius: 9999px;
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px -5px rgba(0, 240, 255, 0.25);
+}
+
+.btn-sci-fi::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-sci-fi:hover {
+  border-color: var(--cyan-neon);
+  box-shadow: 0 0 30px 2px var(--cyan-glow);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.btn-sci-fi:hover::before {
+  left: 100%;
+}
+
+.btn-sci-fi-alt {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+.btn-sci-fi-alt:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 20px -5px rgba(255, 255, 255, 0.2);
+}
+
+/* Corner HUD crosshairs */
+.hud-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--cyan-neon);
+  pointer-events: none;
+}
+.hud-tl { top: -1px; left: -1px; border-top: 2px solid; border-left: 2px solid; }
+.hud-tr { top: -1px; right: -1px; border-top: 2px solid; border-right: 2px solid; }
+.hud-bl { bottom: -1px; left: -1px; border-bottom: 2px solid; border-left: 2px solid; }
+.hud-br { bottom: -1px; right: -1px; border-bottom: 2px solid; border-right: 2px solid; }
