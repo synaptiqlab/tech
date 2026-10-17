@@ -10,6 +10,8 @@
   --cyan-glow: rgba(0, 240, 255, 0.45);
   --blue-neural: #38bdf8;
   --emerald-neon: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.45);
+  --border-neon-emerald: rgba(16, 185, 129, 0.38);
   --violet-neural: #818cf8;
   --text-main: #f0f4f8;
   --text-dim: #8b9bb4;
@@ -82,6 +84,15 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-neon);
   box-shadow: 0 0 35px -10px var(--cyan-glow), inset 0 0 20px -10px rgba(0, 240, 255, 0.15);
+  will-change: transform;
+}
+
+.glass-panel-neon-emerald {
+  background: rgba(12, 16, 23, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-neon-emerald);
+  box-shadow: 0 0 35px -10px var(--emerald-glow), inset 0 0 20px -10px rgba(16, 185, 129, 0.15);
   will-change: transform;
 }
 
