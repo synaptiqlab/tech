@@ -1,7 +1,7 @@
 /**
  * SYNAPTIQ lab — Synaptic Canvas Engine
  * High-performance neural network, impulse particles, and interactive force fields
- * Modes: Synaptic Mesh, Quantum Vortex, Kinetic Matrix, Business Clusters
+ * 3 Iconic Modes: Synaptic Mesh, Quantum Vortex, Synaptiq Matrix
  */
 
 class SynapticEngine {
@@ -13,21 +13,17 @@ class SynapticEngine {
     this.nodes = [];
     this.pulses = [];
     this.shockwaves = [];
-    this.dataPackets = [];
     
     // Config parameters
     this.config = {
-      nodeCount: options.nodeCount || 110,
+      nodeCount: options.nodeCount || 115,
       connectionDist: options.connectionDist || 140,
       cursorDist: 420, // 2.5x wider interactive halo
       pulseFrequency: 0.05,
       pulseSpeed: options.pulseSpeed || 1.8,
-      mode: options.mode || 'synaptic', // 'synaptic' | 'quantum' | 'matrix' | 'clusters'
+      mode: options.mode || 'synaptic', // 'synaptic' | 'quantum' | 'matrix'
       colorCyan: '#00f0ff',
-      colorBlue: '#38bdf8',
-      colorEmerald: '#10b981',
-      colorViolet: '#a855f7',
-      colorGold: '#f59e0b'
+      colorBlue: '#38bdf8'
     };
 
     this.mouse = {
@@ -43,9 +39,6 @@ class SynapticEngine {
     this.height = 0;
     this.time = 0;
     this.animId = null;
-
-    // Business cluster centers
-    this.clusters = [];
 
     this.init();
   }
@@ -83,7 +76,6 @@ class SynapticEngine {
     });
 
     this.spawnNodes();
-    this.initClusters();
     this.animate();
   }
 
@@ -97,14 +89,13 @@ class SynapticEngine {
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.scale(this.dpr, this.dpr);
 
-    // Responsive node count: plenty of nodes for rich network
+    // Responsive node count
     const isMobile = this.width < 768;
     const targetCount = isMobile ? 65 : (this.canvas.id === 'sandbox-canvas' ? 120 : 75);
     this.config.nodeCount = targetCount;
     this.config.cursorDist = isMobile ? 260 : 420;
     
     this.spawnNodes();
-    this.initClusters();
   }
 
   spawnNodes() {
@@ -119,8 +110,7 @@ class SynapticEngine {
         baseAlpha: Math.random() * 0.45 + 0.35,
         pulseOffset: Math.random() * Math.PI * 2,
         orbitAngle: Math.random() * Math.PI * 2,
-        orbitRadius: Math.random() * 140 + 30,
-        clusterId: i % 4
+        orbitRadius: Math.random() * 140 + 30
       });
     }
 
@@ -128,17 +118,6 @@ class SynapticEngine {
       const el = document.getElementById('sandbox-hud-nodes');
       if (el) el.textContent = `NODES: ${this.nodes.length}`;
     }
-  }
-
-  initClusters() {
-    const w = this.width;
-    const h = this.height;
-    this.clusters = [
-      { id: 'crm', name: 'CRM & PAY', x: w * 0.22, y: h * 0.32, color: '#10b981', radius: 36, label: 'PulseCore' },
-      { id: 'booking', name: 'ONLINE BOOKING', x: w * 0.78, y: h * 0.32, color: '#00f0ff', radius: 36, label: 'FastFlow' },
-      { id: 'ai', name: 'AI COGNITIVE', x: w * 0.5, y: h * 0.75, color: '#a855f7', radius: 42, label: 'KidCompass' },
-      { id: 'hub', name: 'TELEMETRY HUB', x: w * 0.5, y: h * 0.25, color: '#f59e0b', radius: 32, label: 'Analytics' }
-    ];
   }
 
   createShockwave(x, y) {
@@ -163,21 +142,6 @@ class SynapticEngine {
         node.vy += (dy / dist) * force;
       }
     }
-
-    // Burst data packets in cluster mode
-    if (this.config.mode === 'clusters') {
-      for (let i = 0; i < 16; i++) {
-        const angle = (Math.PI * 2 * i) / 16;
-        this.dataPackets.push({
-          x,
-          y,
-          vx: Math.cos(angle) * (Math.random() * 5 + 4),
-          vy: Math.sin(angle) * (Math.random() * 5 + 4),
-          life: 1.0,
-          color: i % 2 === 0 ? '#00f0ff' : '#10b981'
-        });
-      }
-    }
   }
 
   setMode(modeName) {
@@ -190,8 +154,6 @@ class SynapticEngine {
       }
     } else if (modeName === 'matrix') {
       this.config.connectionDist = 80;
-    } else if (modeName === 'clusters') {
-      this.initClusters();
     } else {
       // Synaptic Mesh default
       this.config.connectionDist = this.width < 768 ? 105 : 140;
@@ -209,8 +171,6 @@ class SynapticEngine {
 
     if (this.config.mode === 'matrix') {
       this.renderKineticMatrix();
-    } else if (this.config.mode === 'clusters') {
-      this.renderBusinessClusters();
     } else if (this.config.mode === 'quantum') {
       this.renderQuantumVortex();
     } else {
@@ -223,16 +183,16 @@ class SynapticEngine {
   }
 
   /* ==========================================================================
-     MODE 1: SYNAPTIC MESH (2.5x Wider Halo + Wave-delayed Propagation)
+     MODE 1: SYNAPTIQ MESH (2.5x Wider Halo + Wave-delayed Propagation)
      ========================================================================== */
   renderSynapses() {
     const ctx = this.ctx;
     const maxDist = this.config.connectionDist;
     const maxDistSq = maxDist * maxDist;
-    const cursorDist = this.config.cursorDist; // ~420px!
+    const cursorDist = this.config.cursorDist; // ~420px wide!
     const cursorDistSq = cursorDist * cursorDist;
 
-    // 0. Soft radial magnetic glow around cursor
+    // Soft radial magnetic glow around cursor
     if (this.mouse.isActive) {
       const haloGrad = ctx.createRadialGradient(
         this.mouse.x, this.mouse.y, 10,
@@ -445,211 +405,96 @@ class SynapticEngine {
   }
 
   /* ==========================================================================
-     MODE 3: KINETIC MATRIX (High-tech Interactive Dot Grid with 3D Lens)
+     MODE 3: SYNAPTIQ MATRIX (Living Undulating 3D Dot Matrix with Liquid Waves)
      ========================================================================== */
   renderKineticMatrix() {
     const ctx = this.ctx;
-    const step = 34;
+    const step = 32;
     const mouseX = this.mouse.isActive ? this.mouse.x : this.width * 0.5;
     const mouseY = this.mouse.isActive ? this.mouse.y : this.height * 0.5;
-    const maxLensRadius = 260;
+    const maxLensRadius = 300;
 
     // Crosshair target rings around cursor
     if (this.mouse.isActive) {
+      // Soft breathing halo
+      const halo = ctx.createRadialGradient(mouseX, mouseY, 10, mouseX, mouseY, maxLensRadius);
+      halo.addColorStop(0, 'rgba(0, 240, 255, 0.08)');
+      halo.addColorStop(1, 'rgba(0, 240, 255, 0)');
+      ctx.fillStyle = halo;
+      ctx.beginPath();
+      ctx.arc(mouseX, mouseY, maxLensRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Outer delicate radar ring
       ctx.strokeStyle = 'rgba(0, 240, 255, 0.2)';
       ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.arc(mouseX, mouseY, 40, 0, Math.PI * 2);
+      ctx.arc(mouseX, mouseY, 45, 0, Math.PI * 2);
       ctx.stroke();
 
       ctx.strokeStyle = 'rgba(0, 240, 255, 0.08)';
       ctx.beginPath();
-      ctx.arc(mouseX, mouseY, 140, 0, Math.PI * 2);
+      ctx.arc(mouseX, mouseY, 160, 0, Math.PI * 2);
       ctx.stroke();
     }
 
-    for (let x = 20; x < this.width - 10; x += step) {
-      for (let y = 20; y < this.height - 10; y += step) {
-        const dx = x - mouseX;
-        const dy = y - mouseY;
-        const distSq = dx * dx + dy * dy;
+    for (let x = 18; x < this.width - 10; x += step) {
+      for (let y = 18; y < this.height - 10; y += step) {
+        // 1. ORGANIC UNDULATING WAVE MOTION (Fluid 3D breathing surface)
+        const waveAngle1 = (x * 0.007) + (y * 0.005) + (this.time * 1.6);
+        const waveAngle2 = (x * 0.004) - (y * 0.008) - (this.time * 1.2);
+        
+        // Horizontal & Vertical silky drift
+        const waveShiftX = Math.sin(waveAngle1) * 7 + Math.cos(waveAngle2) * 4;
+        const waveShiftY = Math.cos(waveAngle1) * 9 + Math.sin(waveAngle2) * 5;
+        
+        // Depth breathing (point size and glow)
+        const depthBreathing = (Math.sin(waveAngle1 * 1.4) + Math.cos(waveAngle2 * 1.2)) * 0.5; // -1 to 1
 
-        let renderX = x;
-        let renderY = y;
-        let pointSize = 1.6;
-        let alpha = 0.22;
+        let renderX = x + waveShiftX;
+        let renderY = y + waveShiftY;
+        let pointSize = 1.6 + depthBreathing * 0.5;
+        let alpha = 0.22 + depthBreathing * 0.12;
 
-        // Subtle ambient digital wave
-        const ambientWave = Math.sin((x * 0.015) + (y * 0.015) + this.time * 2.5) * 0.12;
-        alpha += ambientWave;
+        // 2. MOUSE INTERACTION (Magnetic lens + Wave Ripples)
+        if (this.mouse.isActive) {
+          const dx = renderX - mouseX;
+          const dy = renderY - mouseY;
+          const distSq = dx * dx + dy * dy;
 
-        if (distSq < maxLensRadius * maxLensRadius) {
-          const dist = Math.sqrt(distSq);
-          const factor = 1 - dist / maxLensRadius; // 1 at center, 0 at border
+          if (distSq < maxLensRadius * maxLensRadius && distSq > 0) {
+            const dist = Math.sqrt(distSq);
+            const factor = 1 - dist / maxLensRadius; // 1 at center, 0 at edge
 
-          // 3D elevation displacement
-          const push = factor * 22;
-          renderX += (dx / dist) * push;
-          renderY += (dy / dist) * push;
+            // Dynamic ripple radiating from mouse
+            const rippleShift = Math.sin(dist * 0.05 - this.time * 5.0) * factor * 12;
+            
+            // 3D elevation displacement
+            const push = (factor * 26) + rippleShift;
+            renderX += (dx / dist) * push;
+            renderY += (dy / dist) * push;
 
-          pointSize = 1.6 + factor * 3.2;
-          alpha = 0.35 + factor * 0.65;
+            pointSize = 1.8 + factor * 3.6;
+            alpha = 0.4 + factor * 0.6;
 
-          // Connect adjacent elevated points with laser grid lines
-          if (dist < 120) {
-            ctx.strokeStyle = `rgba(0, 240, 255, ${factor * 0.35})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(renderX, renderY);
-            ctx.lineTo(mouseX, mouseY);
-            ctx.stroke();
+            // Connect nearest elevated points to mouse
+            if (dist < 130) {
+              ctx.strokeStyle = `rgba(0, 240, 255, ${factor * 0.4})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(renderX, renderY);
+              ctx.lineTo(mouseX, mouseY);
+              ctx.stroke();
+            }
           }
         }
 
         // Draw matrix dot
-        ctx.fillStyle = alpha > 0.6 ? '#ffffff' : `rgba(0, 240, 255, ${alpha})`;
+        ctx.fillStyle = alpha > 0.65 ? '#ffffff' : `rgba(0, 240, 255, ${Math.max(0.1, alpha)})`;
         ctx.beginPath();
-        ctx.arc(renderX, renderY, pointSize, 0, Math.PI * 2);
+        ctx.arc(renderX, renderY, Math.max(0.8, pointSize), 0, Math.PI * 2);
         ctx.fill();
       }
-    }
-  }
-
-  /* ==========================================================================
-     MODE 4: BUSINESS CLUSTERS (Ecosystem Hubs & High-Speed Data Pipelines)
-     ========================================================================== */
-  renderBusinessClusters() {
-    const ctx = this.ctx;
-    const hubs = this.clusters;
-    const mouseX = this.mouse.isActive ? this.mouse.x : this.width * 0.5;
-    const mouseY = this.mouse.isActive ? this.mouse.y : this.height * 0.5;
-
-    // 1. Draw glowing data pipelines between all 4 hubs
-    for (let i = 0; i < hubs.length; i++) {
-      for (let j = i + 1; j < hubs.length; j++) {
-        const a = hubs[i];
-        const b = hubs[j];
-
-        // Pipeline line
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.stroke();
-
-        // High-speed data packet beam
-        const packetT = (this.time * 1.5 + (i * 0.33) + (j * 0.25)) % 1.0;
-        const px = a.x + (b.x - a.x) * packetT;
-        const py = a.y + (b.y - a.y) * packetT;
-
-        ctx.fillStyle = a.color;
-        ctx.beginPath();
-        ctx.arc(px, py, 3.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    // 2. Draw connections to mouse cursor (active integration)
-    if (this.mouse.isActive) {
-      for (let hub of hubs) {
-        const dx = mouseX - hub.x;
-        const dy = mouseY - hub.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 320) {
-          const alpha = (1 - dist / 320) * 0.5;
-          ctx.strokeStyle = hub.color.replace(')', `, ${alpha})`).replace('rgb', 'rgba').replace('#00f0ff', `rgba(0,240,255,${alpha})`).replace('#10b981', `rgba(16,185,129,${alpha})`).replace('#a855f7', `rgba(168,85,247,${alpha})`).replace('#f59e0b', `rgba(245,158,11,${alpha})`);
-          ctx.lineWidth = 1.5;
-          ctx.beginPath();
-          ctx.moveTo(hub.x, hub.y);
-          ctx.lineTo(mouseX, mouseY);
-          ctx.stroke();
-
-          // Data flow from cursor to hub
-          const flowT = (this.time * 2.5) % 1.0;
-          const fx = mouseX + (hub.x - mouseX) * flowT;
-          const fy = mouseY + (hub.y - mouseY) * flowT;
-          ctx.fillStyle = '#ffffff';
-          ctx.beginPath();
-          ctx.arc(fx, fy, 3, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-
-      // Cursor target badge
-      ctx.font = '11px monospace';
-      ctx.fillStyle = '#00f0ff';
-      ctx.fillText('[LIVE DATA BRIDGE]', mouseX + 15, mouseY - 15);
-    }
-
-    // 3. Orbiting satellites around each hub
-    for (let node of this.nodes) {
-      const hub = hubs[node.clusterId];
-      node.orbitAngle += (0.015 + (node.pulseOffset % 0.02)) * this.config.pulseSpeed;
-      const targetX = hub.x + Math.cos(node.orbitAngle) * (node.orbitRadius * 0.55 + 20);
-      const targetY = hub.y + Math.sin(node.orbitAngle) * (node.orbitRadius * 0.45 + 15);
-
-      node.x += (targetX - node.x) * 0.15;
-      node.y += (targetY - node.y) * 0.15;
-
-      ctx.fillStyle = hub.color;
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // 4. Render main hub chambers
-    for (let hub of hubs) {
-      // Gentle floating breathing animation
-      const breath = Math.sin(this.time * 3 + hub.x) * 4;
-
-      // Outer aura ring
-      ctx.strokeStyle = hub.color;
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.arc(hub.x, hub.y, hub.radius + breath, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Translucent hub plate
-      ctx.fillStyle = 'rgba(7, 10, 17, 0.85)';
-      ctx.beginPath();
-      ctx.arc(hub.x, hub.y, hub.radius - 2, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Inner pulse dot
-      ctx.fillStyle = hub.color;
-      ctx.beginPath();
-      ctx.arc(hub.x, hub.y, 5, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Label text
-      ctx.font = 'bold 11px monospace';
-      ctx.fillStyle = '#ffffff';
-      ctx.textAlign = 'center';
-      ctx.fillText(hub.name, hub.x, hub.y + hub.radius + 18);
-
-      ctx.font = '10px monospace';
-      ctx.fillStyle = hub.color;
-      ctx.fillText(hub.label, hub.x, hub.y + hub.radius + 32);
-    }
-
-    // 5. Render burst particles
-    for (let i = this.dataPackets.length - 1; i >= 0; i--) {
-      const p = this.dataPackets[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.life *= 0.94;
-
-      if (p.life < 0.05) {
-        this.dataPackets.splice(i, 1);
-        continue;
-      }
-
-      ctx.fillStyle = p.color;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 3 * p.life, 0, Math.PI * 2);
-      ctx.fill();
     }
   }
 
@@ -683,6 +528,6 @@ window.addEventListener('DOMContentLoaded', () => {
     window.heroEngine = new SynapticEngine('synaptic-canvas', { nodeCount: 65, cursorDist: 380 });
   }
   if (document.getElementById('sandbox-canvas')) {
-    window.sandboxEngine = new SynapticEngine('sandbox-canvas', { mode: 'synaptic', nodeCount: 110, cursorDist: 420 });
+    window.sandboxEngine = new SynapticEngine('sandbox-canvas', { mode: 'synaptic', nodeCount: 115, cursorDist: 420 });
   }
 });
