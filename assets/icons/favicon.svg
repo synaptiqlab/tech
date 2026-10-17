@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080b12" />
+      <stop offset="100%" stop-color="#030407" />
+    </linearGradient>
+
+    <!-- Q Ring Cyber Gradient -->
+    <linearGradient id="qRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="45%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#00f0ff" />
+    </linearGradient>
+
+    <!-- Synaptic Pulse Glow Filter -->
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Tail Beam Gradient -->
+    <linearGradient id="beamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#00f0ff" />
+    </linearGradient>
+  </defs>
+
+  <!-- Squircle Titanium Badge Background -->
+  <rect x="6" y="6" width="116" height="116" rx="28" fill="url(#bgGrad)" stroke="#1a2333" stroke-width="2.5" />
+  
+  <!-- Subtle inner circuit accent line -->
+  <rect x="10" y="10" width="108" height="108" rx="24" fill="none" stroke="rgba(0, 240, 255, 0.12)" stroke-width="1" />
+
+  <!-- Ambient Blue/Cyan Core Glow -->
+  <circle cx="60" cy="58" r="32" fill="none" stroke="rgba(0, 240, 255, 0.15)" stroke-width="12" filter="url(#neonGlow)" />
+
+  <!-- Outer Main Ring of the 'Q' -->
+  <circle cx="60" cy="58" r="33" fill="none" stroke="url(#qRingGrad)" stroke-width="8" stroke-linecap="round" />
+
+  <!-- Inner Neural Core Dot (Brain / IQ impulse) -->
+  <circle cx="60" cy="58" r="5" fill="#00f0ff" filter="url(#neonGlow)" />
+  <circle cx="60" cy="58" r="2.5" fill="#ffffff" />
+
+  <!-- Synaptic Tail of 'Q' (Horizontal Beam & Neural Node) -->
+  <!-- Diagonal connector -->
+  <path d="M 76 74 L 92 90" stroke="url(#beamGrad)" stroke-width="8" stroke-linecap="round" />
+  
+  <!-- Glowing Horizontal Pulse Arrow/Laser -->
+  <path d="M 85 90 L 108 90" stroke="#00f0ff" stroke-width="4.5" stroke-linecap="round" filter="url(#neonGlow)" />
+  
+  <!-- Impulse Terminal Node -->
+  <circle cx="108" cy="90" r="4.5" fill="#00f0ff" filter="url(#neonGlow)" />
+  <circle cx="108" cy="90" r="2" fill="#ffffff" />
+
+  <!-- Orbiting Micro Sparks -->
+  <circle cx="36" cy="40" r="2" fill="#38bdf8" opacity="0.8" />
+  <circle cx="84" cy="42" r="2.5" fill="#00f0ff" opacity="0.9" />
+</svg>
