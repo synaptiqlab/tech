@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SYNAPTIQ lab // AI - Tech - Ecosystems</title>
+  <meta name="description" content="SYNAPTIQ lab — создаём проекты на стыке искусственного интеллекта, современных веб-технологий и умных систем. Строим сервисы будущего для реальной жизни.">
+
+  <!-- Google Fonts: Strictly Zero Serifs (Unbounded, Plus Jakarta Sans, Geist Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Unbounded:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cyan: {
+              neon: '#00f0ff',
+              glow: 'rgba(0, 240, 255, 0.4)'
+            },
+            space: {
+              950: '#06080d',
+              900: '#0c1017',
+              850: '#111722',
+              800: '#172030'
+            }
+          },
+          fontFamily: {
+            display: ['Unbounded', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+
+  <!-- Custom Sci-Fi Stylesheet -->
+  <link rel="stylesheet" href="assets/css/synaptiq.css">
+
+  <!-- Favicon / Brand Icon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/favicon.svg">
+</head>
+<body class="bg-[#06080d] text-[#f0f4f8] font-body selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- Micro-noise texture -->
+  <div class="noise-overlay"></div>
+
+  <!-- ==========================================================================
+       HEADER / NAVIGATION CAPSULE
+       ========================================================================== -->
+  <header class="fixed top-0 inset-x-0 z-50 px-4 pt-4 sm:px-8 pointer-events-none">
+    <div class="max-w-6xl mx-auto flex items-center justify-between glass-panel rounded-full px-5 py-3 border border-white/10 pointer-events-auto">
+      
+      <!-- Brand Logo with Cyber Q Icon -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <img src="assets/icons/favicon.svg" alt="SYNAPTIQ Q Icon" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg shadow-[0_0_15px_rgba(0,240,255,0.35)] transition-transform duration-300 group-hover:scale-110">
+        <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight synaptiq-logo-q">SYNAPTIQ</span>
+        <span class="synaptiq-lab-badge">lab</span>
+        <span class="pulse-dot ml-1.5" title="Neural Core: Online"></span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-7 font-mono text-xs tracking-wider text-white/70">
+        <a href="#protocol-terminal" class="hover:text-cyan-neon transition-colors">01 // PROTOCOL</a>
+        <a href="#manifest-pin" class="hover:text-cyan-neon transition-colors">02 // MANIFEST</a>
+        <a href="#projects" class="hover:text-cyan-neon transition-colors">03 // PROJECTS</a>
+        <a href="#sandbox" class="hover:text-cyan-neon transition-colors">04 // LAB</a>
+        <a href="#terminal" class="hover:text-cyan-neon transition-colors">05 // CONNECT</a>
+      </nav>
+
+      <!-- Status CTA -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-2 font-mono text-[11px] text-white/50 bg-white/5 px-3 py-1 rounded-full border border-white/5">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-neon animate-ping"></span>
+          <span>SYSTEM ONLINE</span>
+        </div>
+        <a href="#terminal" class="btn-sci-fi text-xs py-2 px-4">
+          <span>TRANSMIT</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-cyan-neon"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION // THE NEURAL PORTAL
+       ========================================================================== -->
+  <section class="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 pt-24 pb-16 overflow-hidden">
+    
+    <!-- Background Interactive Canvas -->
+    <canvas id="synaptic-canvas"></canvas>
+
+    <!-- Sci-Fi HUD Overlays -->
+    <div class="absolute inset-x-6 top-24 hidden md:flex justify-between items-center pointer-events-none z-10 hero-hud-element">
+      <div class="hud-box">
+        <span class="text-cyan-neon font-bold">[SYS_STATUS]</span>
+        <span>LATENCY: 4ms // KERNEL: ACTIVE</span>
+      </div>
+      <div class="hud-box">
+        <span class="text-cyan-neon font-bold">[GEO_COORDS]</span>
+        <span id="hud-coords">X: 0000 // Y: 0000</span>
+      </div>
+    </div>
+
+    <div class="absolute inset-x-6 bottom-8 hidden md:flex justify-between items-center pointer-events-none z-10 hero-hud-element">
+      <div class="hud-box">
+        <span class="text-cyan-neon font-bold">[NEURAL_TOPOLOGY]</span>
+        <span id="hud-node-count">NODES: 85</span>
+      </div>
+      <div class="hud-box">
+        <span class="text-cyan-neon font-bold">[IMPULSES]</span>
+        <span id="hud-syn-count">SYNAPSES: 340</span>
+      </div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
+      
+      <!-- Top Badge -->
+      <div id="hero-badge" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-cyan-500/20 text-cyan-neon font-mono text-xs tracking-wider mb-6">
+        <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+        <span>AI - Tech - Ecosystems</span>
+      </div>
+
+      <!-- Main Kinetic Title -->
+      <h1 id="hero-title" class="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] text-white">
+        SYNAPTIQ <span class="font-mono text-cyan-neon text-3xl sm:text-5xl md:text-6xl font-normal lowercase">[lab]</span>
+      </h1>
+
+      <p class="font-display font-medium text-xl sm:text-2xl md:text-3xl text-gradient-cyan mt-4 tracking-tight">
+        Строим сервисы будущего для реальной жизни
+      </p>
+
+      <!-- Subtitle Description (Minimalist) -->
+      <p id="hero-subtitle" class="mt-5 max-w-2xl text-base sm:text-lg text-white/70 font-normal leading-relaxed">
+        <span class="block">Создаём проекты на стыке искусственного интеллекта,</span>
+        <span class="block">современных <span class="whitespace-nowrap">веб-технологий</span> и умных систем.</span>
+      </p>
+
+      <!-- Action Buttons -->
+      <div id="hero-actions" class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <a href="#protocol-terminal" class="btn-sci-fi text-sm py-3.5 px-7">
+          <i data-lucide="terminal" class="w-4 h-4 text-cyan-neon"></i>
+          <span>ПРОТОКОЛ БУДУЩЕГО</span>
+        </a>
+        <a href="#sandbox" class="btn-sci-fi btn-sci-fi-alt text-sm py-3.5 px-7">
+          <i data-lucide="sparkles" class="w-4 h-4 text-cyan-neon"></i>
+          <span>НЕЙРО-ПЕСОЧНИЦА</span>
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="mt-16 flex flex-col items-center gap-2 font-mono text-xs text-white/40 animate-bounce">
+        <span>SCROLL TO INITIALIZE</span>
+        <i data-lucide="chevron-down" class="w-4 h-4 text-cyan-neon"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 1.5: THE PROTOCOL CODE // INITIALIZING FUTURE PROTOCOL
+       ========================================================================== -->
+  <section id="protocol-terminal" class="relative py-24 px-4 sm:px-8 bg-[#070a12] border-t border-b border-white/5 overflow-hidden">
+    
+    <!-- Background circuit & glow decoration -->
+    <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.18) 0%, transparent 70%);"></div>
+
+    <div class="max-w-4xl mx-auto relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 font-mono text-xs text-cyan-neon bg-cyan-950/50 border border-cyan-500/30 px-3.5 py-1.5 rounded-full mb-3">
+          <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+          <span>SYSTEM KERNEL // EXECUTION</span>
+        </div>
+        <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-tight">
+          Инициализируем протокол будущего
+        </h2>
+        <p class="text-white/60 text-xs sm:text-sm mt-2 font-mono">
+          [INITIATING FUTURE PROTOCOL]
+        </p>
+      </div>
+
+      <!-- Sci-Fi Code Terminal Window -->
+      <div class="glass-panel-neon rounded-2xl overflow-hidden border border-cyan-500/30 shadow-[0_0_50px_-10px_rgba(0,240,255,0.25)]">
+        
+        <!-- Terminal Title Bar -->
+        <div class="bg-[#0b1019] px-4 py-3 border-b border-white/10 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            <span class="ml-3 font-mono text-xs text-white/70 flex items-center gap-2">
+              <i data-lucide="file-code" class="w-3.5 h-3.5 text-cyan-neon"></i>
+              <span>future_protocol.py</span>
+            </span>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div id="protocol-status-badge" class="font-mono text-xs text-white/50 flex items-center gap-1.5">
+              <span id="protocol-status-dot" class="w-2 h-2 rounded-full bg-cyan-neon animate-pulse"></span>
+              <span id="protocol-status-text">READY</span>
+            </div>
+            <button id="btn-rerun-protocol" class="font-mono text-xs px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400 text-white/70 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
+              <i data-lucide="rotate-ccw" class="w-3 h-3 text-cyan-neon"></i>
+              <span>Запустить заново</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Terminal Editor Code Area -->
+        <div class="p-5 sm:p-7 font-mono text-sm sm:text-[15px] leading-relaxed bg-[#05070c]/90 overflow-x-auto">
+          <div class="flex">
+            <!-- Line Numbers -->
+            <div class="select-none text-white/20 pr-5 text-right font-mono text-xs sm:text-sm leading-relaxed border-r border-white/5 mr-5">
+              <div>01</div>
+              <div>02</div>
+              <div>03</div>
+              <div>04</div>
+              <div>05</div>
+              <div>06</div>
+              <div>07</div>
+              <div>08</div>
+              <div>09</div>
+            </div>
+
+            <!-- Code Lines with Syntax Coloring -->
+            <div id="code-lines-container" class="flex-1 space-y-1">
+              <div class="code-line opacity-0 transition-all duration-300 text-cyan-400/60 italic font-mono">
+                <span class="text-cyan-neon">#</span> Initiating Future Protocol
+              </div>
+              <div class="code-line opacity-0 transition-all duration-300">
+                <span class="text-violet-400 font-semibold">def</span> <span class="text-cyan-neon font-semibold">predict_future</span>():
+              </div>
+              <div class="code-line opacity-0 transition-all duration-300 pl-6">
+                <span class="text-violet-400 font-semibold">return</span> <span class="text-cyan-neon">create_future</span>()
+              </div>
+              <div class="code-line opacity-0 transition-all duration-300 h-4"></div>
+              <div class="code-line opacity-0 transition-all duration-300">
+                <span class="text-violet-400 font-semibold">def</span> <span class="text-cyan-neon font-semibold">create_future</span>():
+              </div>
+              <div class="code-line opacity-0 transition-all duration-300 pl-6">
+                <span class="text-emerald-400 font-semibold">print</span>(<span class="text-amber-300">"&gt;&gt;&gt; Creating the future..."</span>)
+              </div>
+              <div class="code-line opacity-0 transition-all duration-300 h-4"></div>
+              <div class="code-line opacity-0 transition-all duration-300">
+                <span class="text-violet-400 font-semibold">if</span> __name__ == <span class="text-amber-300">"__main__"</span>:
+              </div>
+              <div class="code-line opacity-0 transition-all duration-300 pl-6">
+                <span class="text-cyan-neon font-semibold">predict_future</span>()
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terminal Execution Console Output -->
+        <div class="bg-[#080d16] border-t border-white/10 p-5 sm:p-6 font-mono text-xs sm:text-sm">
+          <div class="flex items-center justify-between text-white/40 pb-2 mb-3 border-b border-white/5 text-[11px]">
+            <span>OUTPUT TERMINAL (STDOUT)</span>
+            <span>PYTHON 3.12 KERNEL</span>
+          </div>
+
+          <div id="console-output-box" class="space-y-2 text-white/80">
+            <!-- Line 1: Command prompt -->
+            <div id="console-line-cmd" class="text-white/40 opacity-0 flex items-center gap-2">
+              <span class="text-cyan-neon">&gt;</span>
+              <span>$ python future_protocol.py</span>
+            </div>
+
+            <!-- Line 2: Starting FUTURE PROTOCOL -->
+            <div id="console-line-step1" class="text-cyan-300 opacity-0 flex items-center gap-2">
+              <span class="text-cyan-neon">&gt;&gt;</span>
+              <span id="text-step1">Starting FUTURE PROTOCOL...</span>
+            </div>
+
+            <!-- Line 3: Preparing the FUTURE -->
+            <div id="console-line-step2" class="text-cyan-200 opacity-0 flex items-center gap-2">
+              <span class="text-cyan-neon">&gt;&gt;</span>
+              <span id="text-step2">Preparing the FUTURE...</span>
+            </div>
+
+            <!-- Line 4: >>> Creating the future... -->
+            <div id="console-line-main" class="text-cyan-neon font-bold text-sm sm:text-base opacity-0 flex items-center gap-2">
+              <span class="text-emerald-400">&gt;&gt;&gt;</span>
+              <span class="tracking-wide">Creating the future...</span>
+              <span id="code-cursor" class="inline-block w-2 h-4 bg-cyan-neon ml-1 animate-pulse"></span>
+            </div>
+
+            <!-- Line 5: SUCCESS: Protocol Complete -->
+            <div id="console-line-success" class="text-emerald-400 text-xs sm:text-sm font-bold opacity-0 pt-1 flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+              <span>SUCCESS: Protocol Complete</span>
+            </div>
+
+            <!-- Line 6: Green Progress Bar loading -->
+            <div id="console-progress-container" class="opacity-0 pt-2 space-y-1.5">
+              <div class="flex justify-between text-[11px] font-mono text-emerald-400/90">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  LOADING REALITY MATRIX...
+                </span>
+                <span id="console-progress-pct" class="font-bold">0%</span>
+              </div>
+              <div class="w-full h-2.5 bg-emerald-950/60 rounded-full border border-emerald-500/30 overflow-hidden">
+                <div id="console-progress-bar" class="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full w-0 shadow-[0_0_15px_#10b981]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 2: KINETIC MANIFEST
+       ========================================================================== -->
+  <section id="manifest-pin" class="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 py-28 bg-[#06080d] overflow-hidden">
+    
+    <!-- Background grid decoration -->
+    <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: linear-gradient(rgba(0, 240, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.15) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto w-full text-center">
+      
+      <!-- Manifest Content Container -->
+      <div class="max-w-4xl mx-auto text-center mb-12">
+        <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-4">// 01 • PHILOSOPHY MANIFEST</span>
+        
+        <!-- 1. The Core Slogan -->
+        <h2 id="manifest-heading" class="font-display font-extrabold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight leading-[1.18]">
+          Лучший способ предсказать будущее — <span class="text-gradient-cyan">создать его самому</span>
+        </h2>
+        
+        <!-- 2. The Problem: Generic websites are obsolete -->
+        <p id="manifest-sub" class="mt-4 font-display font-medium text-lg sm:text-2xl text-cyan-300/80 tracking-tight">
+          Шаблонные и безликие сайты морально устарели
+        </p>
+
+        <!-- 3. The Solution Manifesto -->
+        <p id="manifest-desc" class="mt-5 max-w-3xl mx-auto font-body text-base sm:text-lg text-white/75 font-normal leading-relaxed">
+          Мы проектируем новые стандарты веб-дизайна, цифровых систем управления бизнесом и нейросетей, которые упрощают и улучшают вашу жизнь.
+        </p>
+      </div>
+
+      <!-- Stage 2: 3D Fly-Out Cards (Left and Right) -->
+      <div class="perspective-container grid grid-cols-1 md:grid-cols-2 gap-6 text-left mt-8">
+        
+        <!-- Left Fly-Out Card: Cognition -->
+        <div id="flyout-left" class="card-3d-fly glass-panel rounded-3xl p-7 sm:p-8 border border-white/10 tilt-card flex flex-col justify-between">
+          <div>
+            <div class="hud-corner hud-tl"></div>
+            <div class="hud-corner hud-tr"></div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-cyan-neon tracking-wider bg-cyan-950/60 border border-cyan-500/30 px-3 py-1 rounded-full">
+                COGNITIVE EVOLUTION
+              </span>
+              <i data-lucide="brain-circuit" class="w-6 h-6 text-cyan-neon"></i>
+            </div>
+            <h3 class="font-display font-bold text-2xl text-white mb-3">Эволюция адаптивного интеллекта</h3>
+            <p class="text-white/70 text-sm sm:text-base leading-relaxed">
+              Нейросети — это не замена человеку, а катализатор его эволюции. С помощью искусственного интеллекта мы раскрываем потенциал и действуем быстрее: от выявления когнитивных паттернов в <strong>KidCompass</strong> до проектирования умных систем, создавая решения, которые освобождают от рутины, упрощают и улучшают жизнь.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-white/50">
+            <span>HUMAN POTENTIAL: EXPANDED</span>
+            <span class="text-cyan-neon font-bold">10x BOOST</span>
+          </div>
+        </div>
+
+        <!-- Right Fly-Out Card: Business Matrix -->
+        <div id="flyout-right" class="card-3d-fly glass-panel rounded-3xl p-7 sm:p-8 border border-white/10 tilt-card flex flex-col justify-between">
+          <div>
+            <div class="hud-corner hud-tl"></div>
+            <div class="hud-corner hud-tr"></div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-emerald-400 tracking-wider bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full">
+                SMART BUSINESS SYSTEMS
+              </span>
+              <i data-lucide="network" class="w-6 h-6 text-emerald-400"></i>
+            </div>
+            <h3 class="font-display font-bold text-2xl text-white mb-3">Умные системы для бизнеса</h3>
+            <p class="text-white/70 text-sm sm:text-base leading-relaxed">
+              Сайт не должен быть мёртвым буклетом или просто визиткой. Архитектура <strong>PulseCore</strong> связывает интерактивный визуальный интерфейс и CRM: клиент получает живой интерактивный сайт с удобной онлайн-записью и бронированием, а бизнес — полноценный центр управления записями, услугами и прозрачную аналитику.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-white/50">
+            <span>SYNC LATENCY: REAL-TIME</span>
+            <span class="text-emerald-400 font-bold">&lt; 0.05s</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 3: PROJECTS SHOWCASE // KIDCOMPASS & PULSE CORE
+       ========================================================================== -->
+  <section id="projects" class="relative py-28 px-4 sm:px-8 bg-[#080b12]">
+    <div class="max-w-6xl mx-auto">
+      
+      <!-- Section Title -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-2">// 02 • CORE PROJECTS</span>
+        <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">ПРОЕКТЫ SYNAPTIQ</h2>
+        <p class="text-white/60 text-base mt-4">Два ключевых вектора технологических инноваций, объединенных единой философией.</p>
+      </div>
+
+      <!-- Project 1: KidCompass (Flagship Cognitive AI) -->
+      <div class="project-card-reveal glass-panel-neon rounded-3xl p-8 sm:p-12 mb-10 tilt-card">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7">
+            <div class="inline-flex items-center gap-2 font-mono text-xs text-cyan-neon bg-cyan-950/50 border border-cyan-500/30 px-3.5 py-1.5 rounded-full mb-4">
+              <i data-lucide="sparkle" class="w-3.5 h-3.5"></i>
+              <span>FLAGSHIP AI STARTUP</span>
+            </div>
+            <h3 class="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+              KidCompass <span class="font-mono text-cyan-neon text-xl font-normal">[AI Core]</span>
+            </h3>
+            <p class="mt-4 text-white/75 text-base sm:text-lg leading-relaxed">
+              Интеллектуальная система нового поколения, определяющая уникальный когнитивный тип ребенка. 
+              Нейросеть выявляет природные сильные стороны, компенсирует дефициты и формирует вокруг ребенка 
+              поддерживающую развивающую экосистему без стресса и принуждения.
+            </p>
+            
+            <div class="mt-6 flex flex-wrap gap-3 font-mono text-xs">
+              <span class="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-200">Когнитивное профилирование</span>
+              <span class="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-200">Предиктивное развитие</span>
+              <span class="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-200">Персональные AI-треки</span>
+            </div>
+          </div>
+
+          <!-- Interactive Radar Simulation -->
+          <div class="lg:col-span-5 bg-space-950/80 rounded-2xl p-6 border border-white/10">
+            <div class="flex items-center justify-between font-mono text-xs text-white/50 border-b border-white/10 pb-3 mb-4">
+              <span>COGNITIVE MATRIX</span>
+              <span class="text-cyan-neon">PROFILE #8492</span>
+            </div>
+            <div class="space-y-3 font-mono text-xs">
+              <div>
+                <div class="flex justify-between text-white/70 mb-1">
+                  <span>SPATIAL &amp; ABSTRACT</span>
+                  <span class="text-cyan-neon">94%</span>
+                </div>
+                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div class="h-full bg-cyan-neon rounded-full" style="width: 94%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-white/70 mb-1">
+                  <span>LOGIC &amp; ARCHITECTURE</span>
+                  <span class="text-cyan-neon">91%</span>
+                </div>
+                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div class="h-full bg-cyan-neon rounded-full" style="width: 91%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-white/70 mb-1">
+                  <span>EMOTIONAL EMPATHY</span>
+                  <span class="text-cyan-neon">88%</span>
+                </div>
+                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div class="h-full bg-cyan-neon rounded-full" style="width: 88%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-300 font-mono">
+              STATUS: Оптимальная развивающая среда построена. Рекомендована математико-пространственная траектория.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: PULSE CORE (Next-Gen Web & CRM) -->
+      <div class="project-card-reveal glass-panel rounded-3xl p-8 sm:p-12 border border-white/10 tilt-card">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7">
+            <div class="inline-flex items-center gap-2 font-mono text-xs text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-full mb-4">
+              <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+              <span>BUSINESS SYSTEMS &amp; WEB CORE</span>
+            </div>
+            <h3 class="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+              PULSE CORE <span class="font-mono text-emerald-400 text-xl font-normal">[Web &amp; CRM]</span>
+            </h3>
+            <p class="mt-4 text-white/75 text-base sm:text-lg leading-relaxed">
+              Комплексные цифровые решения для реального бизнеса. Иммерсивные сайты-визитки мирового уровня 
+              с кинетическим моушном, соединенные с мощным CRM-движком: управление сменами мастеров, расчет зарплат, 
+              кассовые ордера, электронные меню и бронирование мест.
+            </p>
+
+            <!-- Interactive Sector Switcher -->
+            <div class="mt-6 flex flex-wrap gap-2">
+              <button data-biz-tab="barber" class="font-mono text-xs px-3.5 py-1.5 rounded-full border border-cyan-400/40 bg-cyan-500/20 text-cyan-300 transition-all">
+                БАРБЕРШОПЫ &amp; SPA
+              </button>
+              <button data-biz-tab="gastro" class="font-mono text-xs px-3.5 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white transition-all">
+                РЕСТОРАНЫ &amp; КАФЕ
+              </button>
+              <button data-biz-tab="cowork" class="font-mono text-xs px-3.5 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white transition-all">
+                КОВОРКИНГИ &amp; ХАБЫ
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Metrics Widget -->
+          <div class="lg:col-span-5 bg-space-950/80 rounded-2xl p-6 border border-white/10">
+            <div class="flex items-center justify-between font-mono text-xs text-white/50 border-b border-white/10 pb-3 mb-4">
+              <span>LIVE TELEMETRY</span>
+              <span id="metric-status" class="text-emerald-400 font-bold">SHIFT &amp; PAY ONLINE</span>
+            </div>
+            <div class="grid grid-cols-2 gap-4 text-center font-mono">
+              <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                <span class="text-xs text-white/50 block">EFFICIENCY FLOW</span>
+                <span id="metric-rev" class="text-2xl font-bold text-white mt-1 block">+46.8%</span>
+              </div>
+              <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                <span class="text-xs text-white/50 block">SYNC SPEED</span>
+                <span id="metric-sync" class="text-2xl font-bold text-cyan-neon mt-1 block">0.04s</span>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/10 font-mono text-[11px] text-white/50 flex items-center justify-between">
+              <span>SECURITY: ENCRYPTED</span>
+              <span>ZERO RELOAD / SPA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 4: NEURAL SANDBOX // ИНТЕРАКТИВНАЯ ЛАБОРАТОРИЯ
+       ========================================================================== -->
+  <section id="sandbox" class="relative py-28 px-4 sm:px-8 bg-[#06080d] overflow-hidden border-t border-b border-white/5">
+    <div class="max-w-5xl mx-auto text-center">
+      
+      <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-2">// 03 • INTERACTIVE BENCHMARK</span>
+      <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">НЕЙРО-ПЕСОЧНИЦА</h2>
+      <p class="text-white/60 text-base mt-3 max-w-xl mx-auto">
+        Попробуйте физику нашего интерактивного Canvas-ядра в реальном времени. Кликните в любое место для синаптического взрыва.
+      </p>
+
+      <!-- Dedicated Sandbox Simulation Viewport (Chamber) -->
+      <div class="relative w-full h-[420px] sm:h-[480px] rounded-3xl overflow-hidden border border-cyan-500/40 bg-[#070a11] shadow-[0_0_60px_-10px_rgba(0,240,255,0.25)] mt-10 mb-6 group cursor-crosshair">
+        
+        <!-- Live Sandbox Canvas -->
+        <canvas id="sandbox-canvas" class="w-full h-full block"></canvas>
+
+        <!-- Viewport Top HUD -->
+        <div class="absolute top-4 left-5 pointer-events-none flex items-center gap-3 font-mono text-xs text-white/70">
+          <span class="flex items-center gap-1.5 text-cyan-neon font-bold">
+            <span class="w-2 h-2 rounded-full bg-cyan-neon animate-ping"></span>
+            NEURAL SIMULATOR
+          </span>
+          <span class="text-white/20">|</span>
+          <span id="sandbox-hud-mode" class="text-white/90">MODE: SYNAPTIC MESH</span>
+        </div>
+
+        <div class="absolute top-4 right-5 pointer-events-none font-mono text-xs text-white/60">
+          <span id="sandbox-hud-nodes">NODES: 65</span>
+        </div>
+
+        <!-- Viewport Bottom HUD -->
+        <div class="absolute bottom-4 left-5 pointer-events-none font-mono text-[11px] text-white/50 flex items-center gap-2">
+          <i data-lucide="mouse-pointer-click" class="w-3.5 h-3.5 text-cyan-neon"></i>
+          <span>КЛИКНИТЕ В ЛЮБУЮ ТОЧКУ ЭКРАНА ДЛЯ СИНАПТИЧЕСКОГО ВЗРЫВА</span>
+        </div>
+
+        <div class="absolute bottom-4 right-5 pointer-events-none font-mono text-[11px] text-cyan-neon">
+          <span>● 60 FPS // HARDWARE ACCELERATED</span>
+        </div>
+
+        <!-- Corner marks -->
+        <div class="hud-corner hud-tl"></div>
+        <div class="hud-corner hud-tr"></div>
+        <div class="hud-corner hud-bl"></div>
+        <div class="hud-corner hud-br"></div>
+      </div>
+
+      <!-- Sandbox Interactive Toolbar -->
+      <div class="glass-panel rounded-3xl p-6 border border-white/10 flex flex-wrap items-center justify-between gap-6 text-left">
+        
+        <!-- Mode Switcher -->
+        <div>
+          <span class="font-mono text-xs text-white/50 block mb-2">ФИЗИЧЕСКИЙ РЕЖИМ ЯДРА:</span>
+          <div class="flex flex-wrap gap-2">
+            <button data-sandbox-mode="synaptic" class="font-mono text-xs px-4 py-2 rounded-full border border-cyan-400 text-cyan-400 bg-cyan-950/40 transition-all active cursor-pointer">
+              SYNAPTIC MESH
+            </button>
+            <button data-sandbox-mode="quantum" class="font-mono text-xs px-4 py-2 rounded-full border border-white/10 text-white/60 bg-white/5 hover:border-white/30 transition-all cursor-pointer">
+              QUANTUM VORTEX
+            </button>
+            <button data-sandbox-mode="waves" class="font-mono text-xs px-4 py-2 rounded-full border border-white/10 text-white/60 bg-white/5 hover:border-white/30 transition-all cursor-pointer">
+              WAVE CONTOURS
+            </button>
+          </div>
+        </div>
+
+        <!-- Pulse Speed Slider -->
+        <div class="w-full sm:w-64">
+          <div class="flex justify-between font-mono text-xs text-white/50 mb-2">
+            <span>СКОРОСТЬ ИМПУЛЬСОВ</span>
+            <span id="slider-speed-val" class="text-cyan-neon font-bold">1.8x</span>
+          </div>
+          <input id="slider-speed" type="range" min="0.5" max="4.0" step="0.1" value="1.8" class="w-full accent-cyan-400 bg-white/10 rounded-lg cursor-pointer">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 5: SOCIAL TERMINAL // CONNECT
+       ========================================================================== -->
+  <section id="terminal" class="relative py-28 px-4 sm:px-8 bg-[#090d16]">
+    <div class="max-w-4xl mx-auto">
+      
+      <div class="glass-panel-neon rounded-3xl p-8 sm:p-14 text-center relative overflow-hidden">
+        
+        <!-- Crosshair Corners -->
+        <div class="hud-corner hud-tl"></div>
+        <div class="hud-corner hud-tr"></div>
+        <div class="hud-corner hud-bl"></div>
+        <div class="hud-corner hud-br"></div>
+
+        <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-3">// 04 • DIRECT TRANSMISSION</span>
+        
+        <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+          ГОТОВЫ ЗАПУСТИТЬ ПРОЕКТ?
+        </h2>
+        
+        <p class="text-white/70 text-base sm:text-lg mt-4 max-w-xl mx-auto leading-relaxed">
+          Создадим иммерсивный сайт-визитку, умную бизнес-экосистему с CRM или обсудим сотрудничество в сфере искусственного интеллекта.
+        </p>
+
+        <!-- Social Action Buttons (Strictly Telegram & Instagram without usernames) -->
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-5">
+          
+          <!-- Telegram Button -->
+          <a href="https://t.me/litt1e_roo" target="_blank" rel="noopener noreferrer" class="btn-sci-fi text-sm py-4 px-8 min-w-[200px]">
+            <i data-lucide="send" class="w-4 h-4 text-cyan-neon"></i>
+            <span>Telegram</span>
+          </a>
+
+          <!-- Instagram Button -->
+          <a href="https://www.instagram.com/ruslan.knko" target="_blank" rel="noopener noreferrer" class="btn-sci-fi btn-sci-fi-alt text-sm py-4 px-8 min-w-[200px]">
+            <i data-lucide="instagram" class="w-4 h-4 text-cyan-neon"></i>
+            <span>Instagram</span>
+          </a>
+
+        </div>
+
+        <!-- Copy handle helper -->
+        <div class="mt-8">
+          <button id="btn-copy-contact" class="inline-flex items-center gap-2 font-mono text-xs text-white/50 hover:text-white transition-colors bg-white/5 border border-white/10 px-4 py-2 rounded-full cursor-pointer">
+            <i data-lucide="copy" class="w-3.5 h-3.5 text-cyan-neon"></i>
+            <span>Копировать контактный хэндл: @litt1e_roo</span>
+          </button>
+        </div>
+
+        <!-- Status terminal note -->
+        <div class="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between font-mono text-xs text-white/40 gap-3">
+          <div class="flex items-center gap-2">
+            <span class="pulse-dot"></span>
+            <span>SECURE ENCRYPTED CHANNEL READY</span>
+          </div>
+          <div>RESPONSE TIME: &lt; 2 HOURS</div>
+        </div>
+
+      </div>
+
+      <!-- Footer Note -->
+      <footer class="mt-16 text-center font-mono text-xs text-white/40 space-y-2">
+        <p>© 2026 SYNAPTIQ lab. ALL RIGHTS RESERVED.</p>
+        <p class="text-white/30 text-[11px]">Сайт создан на архитектуре PulseCore by SYNAPTIQ Lab</p>
+        <p class="text-white/20">ARCHITECTED FOR HUMAN COGNITION &amp; LIVING DIGITAL ECOSYSTEMS.</p>
+      </footer>
+
+    </div>
+  </section>
+
+  <!-- Lucide icons initialization -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <!-- Core Scripts -->
+  <script src="assets/js/synaptic-engine.js"></script>
+  <script src="assets/js/scrollytelling.js"></script>
+</body>
+</html>
