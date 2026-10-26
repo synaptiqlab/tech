@@ -363,12 +363,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
         
         <!-- Tier 1: Promo Site (Хит) -->
-        <div id="card-tier-promo" class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-cyan-pulse/60 shadow-[0_0_30px_rgba(0,240,255,0.15)] relative transition-all duration-300">
-          <div class="corner-cross corner-tl"></div>
-          <div class="corner-cross corner-tr"></div>
-          <div class="corner-cross corner-bl"></div>
-          <div class="corner-cross corner-br"></div>
-
+        <div id="card-tier-promo" class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:border-cyan-pulse hover:shadow-[0_0_35px_rgba(0,240,255,0.3)] relative transition-all duration-300">
           <div>
             <div class="flex items-center justify-between mb-1">
               <span class="font-mono text-xs text-cyan-pulse uppercase">Эксперты и Услуги</span>
@@ -401,13 +396,13 @@
             </ul>
           </div>
 
-          <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE-%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-xs py-3 w-full text-center mt-8 transition-all">
+          <button type="button" onclick="openLeadModal('Промо-сайт')" class="btn-lab-primary text-xs py-3 w-full text-center mt-8 transition-all cursor-pointer">
             <span>ЗАКАЗАТЬ ПРОМО-САЙТ</span>
-          </a>
+          </button>
         </div>
 
         <!-- Tier 2: PulseCore System (Сайт + CRM) -->
-        <div id="card-tier-crm" class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.2)] relative transition-all duration-300">
+        <div id="card-tier-crm" class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:border-cyan-pulse hover:shadow-[0_0_35px_rgba(0,240,255,0.3)] relative transition-all duration-300">
           <div>
             <div class="flex items-center justify-between mb-1">
               <span class="font-mono text-xs text-emerald-400 uppercase">Салоны, Ритейл, Коворкинги</span>
@@ -449,13 +444,13 @@
             </ul>
           </div>
 
-          <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%8D%D0%BA%D0%BE%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83%20%D0%A1%D0%B0%D0%B9%D1%82%20%2B%20CRM." target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-xs py-3 w-full text-center mt-8">
+          <button type="button" onclick="openLeadModal('Сайт + CRM')" class="btn-lab-primary text-xs py-3 w-full text-center mt-8 transition-all cursor-pointer">
             <span>ЗАКАЗАТЬ САЙТ + CRM</span>
-          </a>
+          </button>
         </div>
 
         <!-- Tier 3: e-Menu -->
-        <div id="card-tier-menu" class="lab-panel p-8 rounded-xl flex flex-col justify-between relative transition-all duration-300">
+        <div id="card-tier-menu" class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:border-cyan-pulse hover:shadow-[0_0_35px_rgba(0,240,255,0.3)] relative transition-all duration-300">
           <div>
             <div class="flex items-center justify-between mb-1">
               <span class="font-mono text-xs text-slate-500 uppercase">Рестораны и Бары</span>
@@ -488,9 +483,9 @@
             </ul>
           </div>
 
-          <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20e-Menu." target="_blank" rel="noopener noreferrer" class="btn-lab-secondary text-xs py-3 w-full text-center mt-8 transition-all">
-            <span>ВЫБРАТЬ E-MENU</span>
-          </a>
+          <button type="button" onclick="openLeadModal('e-Menu + А6')" class="btn-lab-primary text-xs py-3 w-full text-center mt-8 transition-all cursor-pointer">
+            <span>ЗАКАЗАТЬ E-MENU</span>
+          </button>
         </div>
 
       </div>
@@ -545,7 +540,7 @@
       <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
         <div>
           <span class="font-mono text-xs text-cyan-pulse tracking-widest uppercase">// SYNAPTIQ LAB</span>
-          <h3 class="font-display font-bold text-2xl text-white mt-0.5">Оставить заявку на проект</h3>
+          <h3 id="leadModalTitle" class="font-display font-bold text-2xl text-white mt-0.5">Оставить заявку на проект</h3>
         </div>
         <button type="button" onclick="closeLeadModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
           <i data-lucide="x" class="w-4 h-4"></i>
@@ -554,6 +549,7 @@
 
       <!-- Lead Form -->
       <form id="leadForm" onsubmit="handleLeadSubmit(event)" class="space-y-4">
+        <input type="hidden" id="leadService" value="Индивидуальный проект">
         <div>
           <label class="block font-mono text-xs text-slate-300 mb-1.5 uppercase tracking-wider">Ваше имя</label>
           <input type="text" id="leadName" required placeholder="Как к вам обращаться" class="w-full bg-white/5 border border-white/15 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-pulse focus:ring-1 focus:ring-cyan-pulse font-body transition-all">
@@ -640,7 +636,6 @@
         // Reset all cards to full opacity and standard styles
         if (cardPromo) {
           cardPromo.classList.remove('opacity-40', 'grayscale', 'scale-95');
-          cardPromo.classList.add('border-cyan-pulse/60', 'shadow-[0_0_30px_rgba(0,240,255,0.15)]');
         }
         if (cardCrm) {
           cardCrm.classList.remove('scale-105', 'border-emerald-400', 'shadow-[0_0_45px_rgba(16,185,129,0.35)]');
@@ -665,7 +660,6 @@
         // Dim Promo and e-Menu cards so it is crystal clear only CRM is subscription-based
         if (cardPromo) {
           cardPromo.classList.add('opacity-40', 'grayscale', 'scale-95');
-          cardPromo.classList.remove('border-cyan-pulse/60', 'shadow-[0_0_30px_rgba(0,240,255,0.15)]');
         }
         if (cardCrm) {
           cardCrm.classList.add('scale-105', 'border-emerald-400', 'shadow-[0_0_45px_rgba(16,185,129,0.35)]');
@@ -838,9 +832,26 @@
     });
 
     // Lead Form Modal Functions
-    function openLeadModal() {
+    function openLeadModal(serviceName) {
       const modal = document.getElementById('lead-modal');
       if (!modal) return;
+      
+      const titleEl = document.getElementById('leadModalTitle');
+      const serviceInput = document.getElementById('leadService');
+      const descInput = document.getElementById('leadDesc');
+
+      if (serviceName) {
+        if (serviceInput) serviceInput.value = serviceName;
+        if (titleEl) titleEl.textContent = `Заявка: ${serviceName}`;
+        if (descInput) {
+          descInput.value = `Интересует тариф: ${serviceName}.\n`;
+        }
+      } else {
+        if (serviceInput) serviceInput.value = 'Индивидуальный проект';
+        if (titleEl) titleEl.textContent = 'Оставить заявку на проект';
+        if (descInput) descInput.value = '';
+      }
+
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.style.overflow = 'hidden';
@@ -859,6 +870,8 @@
       document.body.style.overflow = '';
       const feedback = document.getElementById('leadFormFeedback');
       if (feedback) feedback.classList.add('hidden');
+      const titleEl = document.getElementById('leadModalTitle');
+      if (titleEl) titleEl.textContent = 'Оставить заявку на проект';
     }
 
     async function handleLeadSubmit(event) {
@@ -866,6 +879,7 @@
       const name = document.getElementById('leadName').value.trim();
       const contact = document.getElementById('leadContact').value.trim();
       const desc = document.getElementById('leadDesc').value.trim();
+      const service = document.getElementById('leadService')?.value || 'Индивидуальный проект';
       const btn = document.getElementById('leadSubmitBtn');
       const feedback = document.getElementById('leadFormFeedback');
 
@@ -880,6 +894,7 @@
       const messageText = 
         `🔥 <b>НОВАЯ ЗАЯВКА С САЙТА SYNAPTIQLAB.TECH!</b>\n` +
         `━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `🎯 <b>Выбранный тариф:</b> ${service}\n` +
         `👤 <b>Имя:</b> ${name}\n` +
         `📞 <b>Контакт:</b> ${contact}\n` +
         `📝 <b>Описание проекта:</b>\n<i>«${desc}»</i>\n\n` +
@@ -909,7 +924,7 @@
         }
       } catch (err) {
         // Fallback directly to Telegram
-        const tgFallback = `https://t.me/litt1e_roo?text=${encodeURIComponent('Здравствуйте! Меня зовут ' + name + ' (' + contact + '). Мой проект: ' + desc)}`;
+        const tgFallback = `https://t.me/litt1e_roo?text=${encodeURIComponent('Здравствуйте! Меня зовут ' + name + ' (' + contact + '). Тариф: ' + service + '. Описание: ' + desc)}`;
         window.open(tgFallback, '_blank');
         closeLeadModal();
       } finally {
