@@ -80,14 +80,7 @@
         </a>
         <a href="#pulsecore" class="hover:text-cyan-pulse transition-colors">PULSECORE CRM</a>
         <a href="#pricing" class="hover:text-cyan-pulse transition-colors">ТАРИФЫ</a>
-        <a href="https://synaptiqlab.github.io/hub/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-pulse transition-colors flex items-center gap-1 text-slate-300">
-          <span>ХАБ</span>
-          <i data-lucide="shield" class="w-3 h-3 text-cyan-pulse"></i>
-        </a>
-        <a href="https://t.me/SYNAPTIQ_Lab_bot" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-pulse transition-colors flex items-center gap-1 text-slate-300">
-          <span>БОТ</span>
-          <i data-lucide="bot" class="w-3 h-3 text-emerald-400"></i>
-        </a>
+        <a href="#contact" class="hover:text-cyan-pulse transition-colors">СВЯЗЬ</a>
       </nav>
 
       <!-- Connection Status & CTA -->
@@ -506,40 +499,88 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 4: TERMINAL CONNECT // СВЯЗЬ С ЛАБОРАТОРИЕЙ
+       SECTION 4: CONTACT & INITIATE PROJECT // СВЯЗЬ И ЗАЯВКА
        ========================================================================== -->
-  <section id="terminal" class="relative py-28 px-4 sm:px-8 border-t border-white/5 bg-[#05070b]">
+  <section id="contact" class="relative py-28 px-4 sm:px-8 border-t border-white/5 bg-[#05070b]">
     <div class="max-w-3xl mx-auto text-center">
       
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-cyan-pulse font-mono text-xs mb-6">
-        <span>INITIATE CONNECTION // TELEGRAM HQ</span>
+        <span>СВЯЗЬ С ЛАБОРАТОРИЕЙ // НАЧАТЬ РАБОТУ</span>
       </div>
 
       <h2 class="font-display font-bold text-3xl sm:text-5xl text-white tracking-tight">
-        Инициализировать проект
+        Обсудить проект
       </h2>
 
       <p class="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed font-mono">
-        Отправьте параметры вашей задачи напрямую основателю лаборатории. Мы проанализируем нишу, подберем архитектуру и выведем систему в онлайн за 2–4 дня.
+        Расскажите о вашей задаче. Мы проанализируем нишу, предложим оптимальный стек и запустим готовую систему за 2–4 дня.
       </p>
 
       <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-        <a href="https://t.me/litt1e_roo" target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-xs py-4 px-8">
-          <i data-lucide="send" class="w-4 h-4"></i>
-          <span>ОТКРЫТЬ ДИАЛОГ В TELEGRAM (@litt1e_roo)</span>
-        </a>
-        <a href="https://t.me/SYNAPTIQ_Lab_bot" target="_blank" rel="noopener noreferrer" class="btn-lab-secondary text-xs py-4 px-6 border-emerald-500/40 text-emerald-300 hover:border-emerald-400">
-          <i data-lucide="bot" class="w-4 h-4 text-emerald-400"></i>
-          <span>SUPPORT BOT 24/7 (@SYNAPTIQ_Lab_bot)</span>
-        </a>
-        <a href="https://synaptiqlab.github.io/hub/" target="_blank" rel="noopener noreferrer" class="btn-lab-secondary text-xs py-4 px-6 border-cyan-500/40 text-cyan-pulse hover:border-cyan-400">
-          <i data-lucide="shield" class="w-4 h-4 text-cyan-pulse"></i>
-          <span>MASTER CONTROL HUB (AES-256)</span>
+        <!-- Кнопка 1: Оставить заявку (модальная форма) -->
+        <button type="button" onclick="openLeadModal()" class="btn-lab-primary text-xs py-4 px-8 cursor-pointer flex items-center gap-2 shadow-[0_0_25px_rgba(0,240,255,0.25)]">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>ОСТАВИТЬ ЗАЯВКУ</span>
+        </button>
+
+        <!-- Кнопка 2: Написать в Telegram -->
+        <a href="https://t.me/litt1e_roo" target="_blank" rel="noopener noreferrer" class="btn-lab-secondary text-xs py-4 px-8 flex items-center gap-2 border-white/20 hover:border-cyan-pulse hover:text-cyan-pulse transition-all">
+          <i data-lucide="send" class="w-4 h-4 text-cyan-pulse"></i>
+          <span>НАПИСАТЬ В TELEGRAM (@litt1e_roo)</span>
         </a>
       </div>
 
     </div>
   </section>
+
+  <!-- Interactive Project Lead Modal -->
+  <div id="lead-modal" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeLeadModal()">
+    <div class="relative max-w-lg w-full lab-panel rounded-2xl p-6 sm:p-8 border border-cyan-500/40 shadow-[0_0_50px_rgba(0,240,255,0.2)]" onclick="event.stopPropagation()">
+      <div class="corner-cross corner-tl"></div>
+      <div class="corner-cross corner-tr"></div>
+      <div class="corner-cross corner-bl"></div>
+      <div class="corner-cross corner-br"></div>
+
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+        <div>
+          <span class="font-mono text-xs text-cyan-pulse tracking-widest uppercase">// SYNAPTIQ LAB</span>
+          <h3 class="font-display font-bold text-2xl text-white mt-0.5">Оставить заявку на проект</h3>
+        </div>
+        <button type="button" onclick="closeLeadModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Lead Form -->
+      <form id="leadForm" onsubmit="handleLeadSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block font-mono text-xs text-slate-300 mb-1.5 uppercase tracking-wider">Ваше имя</label>
+          <input type="text" id="leadName" required placeholder="Как к вам обращаться" class="w-full bg-white/5 border border-white/15 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-pulse focus:ring-1 focus:ring-cyan-pulse font-body transition-all">
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs text-slate-300 mb-1.5 uppercase tracking-wider">Контакт для связи (Telegram / Телефон)</label>
+          <input type="text" id="leadContact" required placeholder="@username или номер телефона" class="w-full bg-white/5 border border-white/15 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-pulse focus:ring-1 focus:ring-cyan-pulse font-body transition-all">
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs text-slate-300 mb-1.5 uppercase tracking-wider">Ваш запрос / Описание проекта</label>
+          <textarea id="leadDesc" rows="4" required placeholder="Опишите ваш проект, сферу и функционал, который вам необходим..." class="w-full bg-white/5 border border-white/15 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-pulse focus:ring-1 focus:ring-cyan-pulse font-body transition-all resize-none"></textarea>
+          <p class="mt-1.5 text-[11px] font-mono text-slate-500">
+            Опишите ваш проект, сферу, функционал, который вам необходим.
+          </p>
+        </div>
+
+        <div id="leadFormFeedback" class="hidden text-xs font-mono py-2 text-center rounded"></div>
+
+        <button type="submit" id="leadSubmitBtn" class="btn-lab-primary text-xs py-3.5 w-full flex items-center justify-center gap-2 cursor-pointer mt-4">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>ОТПРАВИТЬ ЗАЯВКУ</span>
+        </button>
+      </form>
+    </div>
+  </div>
 
   <!-- ==========================================================================
        FOOTER // PROTOCOL DATA
@@ -553,14 +594,14 @@
       </div>
 
       <div class="flex flex-wrap items-center gap-6">
-        <a href="https://synaptiqlab.github.io/hub/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-pulse transition-colors">
-          Master Hub
+        <a href="#projects" class="hover:text-cyan-pulse transition-colors">
+          Проекты
         </a>
-        <a href="https://t.me/SYNAPTIQ_Lab_bot" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-pulse transition-colors">
-          Support Bot 24/7
+        <a href="#pricing" class="hover:text-cyan-pulse transition-colors">
+          Тарифы
         </a>
-        <a href="#pricing" class="hover:text-white transition-colors">
-          PulseCore Architecture
+        <a href="https://t.me/litt1e_roo" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+          Telegram @litt1e_roo
         </a>
       </div>
 
@@ -784,12 +825,99 @@
 
     document.addEventListener('keydown', (e) => {
       const modal = document.getElementById('image-lightbox');
-      if (!modal || modal.classList.contains('hidden')) return;
+      if (modal && !modal.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeImageLightbox();
+        if (e.key === 'ArrowRight') crmGalleryNext();
+        if (e.key === 'ArrowLeft') crmGalleryPrev();
+      }
 
-      if (e.key === 'Escape') closeImageLightbox();
-      if (e.key === 'ArrowRight') crmGalleryNext();
-      if (e.key === 'ArrowLeft') crmGalleryPrev();
+      const leadModal = document.getElementById('lead-modal');
+      if (leadModal && !leadModal.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeLeadModal();
+      }
     });
+
+    // Lead Form Modal Functions
+    function openLeadModal() {
+      const modal = document.getElementById('lead-modal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      if (window.lucide) lucide.createIcons();
+      setTimeout(() => {
+        const nameInput = document.getElementById('leadName');
+        if (nameInput) nameInput.focus();
+      }, 100);
+    }
+
+    function closeLeadModal() {
+      const modal = document.getElementById('lead-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+      const feedback = document.getElementById('leadFormFeedback');
+      if (feedback) feedback.classList.add('hidden');
+    }
+
+    async function handleLeadSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('leadName').value.trim();
+      const contact = document.getElementById('leadContact').value.trim();
+      const desc = document.getElementById('leadDesc').value.trim();
+      const btn = document.getElementById('leadSubmitBtn');
+      const feedback = document.getElementById('leadFormFeedback');
+
+      if (!name || !contact || !desc) return;
+
+      btn.disabled = true;
+      btn.innerHTML = '<span>ОТПРАВЛЯЕМ...</span>';
+
+      const botToken = "8501526393:AAGLR2mE8vYQqoGzK1PFLc6Wle6gd8YAZUk";
+      const hqChatId = "-1004446993514";
+
+      const messageText = 
+        `🔥 <b>НОВАЯ ЗАЯВКА С САЙТА SYNAPTIQLAB.TECH!</b>\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `👤 <b>Имя:</b> ${name}\n` +
+        `📞 <b>Контакт:</b> ${contact}\n` +
+        `📝 <b>Описание проекта:</b>\n<i>«${desc}»</i>\n\n` +
+        `⚡ <i>Заявка отправлена через форму обратной связи.</i>`;
+
+      try {
+        const resp = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: hqChatId,
+            text: messageText,
+            parse_mode: "HTML"
+          })
+        });
+
+        if (resp.ok) {
+          feedback.textContent = "✅ Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.";
+          feedback.className = "text-xs font-mono py-2.5 px-3 text-center rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300";
+          feedback.classList.remove('hidden');
+          document.getElementById('leadForm').reset();
+          setTimeout(() => {
+            closeLeadModal();
+          }, 2500);
+        } else {
+          throw new Error("Telegram API error");
+        }
+      } catch (err) {
+        // Fallback directly to Telegram
+        const tgFallback = `https://t.me/litt1e_roo?text=${encodeURIComponent('Здравствуйте! Меня зовут ' + name + ' (' + contact + '). Мой проект: ' + desc)}`;
+        window.open(tgFallback, '_blank');
+        closeLeadModal();
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i><span>ОТПРАВИТЬ ЗАЯВКУ</span>';
+        if (window.lucide) lucide.createIcons();
+      }
+    }
   </script>
 </body>
 </html>
