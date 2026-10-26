@@ -370,32 +370,26 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
         
         <!-- Tier 1: Promo Site (Хит) -->
-        <div class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-cyan-pulse/60 shadow-[0_0_30px_rgba(0,240,255,0.15)] relative">
+        <div id="card-tier-promo" class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-cyan-pulse/60 shadow-[0_0_30px_rgba(0,240,255,0.15)] relative transition-all duration-300">
           <div class="corner-cross corner-tl"></div>
           <div class="corner-cross corner-tr"></div>
           <div class="corner-cross corner-bl"></div>
           <div class="corner-cross corner-br"></div>
 
           <div>
-            <div class="font-mono text-xs text-cyan-pulse uppercase mb-1">Эксперты и Услуги</div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono text-xs text-cyan-pulse uppercase">Эксперты и Услуги</span>
+              <span class="only-forever-badge hidden px-2 py-0.5 rounded bg-white/10 text-slate-400 font-mono text-[10px] tracking-wider uppercase border border-white/10">Только выкуп</span>
+            </div>
             <h3 class="font-display font-bold text-2xl text-white">Промо-сайт</h3>
             <p class="text-xs text-slate-400 mt-2 font-mono">Статусный кинетический лендинг с мгновенными лидами в Telegram</p>
 
             <div class="my-6 py-4 border-y border-white/10">
-              <div class="price-val-forever">
-                <div class="flex items-baseline gap-2">
-                  <span class="font-display font-bold text-4xl text-white">$149</span>
-                  <span class="font-mono text-xs text-cyan-pulse">/ под ключ</span>
-                </div>
-                <div class="text-[11px] font-mono text-slate-500 mt-1">Запуск за 2–3 дня. Код навсегда ваш.</div>
+              <div class="flex items-baseline gap-2">
+                <span class="font-display font-bold text-4xl text-white">$149</span>
+                <span class="font-mono text-xs text-cyan-pulse">/ под ключ</span>
               </div>
-              <div class="price-val-sub hidden">
-                <div class="flex items-baseline gap-2">
-                  <span class="font-display font-bold text-4xl text-cyan-pulse">2 500 ₽</span>
-                  <span class="font-mono text-xs text-cyan-300">/ месяц</span>
-                </div>
-                <div class="text-[11px] font-mono text-slate-500 mt-1">0 ₽ за разработку. Сервисное ведение.</div>
-              </div>
+              <div class="text-[11px] font-mono text-slate-500 mt-1">Запуск за 2–3 дня. Код навсегда ваш.</div>
             </div>
 
             <ul class="space-y-3 font-mono text-xs text-slate-300">
@@ -414,15 +408,18 @@
             </ul>
           </div>
 
-          <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE-%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-xs py-3 w-full text-center mt-8">
+          <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE-%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-xs py-3 w-full text-center mt-8 transition-all">
             <span>ЗАКАЗАТЬ ПРОМО-САЙТ</span>
           </a>
         </div>
 
         <!-- Tier 2: PulseCore System (Сайт + CRM) -->
-        <div class="lab-panel p-8 rounded-xl flex flex-col justify-between border border-emerald-500/40 relative">
+        <div id="card-tier-crm" class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.2)] relative transition-all duration-300">
           <div>
-            <div class="font-mono text-xs text-emerald-400 uppercase mb-1">Салоны, Ритейл, Коворкинги</div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono text-xs text-emerald-400 uppercase">Салоны, Ритейл, Коворкинги</span>
+              <span class="active-sub-badge hidden px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 font-mono text-[10px] tracking-wider uppercase border border-emerald-500/30">Доступен по подписке</span>
+            </div>
             <h3 class="font-display font-bold text-2xl text-white">Сайт + CRM</h3>
             <p class="text-xs text-slate-400 mt-2 font-mono">Полная экосистема: онлайн-запись, бот и журнал смен мастеров</p>
 
@@ -432,14 +429,14 @@
                   <span class="font-display font-bold text-4xl text-white">$390</span>
                   <span class="font-mono text-xs text-emerald-400">/ под ключ</span>
                 </div>
-                <div class="text-[11px] font-mono text-emerald-400 mt-1">Экономия до $600/год на Yclients.</div>
+                <div class="text-[11px] font-mono text-emerald-400 mt-1">Экономия до $600/год на Yclients. Код навсегда ваш.</div>
               </div>
               <div class="price-val-sub hidden">
                 <div class="flex items-baseline gap-2">
-                  <span class="font-display font-bold text-4xl text-emerald-400">3 500 ₽</span>
+                  <span class="font-display font-bold text-4xl text-emerald-400">$39</span>
                   <span class="font-mono text-xs text-emerald-300">/ месяц</span>
                 </div>
-                <div class="text-[11px] font-mono text-slate-500 mt-1">Полный аутсорсинг и боты 24/7.</div>
+                <div class="text-[11px] font-mono text-slate-400 mt-1">0 ₽ за разработку. Полный аутсорсинг и боты 24/7.</div>
               </div>
             </div>
 
@@ -465,27 +462,21 @@
         </div>
 
         <!-- Tier 3: e-Menu -->
-        <div class="lab-panel p-8 rounded-xl flex flex-col justify-between relative">
+        <div id="card-tier-menu" class="lab-panel p-8 rounded-xl flex flex-col justify-between relative transition-all duration-300">
           <div>
-            <div class="font-mono text-xs text-slate-500 uppercase mb-1">Рестораны и Бары</div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono text-xs text-slate-500 uppercase">Рестораны и Бары</span>
+              <span class="only-forever-badge hidden px-2 py-0.5 rounded bg-white/10 text-slate-400 font-mono text-[10px] tracking-wider uppercase border border-white/10">Только выкуп</span>
+            </div>
             <h3 class="font-display font-bold text-2xl text-white">e-Menu + А6</h3>
             <p class="text-xs text-slate-400 mt-2 font-mono">Мобильное электронное меню на 4 языках и макет для печати</p>
 
             <div class="my-6 py-4 border-y border-white/10">
-              <div class="price-val-forever">
-                <div class="flex items-baseline gap-2">
-                  <span class="font-display font-bold text-4xl text-white">$90</span>
-                  <span class="font-mono text-xs text-slate-400">/ под ключ</span>
-                </div>
-                <div class="text-[11px] font-mono text-slate-500 mt-1">Единоразово. Исходный код ваш.</div>
+              <div class="flex items-baseline gap-2">
+                <span class="font-display font-bold text-4xl text-white">$90</span>
+                <span class="font-mono text-xs text-slate-400">/ под ключ</span>
               </div>
-              <div class="price-val-sub hidden">
-                <div class="flex items-baseline gap-2">
-                  <span class="font-display font-bold text-4xl text-cyan-pulse">1 500 ₽</span>
-                  <span class="font-mono text-xs text-cyan-300">/ месяц</span>
-                </div>
-                <div class="text-[11px] font-mono text-slate-500 mt-1">Хостинг и правка позиций включены.</div>
-              </div>
+              <div class="text-[11px] font-mono text-slate-500 mt-1">Единоразово. Исходный код ваш.</div>
             </div>
 
             <ul class="space-y-3 font-mono text-xs text-slate-300">
@@ -504,7 +495,7 @@
             </ul>
           </div>
 
-          <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20e-Menu." target="_blank" rel="noopener noreferrer" class="btn-lab-secondary text-xs py-3 w-full text-center mt-8">
+          <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20e-Menu." target="_blank" rel="noopener noreferrer" class="btn-lab-secondary text-xs py-3 w-full text-center mt-8 transition-all">
             <span>ВЫБРАТЬ E-MENU</span>
           </a>
         </div>
@@ -589,20 +580,62 @@
       const foreverVals = document.querySelectorAll('.price-val-forever');
       const subVals = document.querySelectorAll('.price-val-sub');
 
+      const cardPromo = document.getElementById('card-tier-promo');
+      const cardCrm = document.getElementById('card-tier-crm');
+      const cardMenu = document.getElementById('card-tier-menu');
+      const onlyForeverBadges = document.querySelectorAll('.only-forever-badge');
+      const activeSubBadge = document.querySelector('.active-sub-badge');
+
       if (!btnForever || !btnSub) return;
 
       btnForever.addEventListener('click', () => {
         btnForever.classList.add('active');
         btnSub.classList.remove('active');
+
+        // Show buy forever price for CRM
         foreverVals.forEach(el => el.classList.remove('hidden'));
         subVals.forEach(el => el.classList.add('hidden'));
+
+        // Reset all cards to full opacity and standard styles
+        if (cardPromo) {
+          cardPromo.classList.remove('opacity-40', 'grayscale', 'scale-95');
+          cardPromo.classList.add('border-cyan-pulse/60', 'shadow-[0_0_30px_rgba(0,240,255,0.15)]');
+        }
+        if (cardCrm) {
+          cardCrm.classList.remove('scale-105', 'border-emerald-400', 'shadow-[0_0_45px_rgba(16,185,129,0.35)]');
+          cardCrm.classList.add('border-emerald-500/50', 'shadow-[0_0_30px_rgba(16,185,129,0.2)]');
+        }
+        if (cardMenu) {
+          cardMenu.classList.remove('opacity-40', 'grayscale', 'scale-95');
+        }
+
+        onlyForeverBadges.forEach(b => b.classList.add('hidden'));
+        if (activeSubBadge) activeSubBadge.classList.add('hidden');
       });
 
       btnSub.addEventListener('click', () => {
         btnSub.classList.add('active');
         btnForever.classList.remove('active');
+
+        // Show subscription price for CRM ($39 / mo)
         foreverVals.forEach(el => el.classList.add('hidden'));
         subVals.forEach(el => el.classList.remove('hidden'));
+
+        // Dim Promo and e-Menu cards so it is crystal clear only CRM is subscription-based
+        if (cardPromo) {
+          cardPromo.classList.add('opacity-40', 'grayscale', 'scale-95');
+          cardPromo.classList.remove('border-cyan-pulse/60', 'shadow-[0_0_30px_rgba(0,240,255,0.15)]');
+        }
+        if (cardCrm) {
+          cardCrm.classList.add('scale-105', 'border-emerald-400', 'shadow-[0_0_45px_rgba(16,185,129,0.35)]');
+          cardCrm.classList.remove('border-emerald-500/50');
+        }
+        if (cardMenu) {
+          cardMenu.classList.add('opacity-40', 'grayscale', 'scale-95');
+        }
+
+        onlyForeverBadges.forEach(b => b.classList.remove('hidden'));
+        if (activeSubBadge) activeSubBadge.classList.remove('hidden');
       });
     })();
   </script>
