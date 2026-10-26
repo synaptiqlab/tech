@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SYNAPTIQ lab // AI - Tech - Ecosystems</title>
-  <meta name="description" content="SYNAPTIQ lab — создаём проекты на стыке искусственного интеллекта, современных веб-технологий и умных систем. Строим сервисы будущего для реальной жизни.">
+  <title>SYNAPTIQ [lab] // Applied AI &amp; Autonomous Web Systems</title>
+  <meta name="description" content="SYNAPTIQ [lab] — лаборатория прикладного искусственного интеллекта и автономных веб-систем. Проектируем нейросетевые сервисы, кинетические интерфейсы и умные экосистемы.">
 
-  <!-- Google Fonts: Strictly Zero Serifs (Unbounded, Plus Jakarta Sans, Geist Mono) -->
+  <!-- Advanced Sci-Fi & Engineering Typography: Space Grotesk, Inter, Geist Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Unbounded:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,19 +19,23 @@
         extend: {
           colors: {
             cyan: {
-              neon: '#00f0ff',
-              glow: 'rgba(0, 240, 255, 0.4)'
+              pulse: '#00f0ff',
+              dim: 'rgba(0, 240, 255, 0.15)'
             },
-            space: {
-              950: '#06080d',
-              900: '#0c1017',
-              850: '#111722',
-              800: '#172030'
+            indigo: {
+              core: '#6366f1',
+              dim: 'rgba(99, 102, 241, 0.15)'
+            },
+            dark: {
+              950: '#05070b',
+              900: '#090d16',
+              850: '#0f1624',
+              800: '#151f33'
             }
           },
           fontFamily: {
-            display: ['Unbounded', 'sans-serif'],
-            body: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
             mono: ['Geist Mono', 'monospace']
           }
         }
@@ -42,523 +46,286 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- GSAP & ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Custom Laboratory Stylesheet -->
+  <link rel="stylesheet" href="assets/css/synaptiq-lab.css">
 
-  <!-- Lenis Smooth Scroll -->
-  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
-
-  <!-- Custom Sci-Fi Stylesheet -->
-  <link rel="stylesheet" href="assets/css/synaptiq.css">
-
-  <!-- Favicon / Brand Icon -->
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-  <link rel="apple-touch-icon" href="assets/icons/favicon.svg">
 </head>
-<body class="bg-[#06080d] text-[#f0f4f8] font-body selection:bg-cyan-500/30 selection:text-cyan-200">
+<body class="bg-[#05070b] text-[#ffffff] font-body selection:bg-cyan-500/30 selection:text-cyan-200">
 
-  <!-- Micro-noise texture -->
+  <!-- Engineering Matrix Grid & Deep Ambient Glow -->
+  <div class="matrix-grid-bg"></div>
+  <div class="ambient-glow"></div>
   <div class="noise-overlay"></div>
 
   <!-- ==========================================================================
-       HEADER / NAVIGATION CAPSULE
+       HEADER // LABORATORY STATUS & NAVIGATION
        ========================================================================== -->
-  <header class="fixed top-0 inset-x-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4 pointer-events-none">
-    <div class="max-w-6xl mx-auto flex items-center justify-between glass-panel rounded-full px-3.5 py-2 sm:px-5 sm:py-3 border border-white/10 pointer-events-auto">
+  <header class="fixed top-0 inset-x-0 z-50 px-4 pt-4 sm:px-8 sm:pt-5 pointer-events-none">
+    <div class="max-w-6xl mx-auto flex items-center justify-between lab-panel rounded-xl px-5 py-3 pointer-events-auto border border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.7)]">
       
-      <!-- Brand Logo: Pure Typography SYNAPTIQ lab -->
-      <a href="#" class="flex items-center gap-1 sm:gap-1.5 group shrink-0">
-        <span class="font-display font-black text-base sm:text-lg sm:text-xl tracking-tight text-white group-hover:text-cyan-neon transition-colors">SYNAPTIQ</span>
-        <span class="synaptiq-lab-badge">lab</span>
-        <span class="pulse-dot ml-1" title="Neural Core: Online"></span>
+      <!-- Logo: SYNAPTIQ [lab] -->
+      <a href="#" class="flex items-center gap-2 group">
+        <span class="font-display font-bold text-lg tracking-tight text-white group-hover:text-cyan-pulse transition-colors">SYNAPTIQ</span>
+        <span class="font-mono text-xs text-cyan-pulse bg-cyan-950/80 border border-cyan-500/30 px-2 py-0.5 rounded">lab</span>
+        <span class="synapse-dot ml-1" title="Neural Core: Online"></span>
       </a>
 
-      <!-- Navigation Links: Laboratory Mode -->
-      <nav id="nav-lab" class="hidden lg:flex items-center gap-6 xl:gap-7 font-mono text-xs tracking-wider text-white/70">
-        <a href="#protocol-terminal" class="hover:text-cyan-neon transition-colors">PROTOCOL</a>
-        <a href="#manifest-pin" class="hover:text-cyan-neon transition-colors">MANIFEST</a>
-        <a href="#projects" class="hover:text-cyan-neon transition-colors">PROJECTS</a>
-        <a href="#sandbox" class="hover:text-cyan-neon transition-colors">LAB</a>
-        <a href="#terminal" class="hover:text-cyan-neon transition-colors">CONNECT</a>
+      <!-- Center Links -->
+      <nav class="hidden md:flex items-center gap-7 font-mono text-xs tracking-wider text-slate-400">
+        <a href="#vectors" class="hover:text-cyan-pulse transition-colors">НАПРАВЛЕНИЯ</a>
+        <a href="#kidcompass" class="hover:text-cyan-pulse transition-colors flex items-center gap-1.5">
+          <span>KIDCOMPASS</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-pulse"></span>
+        </a>
+        <a href="#pulsecore" class="hover:text-cyan-pulse transition-colors">PULSECORE CRM</a>
+        <a href="#pricing" class="hover:text-cyan-pulse transition-colors">ТАРИФЫ</a>
+        <a href="#terminal" class="hover:text-cyan-pulse transition-colors">ТЕРМИНАЛ</a>
       </nav>
 
-      <!-- Navigation Links: Commercial / Studio Mode -->
-      <nav id="nav-commercial" class="hidden lg:flex items-center gap-5 xl:gap-6 font-mono text-xs tracking-wider text-white/70" style="display: none;">
-        <a href="#promo-sites" class="hover:text-cyan-neon transition-colors">Промо сайт</a>
-        <a href="#beauty-crm" class="hover:text-emerald-400 transition-colors">CRM БЬЮТИ</a>
-        <a href="#coworking-crm" class="hover:text-cyan-neon transition-colors">CRM КОВОРКИНГ</a>
-        <a href="#restaurant-menu" class="hover:text-amber-300 transition-colors">e-MENU</a>
-      </nav>
-
-      <!-- Status CTA & Master Mode Switcher -->
-      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-        <div class="hidden xl:flex items-center gap-2 font-mono text-[11px] text-white/50 bg-white/5 px-3 py-1 rounded-full border border-white/5 whitespace-nowrap">
-          <span id="header-status-dot" class="w-1.5 h-1.5 rounded-full bg-cyan-neon animate-ping"></span>
-          <span id="header-status-text">LAB ONLINE</span>
+      <!-- Connection Status & CTA -->
+      <div class="flex items-center gap-3">
+        <div class="hidden lg:flex items-center gap-2 font-mono text-[11px] text-slate-500 bg-white/5 px-3 py-1 rounded border border-white/5">
+          <span class="text-cyan-pulse">AI CORE</span>
+          <span>// ACTIVE</span>
         </div>
-        <button id="mode-toggle-btn" type="button" class="btn-sci-fi text-[11px] sm:text-xs py-1.5 sm:py-2 px-3 sm:px-4 flex items-center gap-1.5 sm:gap-2 cursor-pointer border-cyan-400 shadow-[0_0_15px_rgba(0,240,255,0.25)] transition-all whitespace-nowrap shrink-0">
-          <span id="mode-toggle-icon-wrap" class="flex items-center">
-            <i data-lucide="briefcase" class="w-3.5 h-3.5 text-cyan-neon"></i>
-          </span>
-          <span id="mode-toggle-text">КЕЙСЫ И ЦЕНЫ</span>
-        </button>
+        <a href="https://t.me/litt1e_roo" target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-[11px] py-2 px-4">
+          <span>СВЯЗЬ</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+        </a>
       </div>
+
     </div>
   </header>
 
   <!-- ==========================================================================
-       VIEW 1: THE LABORATORY (ПОЛНОСТЬЮ СОХРАНЕН В ПЕРВОЗДАННОМ ВИДЕ)
+       HERO SECTION // THE SYNAPTIC CORE
        ========================================================================== -->
-  <div id="view-lab" class="view-panel active">
-
-  <!-- ==========================================================================
-       HERO SECTION // THE NEURAL PORTAL
-       ========================================================================== -->
-  <section class="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 pt-24 pb-16 overflow-hidden">
+  <section class="relative min-h-[90vh] flex flex-col justify-center items-center px-4 sm:px-6 pt-32 pb-20 overflow-hidden">
     
-    <!-- Background Interactive Canvas -->
+    <!-- Interactive Synaptic Impulse Canvas -->
     <canvas id="synaptic-canvas"></canvas>
 
-    <!-- Sci-Fi HUD Overlays -->
-    <div class="absolute inset-x-6 top-24 hidden md:flex justify-between items-center pointer-events-none z-10 hero-hud-element">
-      <div class="hud-box">
-        <span class="text-cyan-neon font-bold">[SYS_STATUS]</span>
-        <span>LATENCY: 4ms // KERNEL: ACTIVE</span>
-      </div>
-      <div class="hud-box">
-        <span class="text-cyan-neon font-bold">[GEO_COORDS]</span>
-        <span id="hud-coords">X: 0000 // Y: 0000</span>
-      </div>
-    </div>
-
-    <div class="absolute inset-x-6 bottom-8 hidden md:flex justify-between items-center pointer-events-none z-10 hero-hud-element">
-      <div class="hud-box">
-        <span class="text-cyan-neon font-bold">[NEURAL_TOPOLOGY]</span>
-        <span id="hud-node-count">NODES: 85</span>
-      </div>
-      <div class="hud-box">
-        <span class="text-cyan-neon font-bold">[IMPULSES]</span>
-        <span id="hud-syn-count">SYNAPSES: 340</span>
-      </div>
-    </div>
-
-    <!-- Hero Content -->
     <div class="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
       
       <!-- Top Badge -->
-      <div id="hero-badge" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-cyan-500/20 text-cyan-neon font-mono text-xs tracking-wider mb-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-md bg-white/5 border border-cyan-500/30 text-cyan-pulse font-mono text-xs tracking-wider mb-6">
         <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
         <span>AI - Tech - Ecosystems</span>
       </div>
 
-      <!-- Main Kinetic Title -->
-      <h1 id="hero-title" class="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] text-white">
-        SYNAPTIQ <span class="font-mono text-cyan-neon text-3xl sm:text-5xl md:text-6xl font-normal lowercase">[lab]</span>
+      <!-- Main Headline: Крупно SYNAPTIQ [lab] -->
+      <h1 class="font-display font-bold text-5xl sm:text-7xl md:text-8xl tracking-tight leading-[1.05] text-white">
+        SYNAPTIQ <span class="font-mono text-cyan-pulse text-4xl sm:text-6xl md:text-7xl font-normal lowercase">[lab]</span>
       </h1>
 
-      <p class="font-display font-medium text-xl sm:text-2xl md:text-3xl text-gradient-cyan mt-4 tracking-tight">
-        Строим сервисы будущего для реальной жизни
-      </p>
-
-      <!-- Subtitle Description (Minimalist) -->
-      <p id="hero-subtitle" class="mt-5 max-w-2xl text-base sm:text-lg text-white/70 font-normal leading-relaxed">
-        <span class="block">Создаём проекты на стыке искусственного интеллекта,</span>
-        <span class="block">современных <span class="whitespace-nowrap">веб-технологий</span> и умных систем.</span>
+      <!-- Subtitle: Мельче и лаконично, много воздуха -->
+      <p class="mt-6 max-w-2xl text-lg sm:text-2xl text-slate-300 font-normal leading-relaxed">
+        Строим сервисы будущего на стыке AI, современных веб-технологий и умных систем
       </p>
 
       <!-- Action Buttons -->
-      <div id="hero-actions" class="mt-10 flex flex-wrap items-center justify-center gap-4">
-        <a href="#protocol-terminal" class="btn-sci-fi text-sm py-3.5 px-7">
-          <i data-lucide="terminal" class="w-4 h-4 text-cyan-neon"></i>
-          <span>ПРОТОКОЛ БУДУЩЕГО</span>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <a href="#vectors" class="btn-lab-primary">
+          <i data-lucide="layers" class="w-4 h-4"></i>
+          <span>НАПРАВЛЕНИЯ</span>
         </a>
-        <a href="#sandbox" class="btn-sci-fi btn-sci-fi-alt text-sm py-3.5 px-7">
-          <i data-lucide="sparkles" class="w-4 h-4 text-cyan-neon"></i>
-          <span>ЖИВОЙ ИНТЕРФЕЙС</span>
+        <a href="#pricing" class="btn-lab-secondary">
+          <i data-lucide="terminal" class="w-4 h-4 text-cyan-pulse"></i>
+          <span>ТАРИФЫ И УСЛОВИЯ</span>
         </a>
       </div>
 
-      <!-- Quick trigger to commercial cases & pricing -->
-      <div class="mt-6">
-        <button type="button" onclick="window.switchMode && window.switchMode('commercial')" class="inline-flex items-center gap-2 font-mono text-xs text-cyan-300 hover:text-white bg-cyan-950/50 hover:bg-cyan-900/60 border border-cyan-500/30 hover:border-cyan-400 px-4 py-2 rounded-full transition-all cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.15)] group">
-          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-cyan-neon group-hover:scale-110 transition-transform"></i>
-          <span>Ищете сайт для бизнеса или заведения? Смотреть кейсы и цены →</span>
-        </button>
-      </div>
-
-      <!-- Scroll Indicator -->
-      <div class="mt-16 flex flex-col items-center gap-2 font-mono text-xs text-white/40 animate-bounce">
-        <span>SCROLL TO INITIALIZE</span>
-        <i data-lucide="chevron-down" class="w-4 h-4 text-cyan-neon"></i>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 1.5: THE PROTOCOL CODE // INITIALIZING FUTURE PROTOCOL
-       ========================================================================== -->
-  <section id="protocol-terminal" class="relative py-24 px-4 sm:px-8 bg-[#070a12] border-t border-b border-white/5 overflow-hidden">
-    
-    <!-- Background circuit & glow decoration -->
-    <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.18) 0%, transparent 70%);"></div>
-
-    <div class="max-w-4xl mx-auto relative z-10">
-      
-      <!-- Section Header -->
-      <div class="text-center mb-10">
-        <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-3">// 01 • PROTOCOL INITIALIZATION</span>
-        <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-tight">
-          Инициализируем протокол будущего
-        </h2>
-        <p class="text-white/60 text-xs sm:text-sm mt-2 font-mono">
-          [INITIATING FUTURE PROTOCOL]
-        </p>
-      </div>
-
-      <!-- Sci-Fi Code Terminal Window -->
-      <div class="glass-panel-neon rounded-2xl overflow-hidden border border-cyan-500/30 shadow-[0_0_50px_-10px_rgba(0,240,255,0.25)]">
-        
-        <!-- Terminal Title Bar -->
-        <div class="bg-[#0b1019] px-4 py-3 border-b border-white/10 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
-            <span class="ml-3 font-mono text-xs text-white/70 flex items-center gap-2">
-              <i data-lucide="file-code" class="w-3.5 h-3.5 text-cyan-neon"></i>
-              <span>future_protocol.py</span>
-            </span>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <div id="protocol-status-badge" class="font-mono text-xs text-white/50 flex items-center gap-1.5">
-              <span id="protocol-status-dot" class="w-2 h-2 rounded-full bg-cyan-neon animate-pulse"></span>
-              <span id="protocol-status-text">READY</span>
-            </div>
-            <button id="btn-rerun-protocol" class="font-mono text-xs px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400 text-white/70 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
-              <i data-lucide="rotate-ccw" class="w-3 h-3 text-cyan-neon"></i>
-              <span>Запустить заново</span>
-            </button>
-          </div>
+      <!-- Engineering Metrics -->
+      <div class="mt-16 w-full max-w-3xl grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl lab-panel">
+        <div class="text-center p-3 relative">
+          <div class="corner-cross corner-tl"></div>
+          <div class="font-mono font-bold text-2xl text-white">0.3s</div>
+          <div class="text-[11px] font-mono text-slate-500 uppercase mt-0.5">Latency / Время отклика</div>
         </div>
-
-        <!-- Terminal Editor Code Area -->
-        <div class="p-5 sm:p-7 font-mono text-sm sm:text-[15px] leading-relaxed bg-[#05070c]/90 overflow-x-auto">
-          <div class="flex">
-            <!-- Line Numbers -->
-            <div class="select-none text-white/20 pr-5 text-right font-mono text-xs sm:text-sm leading-relaxed border-r border-white/5 mr-5">
-              <div>01</div>
-              <div>02</div>
-              <div>03</div>
-              <div>04</div>
-              <div>05</div>
-              <div>06</div>
-              <div>07</div>
-              <div>08</div>
-              <div>09</div>
-            </div>
-
-            <!-- Code Lines with Syntax Coloring -->
-            <div id="code-lines-container" class="flex-1 space-y-1">
-              <div class="code-line opacity-0 transition-all duration-300 text-cyan-400/60 italic font-mono">
-                <span class="text-cyan-neon">#</span> Initiating Future Protocol
-              </div>
-              <div class="code-line opacity-0 transition-all duration-300">
-                <span class="text-violet-400 font-semibold">def</span> <span class="text-cyan-neon font-semibold">predict_future</span>():
-              </div>
-              <div class="code-line opacity-0 transition-all duration-300 pl-6">
-                <span class="text-violet-400 font-semibold">return</span> <span class="text-cyan-neon">create_future</span>()
-              </div>
-              <div class="code-line opacity-0 transition-all duration-300 h-4"></div>
-              <div class="code-line opacity-0 transition-all duration-300">
-                <span class="text-violet-400 font-semibold">def</span> <span class="text-cyan-neon font-semibold">create_future</span>():
-              </div>
-              <div class="code-line opacity-0 transition-all duration-300 pl-6">
-                <span class="text-emerald-400 font-semibold">print</span>(<span class="text-amber-300">"&gt;&gt;&gt; Creating the future..."</span>)
-              </div>
-              <div class="code-line opacity-0 transition-all duration-300 h-4"></div>
-              <div class="code-line opacity-0 transition-all duration-300">
-                <span class="text-violet-400 font-semibold">if</span> __name__ == <span class="text-amber-300">"__main__"</span>:
-              </div>
-              <div class="code-line opacity-0 transition-all duration-300 pl-6">
-                <span class="text-cyan-neon font-semibold">predict_future</span>()
-              </div>
-            </div>
-          </div>
+        <div class="text-center p-3 border-l border-white/5 relative">
+          <div class="font-mono font-bold text-2xl text-cyan-pulse">100%</div>
+          <div class="text-[11px] font-mono text-slate-500 uppercase mt-0.5">Автономность систем</div>
         </div>
-
-        <!-- Terminal Execution Console Output -->
-        <div class="bg-[#080d16] border-t border-white/10 p-5 sm:p-6 font-mono text-xs sm:text-sm">
-          <div class="flex items-center justify-between text-white/40 pb-2 mb-3 border-b border-white/5 text-[11px]">
-            <span>OUTPUT TERMINAL (STDOUT)</span>
-            <span>PYTHON 3.12 KERNEL</span>
-          </div>
-
-          <div id="console-output-box" class="space-y-2 text-white/80">
-            <!-- Line 1: Command prompt -->
-            <div id="console-line-cmd" class="text-white/40 opacity-0 flex items-center gap-2">
-              <span class="text-cyan-neon">&gt;</span>
-              <span>$ python future_protocol.py</span>
-            </div>
-
-            <!-- Line 2: Starting FUTURE PROTOCOL -->
-            <div id="console-line-step1" class="text-cyan-300 opacity-0 flex items-center gap-2">
-              <span class="text-cyan-neon">&gt;&gt;</span>
-              <span id="text-step1">Starting FUTURE PROTOCOL...</span>
-            </div>
-
-            <!-- Line 3: Preparing the FUTURE -->
-            <div id="console-line-step2" class="text-cyan-200 opacity-0 flex items-center gap-2">
-              <span class="text-cyan-neon">&gt;&gt;</span>
-              <span id="text-step2">Preparing the FUTURE...</span>
-            </div>
-
-            <!-- Line 4: >>> Creating the future... -->
-            <div id="console-line-main" class="text-cyan-neon font-bold text-sm sm:text-base opacity-0 flex items-center gap-2">
-              <span class="text-emerald-400">&gt;&gt;&gt;</span>
-              <span class="tracking-wide">Creating the future...</span>
-              <span id="code-cursor" class="inline-block w-2 h-4 bg-cyan-neon ml-1 animate-pulse"></span>
-            </div>
-
-            <!-- Line 5: SUCCESS: Protocol Complete -->
-            <div id="console-line-success" class="text-emerald-400 text-xs sm:text-sm font-bold opacity-0 pt-1 flex items-center gap-2">
-              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
-              <span>SUCCESS: Protocol Complete</span>
-            </div>
-
-            <!-- Line 6: Green Progress Bar loading -->
-            <div id="console-progress-container" class="opacity-0 pt-2 space-y-1.5">
-              <div class="flex justify-between text-[11px] font-mono text-emerald-400/90">
-                <span class="flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                  LOADING REALITY MATRIX...
-                </span>
-                <span id="console-progress-pct" class="font-bold">0%</span>
-              </div>
-              <div class="w-full h-2.5 bg-emerald-950/60 rounded-full border border-emerald-500/30 overflow-hidden">
-                <div id="console-progress-bar" class="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full w-0 shadow-[0_0_15px_#10b981]"></div>
-              </div>
-            </div>
-          </div>
+        <div class="text-center p-3 border-l border-white/5 relative">
+          <div class="font-mono font-bold text-2xl text-white">0 ₽</div>
+          <div class="text-[11px] font-mono text-slate-500 uppercase mt-0.5">Сторонних подписок</div>
         </div>
-
+        <div class="text-center p-3 border-l border-white/5 relative">
+          <div class="corner-cross corner-br"></div>
+          <div class="font-mono font-bold text-2xl text-emerald-400">24/7</div>
+          <div class="text-[11px] font-mono text-slate-500 uppercase mt-0.5">Cloudflare &amp; Telegram</div>
+        </div>
       </div>
 
     </div>
   </section>
 
   <!-- ==========================================================================
-       SECTION 2: KINETIC MANIFEST
+       SECTION 2: CORE VECTORS // ДВА КЛЮЧЕВЫХ НАПРАВЛЕНИЯ ЛАБОРАТОРИИ
        ========================================================================== -->
-  <section id="manifest-pin" class="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 py-28 bg-[#06080d] overflow-hidden">
-    
-    <!-- Background grid decoration -->
-    <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: linear-gradient(rgba(0, 240, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.15) 1px, transparent 1px); background-size: 60px 60px;"></div>
-
-    <div class="relative z-10 max-w-5xl mx-auto w-full text-center">
-      
-      <!-- Manifest Content Container -->
-      <div class="max-w-4xl mx-auto text-center mb-12">
-        <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-4">// 02 • PHILOSOPHY MANIFEST</span>
-        
-        <!-- 1. The Core Slogan -->
-        <h2 id="manifest-heading" class="font-display font-extrabold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight leading-[1.18]">
-          Лучший способ предсказать будущее — <span class="text-gradient-cyan">создать его самому</span>
-        </h2>
-        
-        <!-- 2. The Problem: Generic websites are obsolete -->
-        <p id="manifest-sub" class="mt-4 font-display font-medium text-lg sm:text-2xl text-cyan-300/80 tracking-tight">
-          Шаблонные и безликие сайты морально устарели
-        </p>
-
-        <!-- 3. The Solution Manifesto -->
-        <p id="manifest-desc" class="mt-5 max-w-3xl mx-auto font-body text-base sm:text-lg text-white/75 font-normal leading-relaxed">
-          Мы проектируем новые стандарты веб-дизайна, цифровых систем управления бизнесом и нейросетей, которые упрощают и улучшают вашу жизнь.
-        </p>
-      </div>
-
-      <!-- Stage 2: 3D Fly-Out Cards (Left and Right) -->
-      <div class="perspective-container grid grid-cols-1 md:grid-cols-2 gap-6 text-left mt-8">
-        
-        <!-- Left Fly-Out Card: Cognition -->
-        <div id="flyout-left" class="card-3d-fly glass-panel rounded-3xl p-7 sm:p-8 border border-white/10 tilt-card flex flex-col justify-between">
-          <div>
-            <div class="hud-corner hud-tl"></div>
-            <div class="hud-corner hud-tr"></div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="font-mono text-xs text-cyan-neon tracking-wider bg-cyan-950/60 border border-cyan-500/30 px-3 py-1 rounded-full">
-                COGNITIVE EVOLUTION
-              </span>
-              <i data-lucide="brain-circuit" class="w-6 h-6 text-cyan-neon"></i>
-            </div>
-            <h3 class="font-display font-bold text-2xl text-white mb-3">Эволюция адаптивного интеллекта</h3>
-            <p class="text-white/70 text-sm sm:text-base leading-relaxed">
-              Нейросети — это не замена человеку, а катализатор его эволюции. С помощью искусственного интеллекта мы раскрываем потенциал и действуем быстрее: от выявления когнитивных паттернов в <strong>KidCompass</strong> до проектирования умных систем, создавая решения, которые освобождают от рутины, упрощают и улучшают жизнь.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-white/50">
-            <span>HUMAN POTENTIAL: EXPANDED</span>
-            <span class="text-cyan-neon font-bold">10x BOOST</span>
-          </div>
-        </div>
-
-        <!-- Right Fly-Out Card: Business Matrix -->
-        <div id="flyout-right" class="card-3d-fly glass-panel rounded-3xl p-7 sm:p-8 border border-white/10 tilt-card flex flex-col justify-between">
-          <div>
-            <div class="hud-corner hud-tl"></div>
-            <div class="hud-corner hud-tr"></div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="font-mono text-xs text-emerald-400 tracking-wider bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full">
-                SMART BUSINESS SYSTEMS
-              </span>
-              <i data-lucide="network" class="w-6 h-6 text-emerald-400"></i>
-            </div>
-            <h3 class="font-display font-bold text-2xl text-white mb-3">Умные системы для бизнеса</h3>
-            <p class="text-white/70 text-sm sm:text-base leading-relaxed">
-              Сайт не должен быть мёртвым буклетом или просто визиткой. Архитектура <strong>PulseCore</strong> связывает интерактивный визуальный интерфейс и CRM: клиент получает живой интерактивный сайт с удобной онлайн-записью и бронированием, а бизнес — полноценный центр управления записями, услугами и прозрачную аналитику.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-white/50">
-            <span>SYNC LATENCY: REAL-TIME</span>
-            <span class="text-emerald-400 font-bold">&lt; 0.05s</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 3: PROJECTS SHOWCASE // KIDCOMPASS & PULSE CORE
-       ========================================================================== -->
-  <section id="projects" class="relative py-28 px-4 sm:px-8 bg-[#080b12]">
+  <section id="vectors" class="relative py-28 px-4 sm:px-8 border-t border-white/5 bg-[#070b13]">
     <div class="max-w-6xl mx-auto">
       
-      <!-- Section Title -->
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-2">// 03 • CORE PROJECTS</span>
-        <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">ПРОЕКТЫ SYNAPTIQ</h2>
-        <p class="text-white/60 text-base mt-4">Два ключевых вектора технологических инноваций, объединенных единой философией.</p>
+        <span class="font-mono text-xs text-cyan-pulse tracking-widest uppercase block mb-2">// КЛЮЧЕВЫЕ ВЕКТОРЫ</span>
+        <h2 class="font-display font-bold text-3xl sm:text-5xl text-white tracking-tight">
+          Инженерные направления лаборатории
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-3">
+          Каждое решение создается по принципу предельной математической точности и автономности.
+        </p>
       </div>
 
-      <!-- Project 1: KidCompass (Flagship Cognitive AI) -->
-      <div class="project-card-reveal glass-panel-neon rounded-3xl p-8 sm:p-12 mb-10 tilt-card">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- Vector 1: KidCompass AI (The Cognitive Intelligence Engine) -->
+      <div id="kidcompass" class="lab-panel rounded-2xl p-8 sm:p-14 mb-12 relative overflow-hidden border border-cyan-500/20">
+        <div class="corner-cross corner-tl"></div>
+        <div class="corner-cross corner-tr"></div>
+        <div class="corner-cross corner-bl"></div>
+        <div class="corner-cross corner-br"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div class="lg:col-span-7">
-            <div class="inline-flex items-center gap-2 font-mono text-xs text-cyan-neon bg-cyan-950/50 border border-cyan-500/30 px-3.5 py-1.5 rounded-full mb-4">
-              <i data-lucide="sparkle" class="w-3.5 h-3.5"></i>
-              <span>FLAGSHIP AI STARTUP</span>
+            <div class="inline-flex items-center gap-2 font-mono text-xs text-cyan-pulse bg-cyan-950/80 border border-cyan-500/30 px-3 py-1 rounded mb-4">
+              <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+              <span>ВЕКТОР 01 // ФЛАГМАНСКИЙ AI-СТАРТАП</span>
             </div>
-            <h3 class="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
-              KidCompass <span class="font-mono text-cyan-neon text-xl font-normal">[AI Core]</span>
+
+            <h3 class="font-display font-bold text-3xl sm:text-4xl text-white">
+              KidCompass <span class="font-mono text-cyan-pulse text-2xl font-normal">[CogniMatrix AI Core]</span>
             </h3>
-            <p class="mt-4 text-white/75 text-base sm:text-lg leading-relaxed">
-              Интеллектуальная система нового поколения, определяющая уникальный когнитивный тип ребенка. 
-              Нейросеть выявляет природные сильные стороны, компенсирует дефициты и формирует вокруг ребенка 
-              поддерживающую развивающую экосистему без стресса и принуждения.
+
+            <p class="mt-4 text-slate-200 text-base font-medium">
+              Раскрой природный потенциал ребенка
             </p>
-            
+
+            <p class="mt-2 text-slate-400 text-sm sm:text-base leading-relaxed">
+              Технология CogniMatrix AI помогает родителям расшифровать «природную прошивку» ребёнка, получить когнитивный портрет и выстроить точный навигатор его развития: Природный тип мышления, Истинные рычаги мотивации, Комфортная роль в коллективе, Вектор талантов и увлечений.
+            </p>
+
             <div class="mt-8 flex flex-wrap items-center gap-4">
-              <a href="#" class="btn-sci-fi text-xs py-2.5 px-5 flex items-center gap-2 group">
-                <span>Сайт проекта</span>
-                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-cyan-neon group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+              <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8c%20%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5%20%D0%BE%20KidCompass%20AI." target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-xs py-3 px-6">
+                <span>УЗНАТЬ БОЛЬШЕ О KIDCOMPASS</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
               </a>
-              <span class="font-mono text-xs sm:text-sm text-cyan-300/90 font-medium tracking-wide">
-                Раскрой потенциал своего ребенка
-              </span>
             </div>
           </div>
 
-          <!-- Interactive Radar Simulation -->
-          <div class="lg:col-span-5 bg-space-950/80 rounded-2xl p-6 border border-white/10">
-            <div class="flex items-center justify-between font-mono text-xs text-white/50 border-b border-white/10 pb-3 mb-4">
-              <span>COGNITIVE MATRIX</span>
-              <span class="text-cyan-neon">PROFILE #8492</span>
+          <!-- Radar Matrix Simulator -->
+          <div class="lg:col-span-5 bg-[#05070c]/90 rounded-xl p-6 border border-white/10 font-mono text-xs">
+            <div class="border-b border-white/10 pb-3 mb-4 flex justify-between items-center">
+              <span class="font-bold tracking-wider uppercase text-white/90 text-[11px] sm:text-xs">ПАНЕЛЬ КОГНИТИВНОГО ПРОФИЛЯ</span>
             </div>
-            <div class="space-y-3 font-mono text-xs">
+
+            <div class="space-y-4">
               <div>
-                <div class="flex justify-between text-white/70 mb-1">
-                  <span>SPATIAL &amp; ABSTRACT</span>
-                  <span class="text-cyan-neon">94%</span>
+                <div class="flex justify-between text-slate-300 mb-1">
+                  <span>Логика и системное мышление</span>
+                  <span class="text-cyan-pulse font-bold">52%</span>
                 </div>
                 <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                  <div class="h-full bg-cyan-neon rounded-full" style="width: 94%"></div>
+                  <div class="h-full bg-cyan-pulse rounded-full" style="width: 52%"></div>
                 </div>
               </div>
               <div>
-                <div class="flex justify-between text-white/70 mb-1">
-                  <span>LOGIC &amp; ARCHITECTURE</span>
-                  <span class="text-cyan-neon">91%</span>
+                <div class="flex justify-between text-slate-300 mb-1">
+                  <span>Творчество и воображение</span>
+                  <span class="text-cyan-pulse font-bold">96%</span>
                 </div>
                 <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                  <div class="h-full bg-cyan-neon rounded-full" style="width: 91%"></div>
+                  <div class="h-full bg-cyan-pulse rounded-full" style="width: 96%"></div>
                 </div>
               </div>
               <div>
-                <div class="flex justify-between text-white/70 mb-1">
-                  <span>EMOTIONAL EMPATHY</span>
-                  <span class="text-cyan-neon">88%</span>
+                <div class="flex justify-between text-slate-300 mb-1">
+                  <span>Самостоятельность и свобода выбора</span>
+                  <span class="text-cyan-pulse font-bold">90%</span>
                 </div>
                 <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                  <div class="h-full bg-cyan-neon rounded-full" style="width: 88%"></div>
+                  <div class="h-full bg-cyan-pulse rounded-full" style="width: 90%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-slate-300 mb-1">
+                  <span>Усидчивость и терпение к рутине</span>
+                  <span class="text-cyan-pulse font-bold">22%</span>
+                </div>
+                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div class="h-full bg-cyan-pulse rounded-full" style="width: 22%"></div>
                 </div>
               </div>
             </div>
-            <div class="mt-5 p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-300 font-mono">
-              STATUS: Оптимальная развивающая среда построена. Рекомендована математико-пространственная траектория.
+
+            <div class="mt-5 p-3 rounded bg-cyan-950/40 border border-cyan-500/20 text-[11px] text-cyan-300 leading-relaxed">
+              <span class="font-bold text-white block mb-0.5">КОГНИТИВНЫЙ ТИП:</span>
+              одарённый образно-смысловой визионер и природный вдохновитель
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Project 2: PULSE CORE (Next-Gen Web & CRM) -->
-      <div class="project-card-reveal glass-panel-neon-emerald rounded-3xl p-8 sm:p-12 mb-10 tilt-card">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- Vector 2: PulseCore Web Systems (Autonomous Commercial Systems) -->
+      <div id="pulsecore" class="lab-panel rounded-2xl p-8 sm:p-14 relative overflow-hidden border border-white/10">
+        <div class="corner-cross corner-tl"></div>
+        <div class="corner-cross corner-tr"></div>
+        <div class="corner-cross corner-bl"></div>
+        <div class="corner-cross corner-br"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div class="lg:col-span-7">
-            <div class="inline-flex items-center gap-2 font-mono text-xs text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-full mb-4">
+            <div class="inline-flex items-center gap-2 font-mono text-xs text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-3 py-1 rounded mb-4">
               <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-              <span>BUSINESS SYSTEMS &amp; WEB CORE</span>
+              <span>ВЕКТОР 02 // АВТОНОМНЫЕ ВЕБ-СИСТЕМЫ</span>
             </div>
-            <h3 class="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
-              PULSE CORE <span class="font-mono text-emerald-400 text-xl font-normal">[Web &amp; CRM]</span>
+
+            <h3 class="font-display font-bold text-3xl sm:text-4xl text-white">
+              PulseCore <span class="font-mono text-emerald-400 text-2xl font-normal">[Web &amp; CRM Engine]</span>
             </h3>
-            <p class="mt-4 text-white/75 text-base sm:text-lg leading-relaxed">
-              Комплексные цифровые решения для реального бизнеса. Иммерсивные сайты-визитки мирового уровня 
-              с кинетическим моушном, соединенные с мощным CRM-движком: управление сменами мастеров, расчет зарплат, 
-              кассовые ордера, электронные меню и бронирование мест.
+
+            <p class="mt-4 text-slate-200 text-base font-medium">
+              Комплексные цифровые решения для реального бизнеса.
+            </p>
+            <p class="mt-2 text-slate-400 text-sm sm:text-base leading-relaxed">
+              Статусный кинетический сайт, соединенный с мощным CRM-движком: автономная онлайн-запись, таймлайн записей, управление сменами мастеров, расчет зарплат и умные уведомления о новых заявках в бота.
             </p>
 
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
+              <div class="p-3.5 rounded-lg bg-white/5 border border-white/5">
+                <span class="text-emerald-400 font-bold block mb-1">01. Salon Engine</span>
+                <span class="text-slate-300">Таймлайн записей, смены мастеров, онлайн-запись</span>
+              </div>
+              <div class="p-3.5 rounded-lg bg-white/5 border border-white/5">
+                <span class="text-cyan-pulse font-bold block mb-1">02. Shop Engine</span>
+                <span class="text-slate-300">Карточки товаров, заказ в 1 клик и мгновенный Push в Tg-группу</span>
+              </div>
+            </div>
+
             <div class="mt-8 flex flex-wrap items-center gap-4">
-              <button type="button" onclick="window.switchMode && window.switchMode('commercial')" class="btn-sci-fi text-xs py-2.5 px-5 flex items-center gap-2 group cursor-pointer border-emerald-400/60 hover:border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-                <span>Сайт + CRM</span>
-                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-              </button>
-              <span class="font-mono text-xs sm:text-sm text-emerald-300/90 font-medium tracking-wide">
-                Получи готовый инструмент для управления бизнесом
-              </span>
+              <a href="https://synaptiqlab.github.io/demo/noir-atelier/" target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-xs py-3 px-6">
+                <span>ДЕМО NOIR ATELIER</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
+              <a href="https://synaptiqlab.github.io/demo/art-bouquet/" target="_blank" rel="noopener noreferrer" class="btn-lab-secondary text-xs py-3 px-6">
+                <span>ДЕМО ART BOUQUET</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
             </div>
           </div>
 
-          <!-- Live Metrics Widget -->
-          <div class="lg:col-span-5 bg-space-950/80 rounded-2xl p-6 border border-white/10">
-            <div class="flex items-center justify-between font-mono text-xs text-white/50 border-b border-white/10 pb-3 mb-4">
-              <span>LIVE TELEMETRY</span>
-              <span id="metric-status" class="text-emerald-400 font-bold">SHIFT &amp; PAY ONLINE</span>
-            </div>
-            <div class="grid grid-cols-2 gap-4 text-center font-mono">
-              <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-                <span class="text-xs text-white/50 block">EFFICIENCY FLOW</span>
-                <span id="metric-rev" class="text-2xl font-bold text-white mt-1 block">+46.8%</span>
-              </div>
-              <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-                <span class="text-xs text-white/50 block">SYNC SPEED</span>
-                <span id="metric-sync" class="text-2xl font-bold text-cyan-neon mt-1 block">0.04s</span>
+          <div class="lg:col-span-5 relative group cursor-pointer" onclick="openCrmGallery(0)">
+            <div class="rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
+              <img src="assets/showcase/crm-screen-1.png" alt="PulseCore CRM Interface" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 font-mono text-xs text-white backdrop-blur-[2px]">
+                <i data-lucide="zoom-in" class="w-4 h-4 text-cyan-pulse"></i>
+                <span>Нажмите для просмотра 3 экранов</span>
               </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-white/10 font-mono text-[11px] text-white/50 flex items-center justify-between">
-              <span>SECURITY: ENCRYPTED</span>
-              <span>ZERO RELOAD / SPA</span>
+            <div class="mt-2.5 flex items-center justify-between text-[11px] font-mono text-slate-400 px-1">
+              <span class="flex items-center gap-1.5 text-cyan-pulse">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                <span>Интерфейс CRM (3 экрана)</span>
+              </span>
+              <span class="text-slate-500">Листайте в галерее →</span>
             </div>
           </div>
         </div>
@@ -568,911 +335,414 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 4: LIVING KINETIC WEB // ИНТЕРАКТИВНОЕ ЯДРО
+       SECTION 3: PRICING // ДВУХУРОВНЕВЫЙ БИЛЛИНГ
        ========================================================================== -->
-  <section id="sandbox" class="relative py-28 px-4 sm:px-8 bg-[#06080d] overflow-hidden border-t border-b border-white/5">
-    <div class="max-w-5xl mx-auto text-center">
+  <section id="pricing" class="relative py-28 px-4 sm:px-8 border-t border-white/5 bg-[#05070b]">
+    <div class="max-w-6xl mx-auto">
       
-      <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-2">// 04 • LIVING KINETIC WEB</span>
-      <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">ЖИВОЙ КИНЕТИЧЕСКИЙ ИНТЕРФЕЙС</h2>
-      <p class="text-white/70 text-sm sm:text-base mt-4 max-w-2xl mx-auto leading-relaxed">
-        Сайт не должен быть статичной картинкой. Это ваша визитная карточка, которая обязана притягивать взгляд, удерживать внимание и вызывать эмоции. Прикоснитесь к экрану: так работает кинетический интерфейс, превращая холодный программный код в живую, дышащую и осязаемую среду.
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="font-mono text-xs text-cyan-pulse tracking-widest uppercase block mb-2">// УСЛОВИЯ И ИНВЕСТИЦИИ</span>
+        <h2 class="font-display font-bold text-3xl sm:text-5xl text-white tracking-tight">
+          Формат запуска на ваш выбор
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-3">
+          Выкупайте автономную систему под ключ один раз и навсегда или подключайте легкий старт с полным абонентским сопровождением.
+        </p>
+
+        <!-- Toggle Switcher -->
+        <div class="mt-8 lab-toggle-wrap">
+          <button id="plan-forever" type="button" class="lab-toggle-btn active">
+            ● ВЫКУП НАВСЕГДА ($0 / МЕС)
+          </button>
+          <button id="plan-sub" type="button" class="lab-toggle-btn">
+            ○ АБОНЕНТСКАЯ ПЛАТА (ЛЕГКИЙ СТАРТ)
+          </button>
+        </div>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Tier 1: Promo Site (Хит) -->
+        <div class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-cyan-pulse/60 shadow-[0_0_30px_rgba(0,240,255,0.15)] relative">
+          <div class="corner-cross corner-tl"></div>
+          <div class="corner-cross corner-tr"></div>
+          <div class="corner-cross corner-bl"></div>
+          <div class="corner-cross corner-br"></div>
+
+          <div>
+            <div class="font-mono text-xs text-cyan-pulse uppercase mb-1">Эксперты и Услуги</div>
+            <h3 class="font-display font-bold text-2xl text-white">Промо-сайт</h3>
+            <p class="text-xs text-slate-400 mt-2 font-mono">Статусный кинетический лендинг с мгновенными лидами в Telegram</p>
+
+            <div class="my-6 py-4 border-y border-white/10">
+              <div class="price-val-forever">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-bold text-4xl text-white">$149</span>
+                  <span class="font-mono text-xs text-cyan-pulse">/ под ключ</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-500 mt-1">Запуск за 2–3 дня. Код навсегда ваш.</div>
+              </div>
+              <div class="price-val-sub hidden">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-bold text-4xl text-cyan-pulse">2 500 ₽</span>
+                  <span class="font-mono text-xs text-cyan-300">/ месяц</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-500 mt-1">0 ₽ за разработку. Сервисное ведение.</div>
+              </div>
+            </div>
+
+            <ul class="space-y-3 font-mono text-xs text-slate-300">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-cyan-pulse shrink-0"></i>
+                <span>Индивидуальный арт-дирекшн</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-cyan-pulse shrink-0"></i>
+                <span>Маркетинговые офферы и тексты</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-cyan-pulse shrink-0"></i>
+                <span>Интеграция заявок в Telegram</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE-%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-xs py-3 w-full text-center mt-8">
+            <span>ЗАКАЗАТЬ ПРОМО-САЙТ</span>
+          </a>
+        </div>
+
+        <!-- Tier 2: PulseCore System (Сайт + CRM) -->
+        <div class="lab-panel p-8 rounded-xl flex flex-col justify-between border border-emerald-500/40 relative">
+          <div>
+            <div class="font-mono text-xs text-emerald-400 uppercase mb-1">Салоны, Ритейл, Коворкинги</div>
+            <h3 class="font-display font-bold text-2xl text-white">Сайт + CRM</h3>
+            <p class="text-xs text-slate-400 mt-2 font-mono">Полная экосистема: онлайн-запись, бот и журнал смен мастеров</p>
+
+            <div class="my-6 py-4 border-y border-white/10">
+              <div class="price-val-forever">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-bold text-4xl text-white">$390</span>
+                  <span class="font-mono text-xs text-emerald-400">/ под ключ</span>
+                </div>
+                <div class="text-[11px] font-mono text-emerald-400 mt-1">Экономия до $600/год на Yclients.</div>
+              </div>
+              <div class="price-val-sub hidden">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-bold text-4xl text-emerald-400">3 500 ₽</span>
+                  <span class="font-mono text-xs text-emerald-300">/ месяц</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-500 mt-1">Полный аутсорсинг и боты 24/7.</div>
+              </div>
+            </div>
+
+            <ul class="space-y-3 font-mono text-xs text-slate-300">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                <span>Сайт-витрина с онлайн-записью</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                <span>CRM: расчет зарплат и касса</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                <span>Бот уведомлений в группу Telegram</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%8D%D0%BA%D0%BE%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83%20%D0%A1%D0%B0%D0%B9%D1%82%20%2B%20CRM." target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-xs py-3 w-full text-center mt-8">
+            <span>ЗАКАЗАТЬ САЙТ + CRM</span>
+          </a>
+        </div>
+
+        <!-- Tier 3: e-Menu -->
+        <div class="lab-panel p-8 rounded-xl flex flex-col justify-between relative">
+          <div>
+            <div class="font-mono text-xs text-slate-500 uppercase mb-1">Рестораны и Бары</div>
+            <h3 class="font-display font-bold text-2xl text-white">e-Menu + А6</h3>
+            <p class="text-xs text-slate-400 mt-2 font-mono">Мобильное электронное меню на 4 языках и макет для печати</p>
+
+            <div class="my-6 py-4 border-y border-white/10">
+              <div class="price-val-forever">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-bold text-4xl text-white">$90</span>
+                  <span class="font-mono text-xs text-slate-400">/ под ключ</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-500 mt-1">Единоразово. Исходный код ваш.</div>
+              </div>
+              <div class="price-val-sub hidden">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-bold text-4xl text-cyan-pulse">1 500 ₽</span>
+                  <span class="font-mono text-xs text-cyan-300">/ месяц</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-500 mt-1">Хостинг и правка позиций включены.</div>
+              </div>
+            </div>
+
+            <ul class="space-y-3 font-mono text-xs text-slate-300">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-cyan-pulse shrink-0"></i>
+                <span>Адаптивное QR-меню</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-cyan-pulse shrink-0"></i>
+                <span>4 языка (RU / EN / VI / KO)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-cyan-pulse shrink-0"></i>
+                <span>Файл тейбл-тента А6 300 DPI</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20e-Menu." target="_blank" rel="noopener noreferrer" class="btn-lab-secondary text-xs py-3 w-full text-center mt-8">
+            <span>ВЫБРАТЬ E-MENU</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 4: TERMINAL CONNECT // СВЯЗЬ С ЛАБОРАТОРИЕЙ
+       ========================================================================== -->
+  <section id="terminal" class="relative py-28 px-4 sm:px-8 border-t border-white/5 bg-[#05070b]">
+    <div class="max-w-3xl mx-auto text-center">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-cyan-pulse font-mono text-xs mb-6">
+        <span>INITIATE CONNECTION // TELEGRAM HQ</span>
+      </div>
+
+      <h2 class="font-display font-bold text-3xl sm:text-5xl text-white tracking-tight">
+        Инициализировать проект
+      </h2>
+
+      <p class="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed font-mono">
+        Отправьте параметры вашей задачи напрямую основателю лаборатории. Мы проанализируем нишу, подберем архитектуру и выведем систему в онлайн за 2–4 дня.
       </p>
 
-      <!-- Dedicated Sandbox Simulation Viewport (Chamber) -->
-      <div class="relative w-full h-[420px] sm:h-[480px] rounded-3xl overflow-hidden border border-cyan-500/40 bg-[#070a11] shadow-[0_0_60px_-10px_rgba(0,240,255,0.25)] mt-10 mb-6 group cursor-crosshair">
-        
-        <!-- Live Sandbox Canvas -->
-        <canvas id="sandbox-canvas" class="w-full h-full block"></canvas>
-
-        <!-- Viewport Top HUD -->
-        <div class="absolute top-4 left-5 pointer-events-none flex items-center gap-3 font-mono text-xs text-white/70">
-          <span class="flex items-center gap-1.5 text-cyan-neon font-bold">
-            <span class="w-2 h-2 rounded-full bg-cyan-neon animate-ping"></span>
-            KINETIC CORE
-          </span>
-          <span class="text-white/20">|</span>
-          <span id="sandbox-hud-mode" class="text-white/90">MODE: SYNAPTIC MESH</span>
-        </div>
-
-        <div class="absolute top-4 right-5 pointer-events-none font-mono text-xs text-white/60">
-          <span id="sandbox-hud-nodes">NODES: 65</span>
-        </div>
-
-        <!-- Viewport Bottom HUD -->
-        <div class="absolute bottom-4 left-5 pointer-events-none font-mono text-[11px] text-white/50 flex items-center gap-2">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-cyan-neon"></i>
-          <span>ВОДИТЕ ПАЛЬЦЕМ ИЛИ КУРСОРОМ / ТАП ДЛЯ ИМПУЛЬСА</span>
-        </div>
-
-        <div class="absolute bottom-4 right-5 pointer-events-none font-mono text-[11px] text-cyan-neon">
-          <span>● 60 FPS // HARDWARE ACCELERATED</span>
-        </div>
-
-        <!-- Corner marks -->
-        <div class="hud-corner hud-tl"></div>
-        <div class="hud-corner hud-tr"></div>
-        <div class="hud-corner hud-bl"></div>
-        <div class="hud-corner hud-br"></div>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <a href="https://t.me/litt1e_roo" target="_blank" rel="noopener noreferrer" class="btn-lab-primary text-xs py-4 px-8">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>ОТКРЫТЬ ДИАЛОГ В TELEGRAM (@litt1e_roo)</span>
+        </a>
       </div>
 
-      <!-- Sandbox Interactive Toolbar -->
-      <div class="glass-panel rounded-3xl p-6 border border-white/10 flex flex-wrap items-center justify-between gap-6 text-left">
-        
-        <!-- Mode Switcher -->
-        <div>
-          <span class="font-mono text-xs text-white/50 block mb-2">РЕЖИМЫ КИНЕТИЧЕСКОГО ЯДРА:</span>
-          <div class="flex flex-wrap gap-2">
-            <button data-sandbox-mode="synaptic" class="font-mono text-xs px-4 py-2 rounded-full border border-cyan-400 text-cyan-400 bg-cyan-950/40 transition-all active cursor-pointer">
-              SYNAPTIQ MESH
-            </button>
-            <button data-sandbox-mode="quantum" class="font-mono text-xs px-4 py-2 rounded-full border border-white/10 text-white/60 bg-white/5 hover:border-white/30 transition-all cursor-pointer">
-              QUANTUM VORTEX
-            </button>
-            <button data-sandbox-mode="matrix" class="font-mono text-xs px-4 py-2 rounded-full border border-white/10 text-white/60 bg-white/5 hover:border-white/30 transition-all cursor-pointer">
-              SYNAPTIQ MATRIX
-            </button>
-          </div>
-        </div>
-
-        <!-- Pulse Speed Slider -->
-        <div class="w-full sm:w-64">
-          <div class="flex justify-between font-mono text-xs text-white/50 mb-2">
-            <span>СКОРОСТЬ РЕАКЦИИ</span>
-            <span id="slider-speed-val" class="text-cyan-neon font-bold">1.8x</span>
-          </div>
-          <input id="slider-speed" type="range" min="0.5" max="4.0" step="0.1" value="1.8" class="w-full accent-cyan-400 bg-white/10 rounded-lg cursor-pointer">
-        </div>
-      </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       SECTION 5: SOCIAL TERMINAL // CONNECT
+       FOOTER // PROTOCOL DATA
        ========================================================================== -->
-  <section id="terminal" class="relative py-28 px-4 sm:px-8 bg-[#090d16]">
-    <div class="max-w-4xl mx-auto">
+  <footer class="py-10 px-4 sm:px-8 border-t border-white/5 bg-[#030407] text-xs font-mono text-slate-500">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
       
-      <div class="glass-panel-neon rounded-3xl p-8 sm:p-14 text-center relative overflow-hidden">
-        
-        <!-- Crosshair Corners -->
-        <div class="hud-corner hud-tl"></div>
-        <div class="hud-corner hud-tr"></div>
-        <div class="hud-corner hud-bl"></div>
-        <div class="hud-corner hud-br"></div>
-
-        <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-3">// 05 • DIRECT TRANSMISSION</span>
-        
-        <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
-          ГОТОВЫ ЗАПУСТИТЬ ПРОЕКТ?
-        </h2>
-        
-        <p class="text-white/70 text-base sm:text-lg mt-4 max-w-xl mx-auto leading-relaxed">
-          Создадим иммерсивный сайт-визитку, умную бизнес-экосистему с CRM или обсудим сотрудничество в сфере искусственного интеллекта.
-        </p>
-
-        <!-- Social Action Buttons (Strictly Telegram & Instagram without usernames) -->
-        <div class="mt-10 flex flex-wrap items-center justify-center gap-5">
-          
-          <!-- Telegram Button -->
-          <a href="https://t.me/litt1e_roo" target="_blank" rel="noopener noreferrer" class="btn-sci-fi text-sm py-4 px-8 min-w-[200px]">
-            <i data-lucide="send" class="w-4 h-4 text-cyan-neon"></i>
-            <span>Telegram</span>
-          </a>
-
-          <!-- Instagram Button -->
-          <a href="https://www.instagram.com/ruslan.knko" target="_blank" rel="noopener noreferrer" class="btn-sci-fi btn-sci-fi-alt text-sm py-4 px-8 min-w-[200px]">
-            <i data-lucide="instagram" class="w-4 h-4 text-cyan-neon"></i>
-            <span>Instagram</span>
-          </a>
-
-        </div>
-
-        <!-- Copy handle helper -->
-        <div class="mt-8">
-          <button id="btn-copy-contact" class="inline-flex items-center gap-2 font-mono text-xs text-white/50 hover:text-white transition-colors bg-white/5 border border-white/10 px-4 py-2 rounded-full cursor-pointer">
-            <i data-lucide="copy" class="w-3.5 h-3.5 text-cyan-neon"></i>
-            <span>Копировать контактный хэндл: @litt1e_roo</span>
-          </button>
-        </div>
-
-        <!-- Status terminal note -->
-        <div class="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between font-mono text-xs text-white/40 gap-3">
-          <div class="flex items-center gap-2">
-            <span class="pulse-dot"></span>
-            <span>SECURE ENCRYPTED CHANNEL READY</span>
-          </div>
-          <div>RESPONSE TIME: &lt; 2 HOURS</div>
-        </div>
-
+      <div class="flex items-center gap-2">
+        <span class="font-display font-bold text-white text-sm">SYNAPTIQ [lab]</span>
+        <span>// Applied AI &amp; Intelligent Systems. 2026.</span>
       </div>
 
-      <!-- Footer Note -->
-      <footer class="mt-16 text-center font-mono text-xs text-white/40 space-y-2">
-        <p>© 2026 SYNAPTIQ lab. ALL RIGHTS RESERVED.</p>
-        <p class="text-white/30 text-[11px]">Сайт создан на архитектуре PulseCore by SYNAPTIQ Lab</p>
-        <p class="text-white/20">ARCHITECTED FOR HUMAN COGNITION &amp; LIVING DIGITAL ECOSYSTEMS.</p>
-      </footer>
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="https://synaptiqlab.github.io/hub/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-pulse transition-colors">
+          Master Hub
+        </a>
+        <a href="https://t.me/SYNAPTIQ_Lab_bot" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-pulse transition-colors">
+          Support Bot 24/7
+        </a>
+        <a href="#pricing" class="hover:text-white transition-colors">
+          PulseCore Architecture
+        </a>
+      </div>
 
     </div>
-  </section>
-  </div> <!-- ==================== END VIEW 1: THE LABORATORY ==================== -->
+  </footer>
 
-  <!-- ==========================================================================
-       VIEW 2: COMMERCIAL STUDIO // КЕЙСЫ, УСЛУГИ И ЦЕНЫ
-       ========================================================================== -->
-  <div id="view-commercial" class="view-panel" style="display: none; opacity: 0;">
-    
-    <!-- Hero Студии -->
-    <section class="relative pt-36 pb-20 px-4 sm:px-8 overflow-hidden border-b border-white/5">
-      <!-- Glow background -->
-      <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 50% 20%, rgba(0, 240, 255, 0.25) 0%, transparent 65%);"></div>
-      
-      <div class="relative z-10 max-w-5xl mx-auto text-center">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-cyan-500/30 text-cyan-neon font-mono text-xs tracking-wider mb-6">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-          <span>SYNAPTIQ STUDIO // PRODUCTION READY</span>
-        </div>
-
-        <h1 class="font-display font-black text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.15]">
-          Интерактивные сайты и умные системы <br class="hidden sm:inline">
-          <span class="text-gradient-cyan">для реального бизнеса</span>
-        </h1>
-
-        <p class="mt-6 max-w-3xl mx-auto text-base sm:text-lg text-white/75 font-normal leading-relaxed">
-          Создаём цифровые продукты с высокой конверсией: от впечатляющих интерактивных промо-сайтов до автономных CRM-систем для бьюти-сферы и QR-меню для ресторанов. Понятные фиксированные цены, быстрый запуск от 3 дней и никакой абонентской платы.
-        </p>
-
-        <!-- Fast product navigation pill badges -->
-        <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <a href="#promo-sites" class="font-mono text-xs px-4 py-2 rounded-full glass-panel border border-white/10 hover:border-cyan-400 text-white/80 hover:text-white transition-all">
-            Промо сайт <span class="text-cyan-neon font-bold ml-1">$149</span>
-          </a>
-          <a href="#beauty-crm" class="font-mono text-xs px-4 py-2 rounded-full glass-panel border border-white/10 hover:border-emerald-400 text-white/80 hover:text-white transition-all">
-            CRM БЬЮТИ <span class="text-emerald-400 font-bold ml-1">$390</span>
-          </a>
-          <a href="#coworking-crm" class="font-mono text-xs px-4 py-2 rounded-full glass-panel border border-white/10 hover:border-cyan-400 text-white/80 hover:text-white transition-all">
-            CRM КОВОРКИНГ <span class="text-cyan-neon font-bold ml-1">$390</span>
-          </a>
-          <a href="#restaurant-menu" class="font-mono text-xs px-4 py-2 rounded-full glass-panel border border-white/10 hover:border-amber-400 text-white/80 hover:text-white transition-all">
-            e-MENU <span class="text-amber-300 font-bold ml-1">от $49</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: 4 ПРОДУКТОВЫХ НАПРАВЛЕНИЯ -->
-    <section class="py-20 px-4 sm:px-8 max-w-6xl mx-auto space-y-16">
-      
-      <!-- ======================================================================
-           1. Интерактивный промо-сайт / Премиум сайт-визитка
-           ====================================================================== -->
-      <div id="promo-sites" class="glass-panel-neon rounded-3xl p-8 sm:p-12 relative overflow-hidden border border-cyan-500/30">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div class="lg:col-span-7">
-            <div class="inline-flex items-center gap-2 font-mono text-xs text-cyan-neon bg-cyan-950/60 border border-cyan-500/30 px-3.5 py-1.5 rounded-full mb-4">
-              <span>01 // PROMO &amp; PERSONAL BRAND</span>
-            </div>
-            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
-              Интерактивный промо-сайт
-            </h2>
-            <p class="font-mono text-cyan-300 text-sm mt-1">Премиальный Landing Page с кинетическим моушном</p>
-            
-            <p class="mt-4 text-white/80 text-base leading-relaxed">
-              Идеальное решение для презентации личного бренда, эксперта, премиальной услуги или запуска нового технологического продукта. В отличие от стандартных шаблонных конструкторов, сайт моментально выделяет вас на фоне конкурентов плавной кинетикой, эффектом погружения и безупречным стилем.
-            </p>
-
-            <div class="mt-6 space-y-2.5">
-              <div class="text-xs font-mono text-white/50 uppercase tracking-wider mb-2">Что входит в стоимость:</div>
-              <div class="flex items-start gap-2.5 text-sm text-white/80">
-                <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                <span>Индивидуальный кинетический дизайн и вау-микроанимации</span>
-              </div>
-              <div class="flex items-start gap-2.5 text-sm text-white/80">
-                <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                <span>Идеальная адаптивность под мобильные телефоны и планшеты</span>
-              </div>
-              <div class="flex items-start gap-2.5 text-sm text-white/80">
-                <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                <span>Сверхбыстрая скорость загрузки (&lt; 0.8 сек, чистый оптимизированный код)</span>
-              </div>
-              <div class="flex items-start gap-2.5 text-sm text-white/80">
-                <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                <span>Прямая интеграция формы лидогенерации в ваш Telegram или WhatsApp</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Price & Order Card -->
-          <div class="lg:col-span-5 bg-[#090d16] rounded-2xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between h-full">
-            <div>
-              <div class="flex items-center justify-between font-mono text-xs text-white/50 border-b border-white/10 pb-3 mb-6">
-                <span>ПАКЕТ УСЛУГИ</span>
-                <span class="text-cyan-neon font-bold">FIXED PRICE</span>
-              </div>
-
-              <div class="mb-6">
-                <span class="font-mono text-xs text-white/50 uppercase block">Стоимость разработки:</span>
-                <div class="flex items-baseline gap-2 mt-1">
-                  <span class="font-display font-black text-4xl text-white">$149</span>
-                  <span class="font-mono text-xs text-cyan-300">/ под ключ</span>
-                </div>
-              </div>
-
-              <div class="space-y-3 font-mono text-xs text-white/70 bg-white/5 p-4 rounded-xl border border-white/5 mb-6">
-                <div class="flex justify-between">
-                  <span>Срок запуска:</span>
-                  <span class="text-white font-bold">1–2 рабочих дня</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Абонентская плата:</span>
-                  <span class="text-emerald-400 font-bold">$0 (навсегда ваш)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Гарантия:</span>
-                  <span class="text-white font-bold">30 дней поддержки</span>
-                </div>
-              </div>
-            </div>
-
-            <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE-%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener noreferrer" class="btn-sci-fi text-sm py-3.5 px-6 w-full text-center flex items-center justify-center gap-2">
-              <i data-lucide="send" class="w-4 h-4 text-cyan-neon"></i>
-              <span>Заказать промо-сайт</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ======================================================================
-           2. Сайт и CRM для бьюти-сферы
-           ====================================================================== -->
-      <div id="beauty-crm" class="glass-panel-neon-emerald rounded-3xl p-8 sm:p-12 relative overflow-hidden border border-emerald-500/30">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div class="lg:col-span-7">
-            <div class="inline-flex items-center gap-2 font-mono text-xs text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3.5 py-1.5 rounded-full mb-4">
-              <span>02 // BEAUTY &amp; PULSECORE CRM</span>
-            </div>
-            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
-              Сайт и CRM для бьюти-сферы
-            </h2>
-            <p class="font-mono text-emerald-300 text-sm mt-1">Барбершопы, салоны красоты, массаж и SPA</p>
-            
-            <p class="mt-4 text-white/80 text-base leading-relaxed">
-              Комплексная цифровая экосистема на базе архитектуры <strong>PulseCore</strong>. Клиенты получают стильный сайт с удобной онлайн-записью за пару касаний, а владелец и администратор — готовую автономную CRM для ведения смен, учета кассы и автоматического расчета выплат мастерам.
-            </p>
-
-            <div class="mt-6 space-y-4">
-              <div class="text-xs font-mono text-white/50 uppercase tracking-wider">Что входит в систему:</div>
-              
-              <!-- Подсекция: Сайт -->
-              <div class="space-y-2">
-                <div class="font-mono text-xs text-emerald-400 font-bold flex items-center gap-1.5">
-                  <i data-lucide="layout" class="w-3.5 h-3.5"></i>
-                  <span>САЙТ:</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>Стильный индивидуальный сайт с каталогом услуг, мастерами и фотогалереей</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>Встроенный модуль онлайн-записи гостей за 2 клика без сторонних подписок</span>
-                </div>
-              </div>
-
-              <!-- Подсекция: CRM -->
-              <div class="space-y-2 pt-1">
-                <div class="font-mono text-xs text-emerald-400 font-bold flex items-center gap-1.5">
-                  <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-                  <span>CRM:</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>Расписание на день, журнал записей, смены мастеров</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>Расчет зарплат и отчеты по выручке за день/месяц</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>Управление услугами и ценами</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>База клиентов с программой лояльности</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Price & Order Card -->
-          <div class="lg:col-span-5 bg-[#090d16] rounded-2xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between h-full">
-            <div>
-              <div class="flex items-center justify-between font-mono text-xs text-white/50 border-b border-white/10 pb-3 mb-6">
-                <span>ПАКЕТ УСЛУГИ</span>
-                <span class="text-emerald-400 font-bold">ALL-IN-ONE</span>
-              </div>
-
-              <div class="mb-6">
-                <span class="font-mono text-xs text-white/50 uppercase block">Стоимость разработки:</span>
-                <div class="flex items-baseline gap-2 mt-1">
-                  <span class="font-display font-black text-4xl text-white">$390</span>
-                  <span class="font-mono text-xs text-emerald-300">/ сайт + CRM</span>
-                </div>
-              </div>
-
-              <div class="space-y-3 font-mono text-xs text-white/70 bg-white/5 p-4 rounded-xl border border-white/5 mb-6">
-                <div class="flex justify-between">
-                  <span>Срок запуска:</span>
-                  <span class="text-white font-bold">3–5 рабочих дней</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Абонентская плата:</span>
-                  <span class="text-emerald-400 font-bold">$0 (навсегда ваш)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Обучение команды:</span>
-                  <span class="text-white font-bold">Включено</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Мобильная версия:</span>
-                  <span class="text-white font-bold">Адаптирована 100%</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Гарантия:</span>
-                  <span class="text-white font-bold">60 дней поддержки</span>
-                </div>
-                <div class="pt-3 border-t border-white/10 text-emerald-300 flex items-start gap-2 text-[11px] leading-relaxed">
-                  <i data-lucide="trending-up" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>Экономия до $600 в год на ежемесячных тарифах Altegio / Yclients / DIKIDI</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Demo link + Order button -->
-            <div class="space-y-4 pt-2">
-              <div class="text-center">
-                <a href="https://aion-media.github.io/sites/noir-atelier/" target="_blank" class="font-mono text-xs text-emerald-400 hover:text-emerald-300 transition-colors inline-flex items-center gap-1.5 group">
-                  <i data-lucide="external-link" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                  <span>Смотреть демо Сайт + CRM →</span>
-                </a>
-              </div>
-
-              <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82%20%D0%B8%20CRM%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B0%D0%BB%D0%BE%D0%BD%D0%B0%20%D0%BA%D1%80%D0%B0%D1%81%D0%BE%D1%82%D1%8B%20%2F%20%D0%B1%D0%B0%D1%80%D0%B1%D0%B5%D1%80%D1%88%D0%BE%D0%BF%D0%B0." target="_blank" rel="noopener noreferrer" class="btn-sci-fi text-sm py-3.5 px-6 w-full text-center flex items-center justify-center gap-2">
-                <i data-lucide="send" class="w-4 h-4 text-emerald-400"></i>
-                <span>Заказать сайт + CRM</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ======================================================================
-           3. Сайт и CRM для арт-пространств и коворкингов
-           ====================================================================== -->
-      <div id="coworking-crm" class="glass-panel-neon rounded-3xl p-8 sm:p-12 relative overflow-hidden border border-cyan-500/30">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div class="lg:col-span-7">
-            <div class="inline-flex items-center gap-2 font-mono text-xs text-cyan-300 bg-cyan-950/60 border border-cyan-500/30 px-3.5 py-1.5 rounded-full mb-4">
-              <span>03 // COWORKING &amp; EVENT HUBS</span>
-            </div>
-            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
-              Сайт и CRM для коворкингов и пространств
-            </h2>
-            <p class="font-mono text-cyan-300 text-sm mt-1">Коворкинги, коливинги, йога-центры и залы мероприятий</p>
-            
-            <p class="mt-4 text-white/80 text-base leading-relaxed">
-              Специализированная платформа для многофункциональных хабов. Интерактивная карта пространства, бронирование переговорных комнат, рабочих мест и залов для мастер-классов. Автоматизация расписания занятий и тарифов для резидентов.
-            </p>
-
-            <div class="mt-6 space-y-4">
-              <div class="text-xs font-mono text-white/50 uppercase tracking-wider">Что входит в систему:</div>
-              
-              <!-- Подсекция: Сайт -->
-              <div class="space-y-2">
-                <div class="font-mono text-xs text-cyan-300 font-bold flex items-center gap-1.5">
-                  <i data-lucide="layout" class="w-3.5 h-3.5 text-cyan-neon"></i>
-                  <span>САЙТ:</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                  <span>Стильный индивидуальный сайт с афишей мероприятий и расписанием</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                  <span>Встроенный модуль онлайн-записи гостей за 2 клика без сторонних подписок</span>
-                </div>
-              </div>
-
-              <!-- Подсекция: CRM & Бронирование -->
-              <div class="space-y-2 pt-1">
-                <div class="font-mono text-xs text-cyan-300 font-bold flex items-center gap-1.5">
-                  <i data-lucide="layers" class="w-3.5 h-3.5 text-cyan-neon"></i>
-                  <span>CRM &amp; СИСТЕМА БРОНИРОВАНИЯ:</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                  <span>Управление загрузкой помещений и календарь занятости (таймлайн)</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                  <span>Списки участников на каждом занятии и конструктор занятий</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                  <span>Управление залами, услугами и ценами</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                  <span>База резидентов, мастеров и направлений</span>
-                </div>
-                <div class="flex items-start gap-2.5 text-sm text-white/80 pl-1">
-                  <i data-lucide="check" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                  <span>База клиентов с программой лояльности</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Price & Order Card -->
-          <div class="lg:col-span-5 bg-[#090d16] rounded-2xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between h-full">
-            <div>
-              <div class="flex items-center justify-between font-mono text-xs text-white/50 border-b border-white/10 pb-3 mb-6">
-                <span>ПАКЕТ УСЛУГИ</span>
-                <span class="text-cyan-neon font-bold">SMART SPACE</span>
-              </div>
-
-              <div class="mb-6">
-                <span class="font-mono text-xs text-white/50 uppercase block">Стоимость разработки:</span>
-                <div class="flex items-baseline gap-2 mt-1">
-                  <span class="font-display font-black text-4xl text-white">$390</span>
-                  <span class="font-mono text-xs text-cyan-300">/ под ключ</span>
-                </div>
-              </div>
-
-              <div class="space-y-3 font-mono text-xs text-white/70 bg-white/5 p-4 rounded-xl border border-white/5 mb-6">
-                <div class="flex justify-between">
-                  <span>Срок запуска:</span>
-                  <span class="text-white font-bold">3–5 рабочих дней</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Абонентская плата:</span>
-                  <span class="text-emerald-400 font-bold">$0 (навсегда ваш)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Обучение команды:</span>
-                  <span class="text-white font-bold">Включено</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Мобильная версия:</span>
-                  <span class="text-white font-bold">Адаптирована 100%</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Гарантия:</span>
-                  <span class="text-white font-bold">60 дней поддержки</span>
-                </div>
-                <div class="pt-3 border-t border-white/10 text-cyan-300 flex items-start gap-2 text-[11px] leading-relaxed">
-                  <i data-lucide="trending-up" class="w-4 h-4 text-cyan-neon shrink-0 mt-0.5"></i>
-                  <span>Экономия от $800 в год на подписках зарубежных систем бронирования (Cobot / Nexudus)</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Demo link + Order button -->
-            <div class="space-y-4 pt-2">
-              <div class="text-center">
-                <button type="button" onclick="showDevToast('Упс.. система еще в разработке. Приходите завтра! ;)')" class="font-mono text-xs text-cyan-300 hover:text-cyan-200 transition-colors inline-flex items-center gap-1.5 cursor-pointer group">
-                  <i data-lucide="sparkles" class="w-3.5 h-3.5 group-hover:rotate-12 transition-transform text-cyan-neon"></i>
-                  <span>Смотреть демо Сайт + CRM →</span>
-                </button>
-              </div>
-
-              <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%BE%D0%B2%D0%BE%D1%80%D0%BA%D0%B8%D0%BD%D0%B3%D0%B0%20%D0%B8%D0%BB%D0%B8%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%B0." target="_blank" rel="noopener noreferrer" class="btn-sci-fi text-sm py-3.5 px-6 w-full text-center flex items-center justify-center gap-2">
-                <i data-lucide="send" class="w-4 h-4 text-cyan-neon"></i>
-                <span>Заказать сайт пространства</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ======================================================================
-           4. Электронное QR-меню для ресторанов, кафе и баров
-           ====================================================================== -->
-      <div id="restaurant-menu" class="glass-panel-neon-amber rounded-3xl p-8 sm:p-12 relative overflow-hidden border border-amber-500/30">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div class="lg:col-span-7">
-            <div class="inline-flex items-center gap-2 font-mono text-xs text-amber-300 bg-amber-950/60 border border-amber-500/30 px-3.5 py-1.5 rounded-full mb-4">
-              <span>04 // SMART QR-MENU</span>
-            </div>
-            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
-              Электронное QR-меню для ресторанов и кафе
-            </h2>
-            <p class="font-mono text-amber-300 text-sm mt-1">Рестораны, кофейни, бары и стритфуд</p>
-            
-            <p class="mt-4 text-white/80 text-base leading-relaxed">
-              Молниеносное цифровое меню, которое открывается по QR-коду со стола за долю секунды без установки приложений. Поддерживает 4 языка, помогает гостям делать заказ, а заведению экономит тысячи долларов на постоянной перепечатке бумажных меню.
-            </p>
-
-            <div class="mt-6 space-y-2.5">
-              <div class="text-xs font-mono text-white/50 uppercase tracking-wider mb-2">Что входит в комплект:</div>
-              <div class="flex items-start gap-2.5 text-sm text-white/80">
-                <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
-                <span>Сверхбыстрое веб-меню (загрузка &lt; 0.5 сек на любом смартфоне)</span>
-              </div>
-              <div class="flex items-start gap-2.5 text-sm text-white/80">
-                <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
-                <span>Мультиязычность из коробки: 4 языка (Русский, Английский, Вьетнамский, Корейский)</span>
-              </div>
-              <div class="flex items-start gap-2.5 text-sm text-white/80">
-                <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
-                <span>Умная корзина, выбор номера столика и вызов персонала</span>
-              </div>
-              <div class="flex items-start gap-2.5 text-sm text-white/80">
-                <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
-                <span>Готовый к печати макет вертикального тейбл-тента А6 (300 DPI PNG) под типографию</span>
-              </div>
-              <div class="flex items-start gap-2.5 text-sm text-white/80">
-                <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
-                <span>Удобное обновление цен и блюд за 1 минуту</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Price & Order Card -->
-          <div class="lg:col-span-5 bg-[#090d16] rounded-2xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between h-full">
-            <div>
-              <div class="flex items-center justify-between font-mono text-xs text-white/50 border-b border-white/10 pb-3 mb-6">
-                <span>ПАКЕТ УСЛУГИ</span>
-                <span class="text-amber-300 font-bold">READY TO PRINT</span>
-              </div>
-
-              <div class="mb-6">
-                <span class="font-mono text-xs text-white/50 uppercase block">Стоимость разработки:</span>
-                <div class="flex items-baseline gap-2 mt-1">
-                  <span class="font-display font-black text-4xl text-white">от $49</span>
-                  <span class="font-mono text-xs text-amber-300">/ меню + тейбл-тент</span>
-                </div>
-              </div>
-
-              <div class="space-y-3 font-mono text-xs text-white/70 bg-white/5 p-4 rounded-xl border border-white/5 mb-6">
-                <div class="flex justify-between">
-                  <span>Срок запуска:</span>
-                  <span class="text-white font-bold">1–2 часа</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Языков:</span>
-                  <span class="text-amber-300 font-bold">4 языка в комплекте</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Макет для печати:</span>
-                  <span class="text-white font-bold">А6 (1240 × 1754 px)</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Demo links + Order button -->
-            <div class="space-y-4 pt-2">
-              <div class="text-center font-mono text-xs flex items-center justify-center gap-2.5 sm:gap-3 flex-wrap">
-                <span class="text-white/40">Демо:</span>
-                <a href="https://aion-media.github.io/menu/khoi-lounge-bar.html" target="_blank" class="text-amber-300 hover:text-amber-200 transition-colors inline-flex items-center gap-1 group font-semibold">
-                  <span>KHÓI LOUNGE</span>
-                  <i data-lucide="external-link" class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                </a>
-                <span class="text-white/20">/</span>
-                <a href="https://aion-media.github.io/menu/bep-sen-vang.html" target="_blank" class="text-amber-300/80 hover:text-amber-200 transition-colors inline-flex items-center gap-1 group">
-                  <span>Bếp Sen Vàng</span>
-                  <i data-lucide="external-link" class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                </a>
-              </div>
-
-              <a href="https://t.me/litt1e_roo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%BD%D0%BE%D0%B5%20QR-%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B4%D0%BB%D1%8F%20%D0%B7%D0%B0%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F." target="_blank" rel="noopener noreferrer" class="btn-sci-fi text-sm py-3.5 px-6 w-full text-center flex items-center justify-center gap-2">
-                <i data-lucide="send" class="w-4 h-4 text-amber-300"></i>
-                <span>Заказать QR-меню</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- SECTION: КАК МЫ РАБОТАЕМ (4 ЭТАПА) -->
-    <section class="py-20 px-4 sm:px-8 bg-[#070a12] border-t border-b border-white/5">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-14">
-          <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-3">// WORKFLOW</span>
-          <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
-            Как строится работа над вашим проектом
-          </h2>
-          <p class="text-white/60 text-sm mt-3">Без бюрократии, долгих согласований и непонятных терминов.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="glass-panel p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
-            <div>
-              <span class="font-mono text-2xl font-black text-cyan-neon block mb-3">01</span>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Экспресс-бриф</h3>
-              <p class="text-white/65 text-xs sm:text-sm leading-relaxed">
-                15–20 минут в Telegram или лично. Выясняем задачи заведения, структуру разделов и пожелания.
-              </p>
-            </div>
-          </div>
-
-          <div class="glass-panel p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
-            <div>
-              <span class="font-mono text-2xl font-black text-cyan-neon block mb-3">02</span>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Демо в тот же день</h3>
-              <p class="text-white/65 text-xs sm:text-sm leading-relaxed">
-                Вы получаете рабочую интерактивную ссылку и тестируете будущий сайт на своём ПК или смартфоне.
-              </p>
-            </div>
-          </div>
-
-          <div class="glass-panel p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
-            <div>
-              <span class="font-mono text-2xl font-black text-cyan-neon block mb-3">03</span>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Наполнение &amp; CRM</h3>
-              <p class="text-white/65 text-xs sm:text-sm leading-relaxed">
-                Вносим услуги, мастеров, прайс-лист, настраиваем логику онлайн-записи.
-              </p>
-            </div>
-          </div>
-
-          <div class="glass-panel p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
-            <div>
-              <span class="font-mono text-2xl font-black text-emerald-400 block mb-3">04</span>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Релиз и ключи</h3>
-              <p class="text-white/65 text-xs sm:text-sm leading-relaxed">
-                Привязываем домен, передаем полные доступы и инструкции. Полное сопровождение и обучение.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: КОНТАКТЫ ДЛЯ СВЯЗИ В КОММЕРЧЕСКОМ РЕЖИМЕ -->
-    <section id="commercial-contacts" class="py-24 px-4 sm:px-8">
-      <div class="max-w-4xl mx-auto glass-panel-neon rounded-3xl p-8 sm:p-14 text-center relative overflow-hidden border border-cyan-500/30">
-        <span class="font-mono text-xs text-cyan-neon tracking-widest uppercase block mb-3">// START PROJECT</span>
-        <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
-          ГОТОВЫ ОБСУДИТЬ ПРОЕКТ?
-        </h2>
-        <p class="text-white/75 text-base sm:text-lg mt-4 max-w-xl mx-auto leading-relaxed">
-          Напишите в Telegram — мы бесплатно проконсультируем, подберем оптимальный формат и пришлем предварительный дизайн и демо версию уже в этот же день.
-        </p>
-
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <a href="https://t.me/litt1e_roo" target="_blank" rel="noopener noreferrer" class="btn-sci-fi text-sm py-4 px-8 min-w-[220px]">
-            <i data-lucide="send" class="w-4 h-4 text-cyan-neon"></i>
-            <span>Написать в Telegram</span>
-          </a>
-          <a href="https://www.instagram.com/ruslan.knko" target="_blank" rel="noopener noreferrer" class="btn-sci-fi btn-sci-fi-alt text-sm py-4 px-8 min-w-[220px]">
-            <i data-lucide="instagram" class="w-4 h-4 text-cyan-neon"></i>
-            <span>Instagram</span>
-          </a>
-        </div>
-
-        <div class="mt-8">
-          <button type="button" onclick="window.switchMode && window.switchMode('lab')" class="inline-flex items-center gap-2 font-mono text-xs text-white/60 hover:text-white transition-colors bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full cursor-pointer">
-            <i data-lucide="flask-conical" class="w-3.5 h-3.5 text-cyan-neon"></i>
-            <span>Вернуться в технологическую лабораторию</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Footer Note -->
-      <footer class="mt-16 text-center font-mono text-xs text-white/40 space-y-2">
-        <p>© 2026 SYNAPTIQ lab. ALL RIGHTS RESERVED.</p>
-        <p class="text-white/30 text-[11px]">Сайт создан на архитектуре PulseCore by SYNAPTIQ Lab</p>
-        <p class="text-white/20">ARCHITECTED FOR HUMAN COGNITION &amp; LIVING DIGITAL ECOSYSTEMS.</p>
-      </footer>
-    </section>
-
-  </div> <!-- ==================== END VIEW 2: COMMERCIAL STUDIO ==================== -->
-
-  <!-- Mode Switcher Logic & Runtime Controller -->
+  <!-- Scripts -->
   <script>
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+
+    // Interactive Billing Switcher
     (function() {
-      var currentMode = 'lab';
-      var viewLab = document.getElementById('view-lab');
-      var viewCommercial = document.getElementById('view-commercial');
-      var toggleBtn = document.getElementById('mode-toggle-btn');
-      var toggleText = document.getElementById('mode-toggle-text');
-      var toggleIcon = document.getElementById('mode-toggle-icon');
-      var navLab = document.getElementById('nav-lab');
-      var navCommercial = document.getElementById('nav-commercial');
-      var statusDot = document.getElementById('header-status-dot');
-      var statusText = document.getElementById('header-status-text');
+      const btnForever = document.getElementById('plan-forever');
+      const btnSub = document.getElementById('plan-sub');
+      const foreverVals = document.querySelectorAll('.price-val-forever');
+      const subVals = document.querySelectorAll('.price-val-sub');
 
-      function setModeIcon(iconName, colorClass) {
-        var iconWrap = document.getElementById('mode-toggle-icon-wrap');
-        if (!iconWrap) return;
-        iconWrap.innerHTML = '<i data-lucide="' + iconName + '" class="w-3.5 h-3.5 ' + (colorClass || 'text-cyan-neon') + '"></i>';
-        if (window.lucide && typeof lucide.createIcons === 'function') {
-          lucide.createIcons();
-        }
-      }
+      if (!btnForever || !btnSub) return;
 
-      window.switchMode = function(targetMode, updateHash) {
-        if (typeof updateHash === 'undefined') updateHash = true;
-        if (!viewLab || !viewCommercial) return;
-        if (targetMode === currentMode) return;
+      btnForever.addEventListener('click', () => {
+        btnForever.classList.add('active');
+        btnSub.classList.remove('active');
+        foreverVals.forEach(el => el.classList.remove('hidden'));
+        subVals.forEach(el => el.classList.add('hidden'));
+      });
 
-        currentMode = targetMode;
-
-        if (targetMode === 'commercial') {
-          // Fade out lab
-          if (window.gsap) {
-            gsap.to(viewLab, {
-              opacity: 0,
-              duration: 0.25,
-              onComplete: function() {
-                viewLab.style.display = 'none';
-                viewCommercial.style.display = 'block';
-                gsap.fromTo(viewCommercial, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.35 });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                if (window.ScrollTrigger) ScrollTrigger.refresh();
-              }
-            });
-          } else {
-            viewLab.style.display = 'none';
-            viewCommercial.style.display = 'block';
-            viewCommercial.style.opacity = '1';
-            window.scrollTo(0, 0);
-          }
-
-          // Update Button UI
-          if (toggleText) toggleText.textContent = 'ЛАБОРАТОРИЯ';
-          if (toggleBtn) {
-            toggleBtn.classList.remove('border-cyan-400');
-            toggleBtn.classList.add('border-emerald-400', 'bg-emerald-950/40');
-          }
-          setModeIcon('flask-conical', 'text-emerald-400');
-
-          // Update Nav
-          if (navLab) navLab.style.display = 'none';
-          if (navCommercial) navCommercial.style.display = 'flex';
-
-          // Update Status Badge
-          if (statusText) statusText.textContent = 'СТУДИЯ // КЕЙСЫ & ЦЕНЫ';
-          if (statusDot) {
-            statusDot.classList.remove('bg-cyan-neon');
-            statusDot.classList.add('bg-emerald-400');
-          }
-
-          if (updateHash) {
-            history.replaceState(null, null, '#pricing');
-          }
-        } else {
-          // Switch to lab
-          if (window.gsap) {
-            gsap.to(viewCommercial, {
-              opacity: 0,
-              duration: 0.25,
-              onComplete: function() {
-                viewCommercial.style.display = 'none';
-                viewLab.style.display = 'block';
-                window.dispatchEvent(new Event('resize'));
-                gsap.fromTo(viewLab, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.35 });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                if (window.ScrollTrigger) ScrollTrigger.refresh();
-              }
-            });
-          } else {
-            viewCommercial.style.display = 'none';
-            viewLab.style.display = 'block';
-            window.dispatchEvent(new Event('resize'));
-            viewLab.style.opacity = '1';
-            window.scrollTo(0, 0);
-          }
-
-          // Update Button UI
-          if (toggleText) toggleText.textContent = 'КЕЙСЫ И ЦЕНЫ';
-          if (toggleBtn) {
-            toggleBtn.classList.remove('border-emerald-400', 'bg-emerald-950/40');
-            toggleBtn.classList.add('border-cyan-400');
-          }
-          setModeIcon('briefcase', 'text-cyan-neon');
-
-          // Update Nav
-          if (navCommercial) navCommercial.style.display = 'none';
-          if (navLab) navLab.style.display = 'flex';
-
-          // Update Status Badge
-          if (statusText) statusText.textContent = 'LAB ONLINE';
-          if (statusDot) {
-            statusDot.classList.remove('bg-emerald-400');
-            statusDot.classList.add('bg-cyan-neon');
-          }
-
-          if (updateHash) {
-            history.replaceState(null, null, '#lab');
-          }
-        }
-
-        if (window.lucide) {
-          lucide.createIcons();
-        }
-      };
-
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          if (currentMode === 'lab') {
-            window.switchMode('commercial');
-          } else {
-            window.switchMode('lab');
-          }
-        });
-      }
-
-      // Check URL Hash on initialization
-      var initialHash = window.location.hash.toLowerCase();
-      if (initialHash === '#pricing' || initialHash === '#cases' || initialHash === '#studio' || initialHash === '#commercial' || initialHash === '#promo-sites' || initialHash === '#beauty-crm' || initialHash === '#coworking-crm' || initialHash === '#restaurant-menu') {
-        window.switchMode('commercial', false);
-      }
+      btnSub.addEventListener('click', () => {
+        btnSub.classList.add('active');
+        btnForever.classList.remove('active');
+        foreverVals.forEach(el => el.classList.add('hidden'));
+        subVals.forEach(el => el.classList.remove('hidden'));
+      });
     })();
   </script>
 
-  <!-- Temporary sci-fi notification toast for developing features -->
-  <div id="dev-toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] max-w-md w-[90%] sm:w-auto px-6 py-4 rounded-2xl glass-panel border border-cyan-400/60 shadow-[0_10px_40px_rgba(0,240,255,0.3)] text-white font-mono text-xs sm:text-sm flex items-center gap-3 transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
-    <div class="w-8 h-8 rounded-xl bg-cyan-950/80 border border-cyan-400/40 flex items-center justify-center shrink-0">
-      <i data-lucide="sparkles" class="w-4 h-4 text-cyan-neon"></i>
+  <!-- Synaptic Canvas Impulses -->
+  <script src="assets/js/synaptic-engine.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof SynapticEngine !== 'undefined') {
+        const canvas = document.getElementById('synaptic-canvas');
+        if (canvas) {
+          window.synapticEngine = new SynapticEngine(canvas, {
+            nodeCount: 85,
+            connectionDist: 140,
+            pulseSpeed: 1.6
+          });
+        }
+      }
+    });
+  </script>
+  <!-- Fullscreen Interactive Gallery Modal (3 CRM Screens) -->
+  <div id="image-lightbox" class="fixed inset-0 z-[100] bg-black/92 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6" onclick="closeImageLightbox()">
+    <div class="relative max-w-5xl w-full max-h-[94vh] flex flex-col items-center" onclick="event.stopPropagation()">
+      
+      <!-- Top Bar: Caption + Counter + Close -->
+      <div class="w-full flex items-center justify-between pb-3 text-white font-mono text-xs border-b border-white/10 mb-3">
+        <div class="flex items-center gap-3">
+          <span id="lightbox-caption" class="text-cyan-pulse font-bold tracking-wide">PulseCore // Таймлайн записей</span>
+          <span id="lightbox-counter" class="px-2 py-0.5 rounded bg-white/10 text-slate-300 text-[11px]">1 / 3</span>
+        </div>
+        <button type="button" onclick="closeImageLightbox()" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center gap-1.5 cursor-pointer">
+          <i data-lucide="x" class="w-4 h-4"></i>
+          <span>Закрыть (Esc)</span>
+        </button>
+      </div>
+
+      <!-- Main Image Viewport with Nav Arrows -->
+      <div class="relative w-full rounded-xl overflow-hidden border border-white/20 shadow-[0_0_60px_rgba(0,0,0,0.9)] bg-black/60 flex items-center justify-center">
+        
+        <img id="lightbox-img" src="assets/showcase/crm-screen-1.png" alt="CRM Screen" class="w-full h-auto object-contain max-h-[78vh] transition-opacity duration-200">
+
+        <!-- Prev Button -->
+        <button type="button" onclick="crmGalleryPrev()" class="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-cyan-pulse hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-lg group">
+          <i data-lucide="chevron-left" class="w-6 h-6 group-hover:-translate-x-0.5 transition-transform"></i>
+        </button>
+
+        <!-- Next Button -->
+        <button type="button" onclick="crmGalleryNext()" class="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-cyan-pulse hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-lg group">
+          <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-0.5 transition-transform"></i>
+        </button>
+      </div>
+
+      <!-- Bottom Thumbnail Selector -->
+      <div class="flex items-center gap-3 mt-3">
+        <button type="button" onclick="openCrmGallery(0)" id="thumb-0" class="gallery-thumb px-3 py-1.5 rounded-lg border border-cyan-pulse bg-cyan-950/60 text-cyan-pulse font-mono text-[11px] cursor-pointer transition-all">
+          01. Расписание и таймлайн
+        </button>
+        <button type="button" onclick="openCrmGallery(1)" id="thumb-1" class="gallery-thumb px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-slate-400 font-mono text-[11px] cursor-pointer transition-all hover:text-white">
+          02. База клиентов и LTV
+        </button>
+        <button type="button" onclick="openCrmGallery(2)" id="thumb-2" class="gallery-thumb px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-slate-400 font-mono text-[11px] cursor-pointer transition-all hover:text-white">
+          03. Мастера и смены
+        </button>
+      </div>
+
     </div>
-    <div id="dev-toast-msg" class="leading-relaxed">Упс.. система еще в разработке. Приходите завтра! ;)</div>
   </div>
 
   <script>
-    var devToastTimer = null;
-    window.showDevToast = function(msg) {
-      var toast = document.getElementById('dev-toast');
-      var toastMsg = document.getElementById('dev-toast-msg');
-      if (!toast) return;
-      if (toastMsg && msg) toastMsg.textContent = msg;
+    const crmScreens = [
+      {
+        src: 'assets/showcase/crm-screen-1.png',
+        caption: '01. Расписание на день: онлайн-таймлайн визитов, выручка, статусы'
+      },
+      {
+        src: 'assets/showcase/crm-screen-2.png',
+        caption: '02. База клиентов: LTV, история посещений, скидки и карточка гостя'
+      },
+      {
+        src: 'assets/showcase/crm-screen-3.png',
+        caption: '03. Управление мастерами: недельный график, смены и расписание'
+      }
+    ];
 
+    let currentCrmIndex = 0;
+
+    function openCrmGallery(index) {
+      currentCrmIndex = index;
+      const modal = document.getElementById('image-lightbox');
+      if (!modal) return;
+      
+      updateGalleryView();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
       if (window.lucide) lucide.createIcons();
+    }
 
-      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-      toast.classList.add('opacity-100', 'translate-y-0');
+    function updateGalleryView() {
+      const img = document.getElementById('lightbox-img');
+      const cap = document.getElementById('lightbox-caption');
+      const counter = document.getElementById('lightbox-counter');
+      
+      if (!img || !crmScreens[currentCrmIndex]) return;
 
-      if (devToastTimer) clearTimeout(devToastTimer);
-      devToastTimer = setTimeout(function() {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-      }, 3500);
-    };
+      img.style.opacity = '0.4';
+      setTimeout(() => {
+        img.src = crmScreens[currentCrmIndex].src;
+        img.style.opacity = '1';
+      }, 100);
+
+      if (cap) cap.textContent = crmScreens[currentCrmIndex].caption;
+      if (counter) counter.textContent = (currentCrmIndex + 1) + ' / ' + crmScreens.length;
+
+      // Update active thumbnail styles
+      for (let i = 0; i < crmScreens.length; i++) {
+        const thumb = document.getElementById('thumb-' + i);
+        if (thumb) {
+          if (i === currentCrmIndex) {
+            thumb.className = 'gallery-thumb px-3 py-1.5 rounded-lg border border-cyan-pulse bg-cyan-950/60 text-cyan-pulse font-mono text-[11px] cursor-pointer transition-all shadow-[0_0_15px_rgba(0,240,255,0.25)]';
+          } else {
+            thumb.className = 'gallery-thumb px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-slate-400 font-mono text-[11px] cursor-pointer transition-all hover:text-white';
+          }
+        }
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function crmGalleryNext() {
+      currentCrmIndex = (currentCrmIndex + 1) % crmScreens.length;
+      updateGalleryView();
+    }
+
+    function crmGalleryPrev() {
+      currentCrmIndex = (currentCrmIndex - 1 + crmScreens.length) % crmScreens.length;
+      updateGalleryView();
+    }
+
+    function closeImageLightbox() {
+      const modal = document.getElementById('image-lightbox');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('image-lightbox');
+      if (!modal || modal.classList.contains('hidden')) return;
+
+      if (e.key === 'Escape') closeImageLightbox();
+      if (e.key === 'ArrowRight') crmGalleryNext();
+      if (e.key === 'ArrowLeft') crmGalleryPrev();
+    });
   </script>
-
-  <!-- Lucide icons initialization -->
-  <script>
-    lucide.createIcons();
-  </script>
-
-  <!-- Core Scripts -->
-  <script src="assets/js/synaptic-engine.js"></script>
-  <script src="assets/js/scrollytelling.js"></script>
 </body>
 </html>

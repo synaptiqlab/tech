@@ -1,0 +1,234 @@
+/* ==========================================================================
+   SYNAPTIQ lab — Advanced AI & Applied Intelligent Systems Laboratory
+   Aesthetics: Deep Space, Laser Matrix, Mathematical Precision & Neural Pulses
+   Fonts: Space Grotesk (Titles), Inter (Body), Geist Mono (Code & Data)
+   ========================================================================== */
+
+:root {
+  --bg-deep: #05070b;
+  --bg-surface: #0a0e17;
+  --bg-panel: rgba(13, 19, 31, 0.75);
+  --bg-panel-hover: rgba(19, 27, 44, 0.9);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(0, 240, 255, 0.35);
+  --border-neural: rgba(99, 102, 241, 0.3);
+  
+  --cyan-pulse: #00f0ff;
+  --indigo-core: #6366f1;
+  --emerald-live: #10b981;
+  
+  --text-pure: #ffffff;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-deep);
+  color: var(--text-pure);
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-deep);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Mathematical Grid Matrix Background */
+.matrix-grid-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 85%);
+}
+
+/* Deep Ambient Core Light */
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.16) 0%, transparent 60%),
+    radial-gradient(circle at 80% 40%, rgba(0, 240, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 20% 70%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
+}
+
+/* Laboratory Glass Panel */
+.lab-panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lab-panel:hover {
+  border-color: var(--border-neural);
+  box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.2);
+}
+
+/* Precision Crosshairs (+) */
+.corner-cross {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.corner-cross::before, .corner-cross::after {
+  content: '';
+  position: absolute;
+  background: var(--cyan-pulse);
+}
+.corner-cross::before {
+  top: 4px; left: 0; width: 9px; height: 1px;
+}
+.corner-cross::after {
+  top: 0; left: 4px; width: 1px; height: 9px;
+}
+.corner-tl { top: -5px; left: -5px; }
+.corner-tr { top: -5px; right: -5px; }
+.corner-bl { bottom: -5px; left: -5px; }
+.corner-br { bottom: -5px; right: -5px; }
+
+/* Synaptic Pulsing Dot */
+.synapse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan-pulse);
+  box-shadow: 0 0 12px var(--cyan-pulse);
+  display: inline-block;
+  animation: pulse-synapse 2.4s infinite ease-in-out;
+}
+
+@keyframes pulse-synapse {
+  0%, 100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 8px var(--cyan-pulse)); }
+  50% { opacity: 0.3; transform: scale(0.75); }
+}
+
+/* Interactive Canvas Layer */
+#synaptic-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  z-index: 1;
+  opacity: 0.65;
+}
+
+/* Tech Buttons */
+.btn-lab-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #ffffff;
+  color: #05070b;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.btn-lab-primary:hover {
+  background: #e2e8f0;
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-lab-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f1f5f9;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.25s ease;
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.btn-lab-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--cyan-pulse);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Interactive Switcher */
+.lab-toggle-wrap {
+  display: inline-flex;
+  padding: 4px;
+  background: rgba(9, 13, 22, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+}
+
+.lab-toggle-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.lab-toggle-btn.active {
+  background: var(--cyan-pulse);
+  color: #05070b;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+}
+
+/* Micro Noise Texture */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
