@@ -684,12 +684,10 @@
           cardPromo.classList.remove('opacity-40', 'grayscale', 'scale-95');
         }
         if (cardCrm) {
-          cardCrm.classList.remove('scale-105', 'border-emerald-400', 'shadow-[0_0_45px_rgba(16,185,129,0.35)]');
-          cardCrm.classList.add('border-emerald-500/50', 'shadow-[0_0_30px_rgba(16,185,129,0.2)]');
+          cardCrm.classList.remove('scale-105');
         }
         if (cardSpace) {
-          cardSpace.classList.remove('scale-105', 'border-violet-400', 'shadow-[0_0_45px_rgba(139,92,246,0.35)]');
-          cardSpace.classList.add('border-violet-500/50', 'shadow-[0_0_30px_rgba(139,92,246,0.2)]');
+          cardSpace.classList.remove('scale-105');
         }
 
         onlyForeverBadges.forEach(b => b.classList.add('hidden'));
@@ -710,14 +708,12 @@
         if (cardPromo) {
           cardPromo.classList.add('opacity-40', 'grayscale', 'scale-95');
         }
-        // Highlight both CRM cards (Beauty in emerald, Space in violet)
+        // Both CRM cards step forward subtly, hover glow activates on mouse over
         if (cardCrm) {
-          cardCrm.classList.add('scale-105', 'border-emerald-400', 'shadow-[0_0_45px_rgba(16,185,129,0.35)]');
-          cardCrm.classList.remove('border-emerald-500/50');
+          cardCrm.classList.add('scale-105');
         }
         if (cardSpace) {
-          cardSpace.classList.add('scale-105', 'border-violet-400', 'shadow-[0_0_45px_rgba(139,92,246,0.35)]');
-          cardSpace.classList.remove('border-violet-500/50');
+          cardSpace.classList.add('scale-105');
         }
 
         onlyForeverBadges.forEach(b => b.classList.remove('hidden'));
