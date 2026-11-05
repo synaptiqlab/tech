@@ -373,7 +373,7 @@
               <i data-lucide="zap" class="w-3.5 h-3.5 text-cyan-pulse shrink-0"></i>
               <span>Легкий старт без крупных затрат.</span>
             </span>
-            <span class="text-cyan-400/90">Индивидуальный дизайн и удобная CRM с техподдержкой за $39/мес</span>
+            <span class="text-cyan-400/90">Индивидуальный дизайн и удобная CRM с техподдержкой от $39/мес</span>
           </div>
         </div>
       </div>
@@ -425,7 +425,6 @@
           <div>
             <div class="flex items-center justify-between mb-1">
               <span class="font-mono text-xs text-emerald-400 uppercase">Бьюти, барбершопы и тату-салоны</span>
-              <span class="active-sub-badge hidden px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 font-mono text-[10px] tracking-wider uppercase border border-emerald-500/30">Доступен по подписке</span>
             </div>
             <h3 class="font-display font-bold text-2xl text-white">Сайт + CRM</h3>
             <p class="text-xs text-slate-400 mt-2 font-mono">Полноценный сайт-витрина в вашем стиле без скучных шаблонных ссылок + удобная CRM</p>
@@ -436,14 +435,14 @@
                   <span class="font-display font-bold text-4xl text-white">$390</span>
                   <span class="font-mono text-xs text-emerald-400">/ под ключ</span>
                 </div>
-                <div class="text-[11px] font-mono text-slate-500 mt-1">Запуск за 2–3 дня</div>
+                <div class="text-[11px] font-mono text-slate-500 mt-1">Запуск за 2–3 дня. ТГ-бот в подарок.</div>
               </div>
               <div class="price-val-sub hidden">
                 <div class="flex items-baseline gap-2">
                   <span class="font-display font-bold text-4xl text-emerald-400">$39</span>
                   <span class="font-mono text-xs text-emerald-300">/ месяц</span>
                 </div>
-                <div class="text-[11px] font-mono text-slate-400 mt-1">0 ₽ за разработку. Техподдержка и боты 24/7.</div>
+                <div class="text-[11px] font-mono text-slate-400 mt-1">Запуск за 2–3 дня. Техподдержка и ТГ-бот 24/7.</div>
               </div>
             </div>
 
@@ -481,7 +480,6 @@
           <div>
             <div class="flex items-center justify-between mb-1">
               <span class="font-mono text-xs text-emerald-400 uppercase">Студии, пространства и коворкинги</span>
-              <span class="active-sub-badge hidden px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 font-mono text-[10px] tracking-wider uppercase border border-emerald-500/30">Доступен по подписке</span>
             </div>
             <h3 class="font-display font-bold text-2xl text-white">Сайт + CRM</h3>
             <p class="text-xs text-slate-400 mt-2 font-mono">Стильный сайт с интерактивным расписанием и онлайн-бронированием</p>
@@ -492,14 +490,14 @@
                   <span class="font-display font-bold text-4xl text-white">$490</span>
                   <span class="font-mono text-xs text-emerald-400">/ под ключ</span>
                 </div>
-                <div class="text-[11px] font-mono text-slate-500 mt-1">Запуск за 2–3 дня</div>
+                <div class="text-[11px] font-mono text-slate-500 mt-1">Запуск за 2–3 дня. ТГ-бот в подарок.</div>
               </div>
               <div class="price-val-sub hidden">
                 <div class="flex items-baseline gap-2">
-                  <span class="font-display font-bold text-4xl text-emerald-400">$39</span>
+                  <span class="font-display font-bold text-4xl text-emerald-400">$49</span>
                   <span class="font-mono text-xs text-emerald-300">/ месяц</span>
                 </div>
-                <div class="text-[11px] font-mono text-slate-400 mt-1">0 ₽ за разработку. Техподдержка и боты 24/7.</div>
+                <div class="text-[11px] font-mono text-slate-400 mt-1">Запуск за 2–3 дня. Техподдержка и ТГ-бот 24/7.</div>
               </div>
             </div>
 
@@ -665,7 +663,6 @@
       const cardCrm = document.getElementById('card-tier-crm');
       const cardSpace = document.getElementById('card-tier-space');
       const onlyForeverBadges = document.querySelectorAll('.only-forever-badge');
-      const activeSubBadges = document.querySelectorAll('.active-sub-badge');
       const hintForever = document.getElementById('benefit-hint-forever');
       const hintSub = document.getElementById('benefit-hint-sub');
 
@@ -696,7 +693,6 @@
         }
 
         onlyForeverBadges.forEach(b => b.classList.add('hidden'));
-        activeSubBadges.forEach(b => b.classList.add('hidden'));
       });
 
       btnSub.addEventListener('click', () => {
@@ -706,7 +702,7 @@
         if (hintForever) hintForever.classList.add('hidden');
         if (hintSub) hintSub.classList.remove('hidden');
 
-        // Show subscription price for CRM & Space ($39 / mo)
+        // Show subscription price for CRM & Space ($39 / mo & $49 / mo)
         foreverVals.forEach(el => el.classList.add('hidden'));
         subVals.forEach(el => el.classList.remove('hidden'));
 
@@ -725,7 +721,6 @@
         }
 
         onlyForeverBadges.forEach(b => b.classList.remove('hidden'));
-        activeSubBadges.forEach(b => b.classList.remove('hidden'));
       });
     })();
   </script>
