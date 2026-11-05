@@ -476,42 +476,59 @@
           </button>
         </div>
 
-        <!-- Tier 3: e-Menu -->
-        <div id="card-tier-menu" class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:border-cyan-pulse hover:shadow-[0_0_35px_rgba(0,240,255,0.3)] relative transition-all duration-300">
+        <!-- Tier 3: Space Engine (Студии, пространства и коворкинги) -->
+        <div id="card-tier-space" class="lab-panel p-8 rounded-xl flex flex-col justify-between border-2 border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:border-cyan-pulse hover:shadow-[0_0_35px_rgba(0,240,255,0.3)] relative transition-all duration-300">
           <div>
             <div class="flex items-center justify-between mb-1">
-              <span class="font-mono text-xs text-slate-500 uppercase">Рестораны и Бары</span>
-              <span class="only-forever-badge hidden px-2 py-0.5 rounded bg-white/10 text-slate-400 font-mono text-[10px] tracking-wider uppercase border border-white/10">Только выкуп</span>
+              <span class="font-mono text-xs text-emerald-400 uppercase">Студии, пространства и коворкинги</span>
+              <span class="active-sub-badge hidden px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 font-mono text-[10px] tracking-wider uppercase border border-emerald-500/30">Доступен по подписке</span>
             </div>
-            <h3 class="font-display font-bold text-2xl text-white">e-Menu + А6</h3>
-            <p class="text-xs text-slate-400 mt-2 font-mono">Мобильное электронное меню на 4 языках и макет для печати</p>
+            <h3 class="font-display font-bold text-2xl text-white">Сайт + CRM</h3>
+            <p class="text-xs text-slate-400 mt-2 font-mono">Стильный сайт с интерактивным расписанием и онлайн-бронированием</p>
 
             <div class="my-6 py-4 border-y border-white/10">
-              <div class="flex items-baseline gap-2">
-                <span class="font-display font-bold text-4xl text-white">$90</span>
-                <span class="font-mono text-xs text-slate-400">/ под ключ</span>
+              <div class="price-val-forever">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-bold text-4xl text-white">$490</span>
+                  <span class="font-mono text-xs text-emerald-400">/ под ключ</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-500 mt-1">Запуск за 2–3 дня</div>
               </div>
-              <div class="text-[11px] font-mono text-slate-500 mt-1">Единоразово. Исходный код ваш.</div>
+              <div class="price-val-sub hidden">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-bold text-4xl text-emerald-400">$39</span>
+                  <span class="font-mono text-xs text-emerald-300">/ месяц</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-400 mt-1">0 ₽ за разработку. Техподдержка и боты 24/7.</div>
+              </div>
             </div>
 
             <ul class="space-y-3 font-mono text-xs text-slate-300">
               <li class="flex items-center gap-2">
-                <i data-lucide="check" class="w-4 h-4 text-cyan-pulse shrink-0"></i>
-                <span>Адаптивное QR-меню</span>
+                <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                <span>Сайт с интерактивным расписанием и онлайн-бронированием</span>
               </li>
               <li class="flex items-center gap-2">
-                <i data-lucide="check" class="w-4 h-4 text-cyan-pulse shrink-0"></i>
-                <span>4 языка (RU / EN / VI / KO)</span>
+                <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                <span>Почасовая сетка занятости залов и кабинетов</span>
               </li>
               <li class="flex items-center gap-2">
-                <i data-lucide="check" class="w-4 h-4 text-cyan-pulse shrink-0"></i>
-                <span>Файл тейбл-тента А6 300 DPI</span>
+                <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                <span>Управление мастерами, резидентами и тарифами</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                <span>База клиентов и программа лояльности</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                <span>Мгновенные уведомления в Telegram о новых записях и бронях</span>
               </li>
             </ul>
           </div>
 
-          <button type="button" onclick="openLeadModal('e-Menu + А6')" class="btn-lab-primary text-xs py-3 w-full text-center mt-8 transition-all cursor-pointer">
-            <span>ЗАКАЗАТЬ E-MENU</span>
+          <button type="button" onclick="openLeadModal('Сайт + CRM (Пространства)')" class="btn-lab-primary text-xs py-3 w-full text-center mt-8 transition-all cursor-pointer">
+            <span>ЗАКАЗАТЬ САЙТ + CRM</span>
           </button>
         </div>
 
@@ -646,9 +663,9 @@
 
       const cardPromo = document.getElementById('card-tier-promo');
       const cardCrm = document.getElementById('card-tier-crm');
-      const cardMenu = document.getElementById('card-tier-menu');
+      const cardSpace = document.getElementById('card-tier-space');
       const onlyForeverBadges = document.querySelectorAll('.only-forever-badge');
-      const activeSubBadge = document.querySelector('.active-sub-badge');
+      const activeSubBadges = document.querySelectorAll('.active-sub-badge');
       const hintForever = document.getElementById('benefit-hint-forever');
       const hintSub = document.getElementById('benefit-hint-sub');
 
@@ -661,7 +678,7 @@
         if (hintForever) hintForever.classList.remove('hidden');
         if (hintSub) hintSub.classList.add('hidden');
 
-        // Show buy forever price for CRM
+        // Show buy forever price for CRM & Space
         foreverVals.forEach(el => el.classList.remove('hidden'));
         subVals.forEach(el => el.classList.add('hidden'));
 
@@ -673,12 +690,13 @@
           cardCrm.classList.remove('scale-105', 'border-emerald-400', 'shadow-[0_0_45px_rgba(16,185,129,0.35)]');
           cardCrm.classList.add('border-emerald-500/50', 'shadow-[0_0_30px_rgba(16,185,129,0.2)]');
         }
-        if (cardMenu) {
-          cardMenu.classList.remove('opacity-40', 'grayscale', 'scale-95');
+        if (cardSpace) {
+          cardSpace.classList.remove('scale-105', 'border-emerald-400', 'shadow-[0_0_45px_rgba(16,185,129,0.35)]');
+          cardSpace.classList.add('border-emerald-500/50', 'shadow-[0_0_30px_rgba(16,185,129,0.2)]');
         }
 
         onlyForeverBadges.forEach(b => b.classList.add('hidden'));
-        if (activeSubBadge) activeSubBadge.classList.add('hidden');
+        activeSubBadges.forEach(b => b.classList.add('hidden'));
       });
 
       btnSub.addEventListener('click', () => {
@@ -688,24 +706,26 @@
         if (hintForever) hintForever.classList.add('hidden');
         if (hintSub) hintSub.classList.remove('hidden');
 
-        // Show subscription price for CRM ($39 / mo)
+        // Show subscription price for CRM & Space ($39 / mo)
         foreverVals.forEach(el => el.classList.add('hidden'));
         subVals.forEach(el => el.classList.remove('hidden'));
 
-        // Dim Promo and e-Menu cards so it is crystal clear only CRM is subscription-based
+        // Dim Promo card (it is forever-only)
         if (cardPromo) {
           cardPromo.classList.add('opacity-40', 'grayscale', 'scale-95');
         }
+        // Highlight both CRM cards (Beauty and Space)
         if (cardCrm) {
           cardCrm.classList.add('scale-105', 'border-emerald-400', 'shadow-[0_0_45px_rgba(16,185,129,0.35)]');
           cardCrm.classList.remove('border-emerald-500/50');
         }
-        if (cardMenu) {
-          cardMenu.classList.add('opacity-40', 'grayscale', 'scale-95');
+        if (cardSpace) {
+          cardSpace.classList.add('scale-105', 'border-emerald-400', 'shadow-[0_0_45px_rgba(16,185,129,0.35)]');
+          cardSpace.classList.remove('border-emerald-500/50');
         }
 
         onlyForeverBadges.forEach(b => b.classList.remove('hidden'));
-        if (activeSubBadge) activeSubBadge.classList.remove('hidden');
+        activeSubBadges.forEach(b => b.classList.remove('hidden'));
       });
     })();
   </script>
